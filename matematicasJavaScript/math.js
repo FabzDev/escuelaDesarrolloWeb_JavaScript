@@ -20,7 +20,7 @@ function calcularCuadrado(lado) {
 
 console.groupEnd("Cuadrado");
 
-//TRIANGULO
+// TRIANGULO
 console.group("Triangulo");
 
 const ladoTriangulo1 = 6;
@@ -56,3 +56,29 @@ console.log(
 	)
 );
 console.groupEnd("Triangulo");
+
+//CIRCULO
+console.group("Circulo");
+const radioCirculo = 3;
+const diametroCirculo = radioCirculo * 2;
+
+const circunferencia = diametroCirculo * Math.PI;
+const areaCirculo = Math.PI * radioCirculo ** 2;
+
+console.log({
+	radioCirculo,
+	diametroCirculo,
+	circunferencia,
+	areaCirculo,
+});
+
+function calcularCirculo(radio) {
+	const diametro = 2 * radio;
+	const radioCuadrado = Math.pow(radio, 2);
+	return {
+		circunferencia: diametro * Math.PI,
+		areaCirculo: radioCuadrado * Math.PI,
+	};
+}
+
+console.groupEnd("Circulo");
