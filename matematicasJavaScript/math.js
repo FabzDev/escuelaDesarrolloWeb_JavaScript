@@ -82,3 +82,10 @@ function calcularCirculo(radio) {
 }
 
 console.groupEnd("Circulo");
+
+// CALCULANDO ALTURA
+
+function trianguloAltura(a, b) {
+	let alturaTriangulo = Math.sqrt(a ** 2 - b ** 2 / 4);
+	return alturaTriangulo;
+}
