@@ -11,27 +11,39 @@ class Cupones {
 	}
 }
 
-const c10 = new Cupones("skinby10", 10);
-const c30 = new Cupones("skinby30", 30);
-const c50 = new Cupones("skinby50", 50);
+const cupon0 = new Cupones("skinby10", 10);
+const cupon1 = new Cupones("skinby30", 30);
+const cupon2 = new Cupones("skinby50", 50);
 
 btn.addEventListener("click", cuponFunction);
 
 function cuponFunction() {
 	const price = inputTreatment.value;
 	const cupon = inputCupon.value;
-	if (cupon == c10.cName) {
-		const cuponValue = c10.cValue;
+	if (cupon == cupon0.cName) {
+		const cuponValue = cupon0.cValue;
 		const newPrice = price * ((100 - cuponValue) / 100);
 		result.innerHTML = "El precio con descuento es: $" + newPrice;
 	}
-	if (cupon == c30.cName) {
-		const cuponValue = c30.cValue;
+	if (cupon == cupon1.cName) {
+		const cuponValue = cupon1.cValue;
 		const newPrice = price * ((100 - cuponValue) / 100);
 		result.innerHTML = "El precio con descuento es: $" + newPrice;
 	}
-	if (cupon == c50.cName) {
-		const cuponValue = c50.cValue;
+	if (cupon == cupon2.cName) {
+		const cuponValue = cupon2.cValue;
+		const newPrice = price * ((100 - cuponValue) / 100);
+		result.innerHTML = "El precio con descuento es: $" + newPrice;
+	}
+}
+const cupones = [];
+for (i = 0; i < 3; i++) {
+	cupones.push(cupon[i]);
+}
+
+for (vCupones of cupones) {
+	if (inputCupon.value == vCupones.cName) {
+		const cuponValue = vCupones.cValue;
 		const newPrice = price * ((100 - cuponValue) / 100);
 		result.innerHTML = "El precio con descuento es: $" + newPrice;
 	}
