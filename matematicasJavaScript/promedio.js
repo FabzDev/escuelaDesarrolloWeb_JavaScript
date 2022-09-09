@@ -9,3 +9,7 @@ for (not of notas) {
 }
 
 console.log(prom);
+
+const resultado = document.querySelector("h1");
+
+resultado.innerText = "Tu promedio de notas este corte es: " + prom;
