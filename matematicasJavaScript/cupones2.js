@@ -36,19 +36,18 @@ btn.addEventListener("click", cuponFunction);
 function cuponFunction() {
 	const cupon = inputCupon.value;
 	const treatment = inputTreatment.value;
-	const findCupon = cupones.filter(patito);
+	const findCupon = cupones.find(patito);
 	let discount;
-	if (findCupon.length > 0) {
-		discount = findCupon[0].cValue;
+	if (findCupon) {
+		discount = findCupon.cValue;
 	} else {
+		console.log(findCupon);
 		result.innerHTML = "Cupon invalido";
 		return;
 	}
 
 	const newPrice = treatment * ((100 - discount) / 100);
 	result.innerHTML = "El precio con descuento es: $" + newPrice;
-
-	console.log(findCupon);
 
 	function patito(cuponElement) {
 		return cuponElement.cName == cupon;
