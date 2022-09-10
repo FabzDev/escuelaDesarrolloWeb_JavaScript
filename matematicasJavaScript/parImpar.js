@@ -1,22 +1,21 @@
-const notas = [2, 3, 4];
+const notas = [2, 3, 4, 5];
 
-function esPar(lista) {
-	if (lista.length % 2) {
-		return false;
+function calcMediana(arr) {
+	if (esimPar(arr)) {
+		const indiceMed = Math.floor(notas.length / 2);
+		const mediana = arr[indiceMed];
+		console.log("impar" + mediana);
 	} else {
-		return true;
+		const indiceMed = arr.length / 2;
+		const mediana = (arr[indiceMed] + arr[indiceMed - 1]) / 2;
+		console.log("par" + mediana);
+	}
+	function esimPar(lista) {
+		return lista.length % 2;
 	}
 }
 
-if (esPar(notas)) {
-	const indiceMed = notas.length / 2;
-	const mediana = (notas[indiceMed] + notas[indiceMed - 1]) / 2;
-	console.log(mediana);
-} else {
-	const indiceMed = Math.floor(notas.length / 2);
-	const mediana = notas[indiceMed];
-	console.log(mediana);
-}
+calcMediana(notas);
 
 //COPIA PROMEDIO
 //const notas = [2, 3, 4];
