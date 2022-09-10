@@ -1,4 +1,4 @@
-const notas = [200000, 3, 4];
+const notas = [2, 3, 4];
 
 // let suma = 0;
 // let prom = 0;
@@ -12,9 +12,7 @@ const notas = [200000, 3, 4];
 
 // const resultado = document.querySelector("h1");
 
-const sumaLista = notas.reduce(function (valorAcum, valorNew) {
-	return valorAcum + valorNew;
-});
+const sumaLista = notas.reduce((valorAcum, valorNew) => valorAcum + valorNew);
 
 // function sumarElements(valorAcum, valorNew) {
 // 	return valorAcum + valorNew;
