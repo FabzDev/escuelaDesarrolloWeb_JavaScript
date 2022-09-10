@@ -35,7 +35,37 @@ function calcularModa(list) {
 			listaCount[elemento] = 1;
 		}
 	}
-	console.log(listaCount);
+
+	const listaCountValues = Object.values(listaCount);
+	const listaCountKeys = Object.keys(listaCount);
+
+	let maxValue = 0;
+	let maxPos = 0;
+
+	for (let i = 0; i < listaCountValues.length; i++) {
+		if (listaCountValues[i] > maxValue) {
+			maxValue = arr[i];
+			maxPos = i;
+		}
+	}
+	const objetoModa = [listaCountKeys[maxPos], maxValue];
+	return objetoModa;
 }
 
-calcularModa([1, 2, 3, 4, 1, "a", "abc", 13, "abc", "abc"]);
+//const objetoPrueba = { 1: 2, 2: 1, 3: 1, 4: 1, 13: 1, a: 1, abc: 3 };
+const objetoPruebaValues = Object.values(objetoPrueba);
+const objetoPruebaKeys = Object.keys(objetoPrueba);
+
+function calcMaxValue(arr) {
+	const maxValue = 0;
+	const maxPos = 0;
+
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] > maxValue) {
+			maxValue = arr[i];
+			maxPos = i;
+		}
+	}
+	return maxValue, maxPos;
+	return maxPos;
+}
