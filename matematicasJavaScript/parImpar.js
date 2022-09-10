@@ -33,19 +33,19 @@ function calcMediana(arr) {
 // FUNCION METODO SORT PARA ORDENAR LISTA
 
 function calcOrden(arr) {
-	return arr.sort(ordenar);
+	return arr.sort((a, b) => a - b);
 
-	function ordenar(valorAcumulado, valorNuevo) {
-		if (valorAcumulado > valorNuevo) {
-			return 1;
-		}
-		if (valorAcumulado == valorNuevo) {
-			return 0;
-		}
-		if (valorAcumulado < valorNuevo) {
-			return -1;
-		}
-	}
+	// function ordenar(valorAcumulado, valorNuevo) {
+	// 	if (valorAcumulado > valorNuevo) {
+	// 		return 1;
+	// 	}
+	// 	if (valorAcumulado == valorNuevo) {
+	// 		return 0;
+	// 	}
+	// 	if (valorAcumulado < valorNuevo) {
+	// 		return -1;
+	// 	}
+	// }
 }
 
 // CALCULAR MEDIANA ORDENADA
