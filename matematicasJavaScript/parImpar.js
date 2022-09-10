@@ -1,42 +1,54 @@
-const notas = [2, 3, 4, 5];
+// CALCULAR PROMEDIO
+const notasP = [2, 3, 4, 5];
+const sumaLista = notasP.reduce((valorAcum, valorNew) => valorAcum + valorNew);
+
+const promedio = sumaLista / notasP.length;
+console.log("Tu promedio de notas en este corte es: " + promedio);
+// FUNCION OPCIONAL
+// function sumarElements(valorAcum, valorNew) {
+// 	return valorAcum + valorNew;
+// }
+
+// CALCULAR MEDIANA SIN ORDENAR
+const notasM = [89, 2, 8000, 3, 500, 479, 4, 5];
 
 function calcMediana(arr) {
 	if (esimPar(arr)) {
-		const indiceMed = Math.floor(notas.length / 2);
+		const indiceMed = Math.floor(arr.length / 2);
 		const mediana = arr[indiceMed];
-		console.log("impar" + mediana);
+		console.log("Impar - " + mediana);
+		return mediana;
 	} else {
 		const indiceMed = arr.length / 2;
 		const mediana = (arr[indiceMed] + arr[indiceMed - 1]) / 2;
-		console.log("par" + mediana);
+		console.log("Par - " + mediana);
+		return mediana;
 	}
+
 	function esimPar(lista) {
 		return lista.length % 2;
 	}
 }
 
-calcMediana(notas);
+// FUNCION METODO SORT PARA ORDENAR LISTA
 
-//COPIA PROMEDIO
-//const notas = [2, 3, 4];
+function calcOrden(arr) {
+	return arr.sort(ordenar);
 
-// let suma = 0;
-// let prom = 0;
+	function ordenar(valorAcumulado, valorNuevo) {
+		if (valorAcumulado > valorNuevo) {
+			return 1;
+		}
+		if (valorAcumulado == valorNuevo) {
+			return 0;
+		}
+		if (valorAcumulado < valorNuevo) {
+			return -1;
+		}
+	}
+}
 
-// for (not of notas) {
-// 	suma += not;
-// 	prom = suma / notas.length;
-// }
-
-// console.log(prom);
-
-// const resultado = document.querySelector("h1");
-
-const sumaLista = notas.reduce((valorAcum, valorNew) => valorAcum + valorNew);
-
-// function sumarElements(valorAcum, valorNew) {
-// 	return valorAcum + valorNew;
-// }
-
-const promedio = sumaLista / notas.length;
-console.log("Tu promedio de notas en este corte es: " + promedio);
+// CALCULAR MEDIANA ORDENADA
+console.log(calcOrden(notasM));
+const pruebaReturnMediana = calcMediana(calcOrden(notasM));
+console.log(pruebaReturnMediana);
