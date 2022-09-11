@@ -1,11 +1,23 @@
-// console.log(salarios);
+// Analisis para persona
 
-// Analisis personal para Juanita
-const busquedaPersona = "Juanita";
-const salariosPersona = salarios.find(encontrar);
+function calcularMedianaPorPersona(personaBuscar) {
+	const objPersona = salarios.find((arr) => arr.name == personaBuscar);
+	const arrayTrabajos = objPersona.trabajos;
+	const arraySalarios = filtrarSalarios(arrayTrabajos);
+	const medianaSalarios = PlatziMath.calcMediana(arraySalarios);
+	// console.log(salarios);
+	// console.log(objPersona);
+	console.log(arrayTrabajos);
+	console.log(arraySalarios);
+	console.log(medianaSalarios);
 
-function encontrar(arr) {
-	return arr.name == busquedaPersona;
+	function filtrarSalarios(arr) {
+		const arraySal = [];
+		for (element of arr) {
+			arraySal.push(element.salario);
+		}
+		return arraySal;
+	}
 }
 
-console.log(salariosPersona);
+console.log(calcularMedianaPorPersona("Alex"));
