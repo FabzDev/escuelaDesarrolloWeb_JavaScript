@@ -14,12 +14,12 @@ PlatziMath.calcMediana = function calcMediana(arr) {
 	if (esimPar(arrO)) {
 		const indiceMed = Math.floor(arrO.length / 2);
 		const mediana = arrO[indiceMed];
-		console.log("Impar - " + mediana);
+		//console.log("Impar - " + mediana);
 		return mediana;
 	} else {
 		const indiceMed = arrO.length / 2;
 		const mediana = (arrO[indiceMed] + arrO[indiceMed - 1]) / 2;
-		console.log("Par - " + mediana);
+		//console.log("Par - " + mediana);
 		return mediana;
 	}
 
