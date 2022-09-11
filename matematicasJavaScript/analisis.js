@@ -1,7 +1,7 @@
 // Analisis para persona
 
-function calcularMedianaPorPersona(personaBuscar) {
-	const objPersona = salarios.find((arr) => arr.name == personaBuscar);
+function calcularMedianaPorPersona(nombrePersona) {
+	const objPersona = salarios.find((arr) => arr.name == nombrePersona);
 	const arrayTrabajos = objPersona.trabajos;
 	const arraySalarios = filtrarSalarios(arrayTrabajos);
 	const medianaSalarios = PlatziMath.calcMediana(arraySalarios);
@@ -21,3 +21,19 @@ function calcularMedianaPorPersona(personaBuscar) {
 }
 
 console.log(calcularMedianaPorPersona("Alex"));
+
+// Analisis de proyeccion
+
+function proyectarSalario(nombrePersona, añoProyectado) {
+	const objPersona = salarios.find((arr) => arr.name == nombrePersona);
+	const arrayTrabajos = objPersona.trabajos;
+	const arraySalarios = arrayTrabajos.map((element) => element.salario);
+	console.log(arraySalarios);
+
+	const pendiente =
+		(arraySalarios[arraySalarios.length - 1] - arraySalarios[0]) /
+		arraySalarios.length;
+	const proyeccion = pendiente * (añoProyectado - 2017) + arraySalarios[0];
+	console.log(arraySalarios.length);
+}
+proyectarSalario("Alex", 2025);
