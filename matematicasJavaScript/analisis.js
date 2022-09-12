@@ -1,5 +1,4 @@
 // Analisis para persona
-
 function calcularMedianaPorPersona(nombrePersona) {
 	const objPersona = salarios.find((arr) => arr.name == nombrePersona);
 	const arrayTrabajos = objPersona.trabajos;
@@ -19,11 +18,9 @@ function calcularMedianaPorPersona(nombrePersona) {
 		return arraySal;
 	}
 }
-
 //console.log(calcularMedianaPorPersona("Alex"));
 
-// Analisis de proyeccion
-
+// Analisis de proyeccion de sueldo
 function proyectarSalario(nombrePersona, añoProyectado) {
 	const objPersona = salarios.find((arr) => arr.name == nombrePersona);
 	const arrayTrabajos = objPersona.trabajos;
@@ -37,4 +34,19 @@ function proyectarSalario(nombrePersona, añoProyectado) {
 	const proyeccion = pendiente * (añoProyectado - 2018) + arraySalarios[0];
 	console.log(proyeccion);
 }
-proyectarSalario("Alex", 2023);
+// proyectarSalario("Julia", 2025);
+
+// Analisis de proyeccion por empresa
+function filtrarEmpresas(nombreEmpresa) {
+	const arrUnico = [];
+
+	for (sal of salarios) {
+		const arrTrabajo = sal.trabajos;
+		for (arrT of arrTrabajo) {
+			arrUnico.push(arrT);
+		}
+	}
+	const arrFiltrado = arrUnico.filter((arr) => arr.empresa == nombreEmpresa);
+	console.log(arrFiltrado);
+}
+filtrarEmpresas("Freelance");
