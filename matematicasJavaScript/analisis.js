@@ -52,4 +52,20 @@ function filtrarEmpresas(nombreEmpresa, year) {
 	const arrFiltradoAño = arrFiltradoEmpresa.filter((arr) => arr.year == year);
 	console.log(arrFiltradoAño);
 }
-filtrarEmpresas("Freelance", 2022);
+
+// Restructuracion de informacion a objetos
+
+let empresas = {};
+for (persona of salarios) {
+	for (trabajo of persona.trabajos) {
+		if (!empresas[trabajo.empresa]) {
+			empresas[trabajo.empresa] = {};
+		}
+
+		if (!empresas[trabajo.empresa][trabajo.year]) {
+			empresas[trabajo.empresa][trabajo.year] = [];
+		}
+		empresas[trabajo.empresa][trabajo.year].push(trabajo.salario);
+	}
+}
+console.log(empresas);
