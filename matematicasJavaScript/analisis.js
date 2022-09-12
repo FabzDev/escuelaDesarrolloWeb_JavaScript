@@ -37,7 +37,7 @@ function proyectarSalario(nombrePersona, añoProyectado) {
 // proyectarSalario("Julia", 2025);
 
 // Analisis de proyeccion por empresa
-function filtrarEmpresas(nombreEmpresa) {
+function filtrarEmpresas(nombreEmpresa, year) {
 	const arrUnico = [];
 
 	for (sal of salarios) {
@@ -46,7 +46,10 @@ function filtrarEmpresas(nombreEmpresa) {
 			arrUnico.push(arrT);
 		}
 	}
-	const arrFiltrado = arrUnico.filter((arr) => arr.empresa == nombreEmpresa);
-	console.log(arrFiltrado);
+	const arrFiltradoEmpresa = arrUnico.filter(
+		(arr) => arr.empresa == nombreEmpresa
+	);
+	const arrFiltradoAño = arrFiltradoEmpresa.filter((arr) => arr.year == year);
+	console.log(arrFiltradoAño);
 }
-filtrarEmpresas("Freelance");
+filtrarEmpresas("Freelance", 2022);
