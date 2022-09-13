@@ -65,7 +65,7 @@ for (persona of salarios) {
 		empresas[trabajo.empresa][trabajo.year].push(trabajo.salario);
 	}
 }
-console.log(empresas);
+// console.log(empresas);
 
 function medianaEmpresas(empresaNombre, year) {
 	if (!empresas[empresaNombre]) {
@@ -80,7 +80,7 @@ function medianaEmpresas(empresaNombre, year) {
 	console.log(medianaEmpresa);
 }
 
-medianaEmpresas("Freelance", 2021);
+// medianaEmpresas("Freelance", 2021);
 
 /*   
 objeto:
@@ -89,3 +89,21 @@ Kotomani : {
 	2019: 320, 510, 800;
 }
 */
+function proySalarioEmpresa(empNombre, year) {
+	const objLength = Object.keys(empresas[empNombre]).length;
+	const objList = Object.keys(empresas[empNombre]);
+
+	let listaSalarios = [];
+	for (let i = 0; i < objLength; i++) {
+		listaSalarios.push(PlatziMath.calcMediana(empresas[empNombre][objList[i]]));
+	}
+	console.log(listaSalarios);
+
+	const pendiente =
+		(listaSalarios[listaSalarios.length - 1] - listaSalarios[0]) /
+		(listaSalarios.length - 1);
+	const proyeccion = pendiente * (year - 2018) + listaSalarios[0];
+	console.log(proyeccion);
+}
+
+proySalarioEmpresa("Freelance", 2030);
