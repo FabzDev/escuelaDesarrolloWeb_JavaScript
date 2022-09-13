@@ -66,3 +66,26 @@ for (persona of salarios) {
 	}
 }
 console.log(empresas);
+
+function medianaEmpresas(empresaNombre, year) {
+	if (!empresas[empresaNombre]) {
+		console.warn("Empresa invalida");
+		return;
+	}
+	if (!empresas[empresaNombre][year]) {
+		console.warn("En el año ingresado no hubo ninguna contratación");
+		return;
+	}
+	const medianaEmpresa = PlatziMath.calcMediana(empresas[empresaNombre][year]);
+	console.log(medianaEmpresa);
+}
+
+medianaEmpresas("Freelance", 2021);
+
+/*   
+objeto:
+Kotomani : {
+	2018: 500, 700, 900;
+	2019: 320, 510, 800;
+}
+*/
