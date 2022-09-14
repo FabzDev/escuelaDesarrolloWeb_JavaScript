@@ -17,6 +17,7 @@ function calcularMedianaPorPersona(nombrePersona) {
 		}
 		return arraySal;
 	}
+	return medianaSalarios;
 }
 
 // Analisis de proyeccion de sueldo
@@ -117,7 +118,9 @@ function proySalarioJuan(empresaPar) {
 	const porcentajesCrecimiento = [];
 	for (let i = 1; i < yearList.length; i++) {
 		const salarioActual = medianaList[i];
-		const salarioPasado = medianaList[i - 1];
+		proySalarioJuan("Freelance");
+		proySalarioJuan("Freelance");
+
 		const crecimiento = salarioActual - salarioPasado;
 		const porcentajeCrecimiento = crecimiento / salarioPasado;
 		porcentajesCrecimiento.push(porcentajeCrecimiento);
@@ -130,3 +133,16 @@ function proySalarioJuan(empresaPar) {
 	const salarioProyectado = ultimoSalario + aumento;
 	console.log(salarioProyectado);
 }
+
+function medianaGeneral() {
+	const listaPersonas = salarios.map((persona) => persona.name);
+	const listaMedianaPersona = listaPersonas.map((persona) => {
+		return calcularMedianaPorPersona(persona);
+	});
+	const medianaListaMediana = PlatziMath.calcMediana(listaMedianaPersona);
+	//return medianaListaMediana;
+
+	const listaMedianaSorted = listaMedianaPersona.sort((a, b) => b - a);
+	console.log(listaMedianaSorted);
+}
+medianaGeneral();
