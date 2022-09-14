@@ -97,7 +97,7 @@ function proySalarioEmpresa(empNombre, year) {
 	for (let i = 0; i < objLength; i++) {
 		listaSalarios.push(PlatziMath.calcMediana(empresas[empNombre][objList[i]]));
 	}
-	console.log(listaSalarios);
+	console.log(listaSalarios); //
 
 	const pendiente =
 		(listaSalarios[listaSalarios.length - 1] - listaSalarios[0]) /
@@ -105,5 +105,15 @@ function proySalarioEmpresa(empNombre, year) {
 	const proyeccion = pendiente * (year - 2018) + listaSalarios[0];
 	console.log(proyeccion);
 }
+// proySalarioEmpresa("Freelance", 2030);
 
-proySalarioEmpresa("Freelance", 2030);
+// Proyeccion salario como JuanDC
+function proySalarioJuan(empresaPar) {
+	const medianaList = [];
+	const yearList = Object.keys(empresas[empresaPar]);
+
+	for (year of yearList) {
+		medianaList.push(PlatziMath.calcMediana(empresas[empresaPar][year]));
+	}
+}
+proySalarioJuan("Mokepon");
