@@ -77,7 +77,7 @@ function medianaEmpresas(empresaNombre, year) {
 		return;
 	}
 	const medianaEmpresa = PlatziMath.calcMediana(empresas[empresaNombre][year]);
-	console.log(medianaEmpresa);
+	return medianaEmpresa;
 }
 
 // medianaEmpresas("Freelance", 2021);
@@ -109,11 +109,24 @@ function proySalarioEmpresa(empNombre, year) {
 
 // Proyeccion salario como JuanDC
 function proySalarioJuan(empresaPar) {
-	const medianaList = [];
 	const yearList = Object.keys(empresas[empresaPar]);
+	const medianaList = yearList.map((year) => {
+		return medianaEmpresas(empresaPar, year);
+	});
 
-	for (year of yearList) {
-		medianaList.push(PlatziMath.calcMediana(empresas[empresaPar][year]));
+	const porcentajesCrecimiento = [];
+	for (let i = 1; i < yearList.length; i++) {
+		const salarioActual = medianaList[i];
+		const salarioPasado = medianaList[i - 1];
+		const crecimiento = salarioActual - salarioPasado;
+		const porcentajeCrecimiento = crecimiento / salarioPasado;
+		porcentajesCrecimiento.push(porcentajeCrecimiento);
 	}
+	const medianaPorcentajeCrecimiento = PlatziMath.calcMediana(
+		porcentajesCrecimiento
+	);
+	const ultimoSalario = medianaList[yearList.length - 1];
+	const aumento = ultimoSalario * medianaPorcentajeCrecimiento;
+	const salarioProyectado = ultimoSalario + aumento;
+	console.log(salarioProyectado);
 }
-proySalarioJuan("Mokepon");
