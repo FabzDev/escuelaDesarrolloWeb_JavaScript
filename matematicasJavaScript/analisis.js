@@ -144,11 +144,13 @@ function medianaGeneral() {
 
 	const listaMedianaSorted = listaMedianaPersona.sort((a, b) => b - a);
 
-	const top10Mediana = listaMedianaSorted.filter(function top(media, indice) {
-		if (indice < 10) {
+	const porcentajeTop = Math.floor(listaMedianaSorted.length * 0.1);
+	const top10Salarios = listaMedianaSorted.filter(function top(media, indice) {
+		if (indice < porcentajeTop) {
 			return media;
 		}
 	});
+	const top10Mediana = PlatziMath.calcMediana(top10Salarios);
 	console.log(top10Mediana);
 }
 medianaGeneral();
