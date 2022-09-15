@@ -143,6 +143,12 @@ function medianaGeneral() {
 	//return medianaListaMediana;
 
 	const listaMedianaSorted = listaMedianaPersona.sort((a, b) => b - a);
-	console.log(listaMedianaSorted);
+
+	const top10Mediana = listaMedianaSorted.filter(function top(media, indice) {
+		if (indice < 10) {
+			return media;
+		}
+	});
+	console.log(top10Mediana);
 }
 medianaGeneral();
