@@ -134,7 +134,7 @@ function proySalarioJuan(empresaPar) {
 	console.log(salarioProyectado);
 }
 
-function medianaGeneral() {
+function medianaGeneral(porcentaje) {
 	const listaPersonas = salarios.map((persona) => persona.name);
 	const listaMedianaPersona = listaPersonas.map((persona) => {
 		return calcularMedianaPorPersona(persona);
@@ -144,7 +144,9 @@ function medianaGeneral() {
 
 	const listaMedianaSorted = listaMedianaPersona.sort((a, b) => b - a);
 
-	const porcentajeTop = Math.floor(listaMedianaSorted.length * 0.1);
+	const porcentajeTop = Math.floor(
+		(listaMedianaSorted.length * porcentaje) / 100
+	);
 	const top10Salarios = listaMedianaSorted.filter(function top(media, indice) {
 		if (indice < porcentajeTop) {
 			return media;
@@ -153,4 +155,4 @@ function medianaGeneral() {
 	const top10Mediana = PlatziMath.calcMediana(top10Salarios);
 	console.log(top10Mediana);
 }
-medianaGeneral();
+medianaGeneral(10);
