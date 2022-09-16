@@ -1,44 +1,38 @@
 // Variables a ingresar
-let valorPrestamo = 45000000;
-let tasaInteres = 0.01;
-let periodoTiempo = 60;
-
-// Variables Algoritmo
-let numeroCuota;
-let valorCuota;
-let valorIntereses;
-let valorCapital;
-let saldoCapital;
-
+const valorPrestamo = 30000000;
+const tasaInteres = 0.01;
+const periodoTiempo = 60;
+const valorCuota = Math.round(
+	(tasaInteres * valorPrestamo) /
+		(1 - Math.pow(1 + tasaInteres, -periodoTiempo))
+);
+let saldoCapital = valorPrestamo;
 let listaCuotas = [];
-for (let i = 0; i < periodoTiempo; i++) {
-	function crearArray(valorPrestamo, tasaInteres, periodoTiempo) {
-		let listaCuotas = new Object();
-		let valorCuota =
-			(tasaInteres * valorPrestamo) /
-			(1 - Math.pow(1 + tasaInteres, -periodoTiempo));
-		let valorIntereses = valorPrestamo * tasaInteres;
-		let valorCapital = valorCuota - valorIntereses;
-		let saldoCapital = valorPrestamo - valorCapital;
-	}
+const pagadoTotal = valorCuota * periodoTiempo;
+const interesesTotal = pagadoTotal - valorPrestamo;
+
+// FUNCION CREADORA DE OBJETO
+function ObjCuotas(numCuota, valCuota, valIntereses, valCapital, salCapital) {
+	this.numeroCuota = numCuota;
+	this.valorCuota = valCuota;
+	this.valorIntereses = valIntereses;
+	this.valorCapital = valCapital;
+	this.saldoCapital = salCapital;
 }
 
-valorCuota =
-	(tasaInteres * valorPrestamo) /
-	(1 - Math.pow(1 + tasaInteres, -periodoTiempo));
-console.log("Valor cuota: " + valorCuota);
+// ciclo FOR
+for (i = 0; i < periodoTiempo; i++) {
+	let numeroCuota = i + 1;
+	let valorIntereses = Math.round(saldoCapital * tasaInteres);
+	let valorCapital = Math.round(valorCuota - valorIntereses);
+	saldoCapital -= Math.round(valorCapital); //VERIFICAR SI FUNCIONA ASI
+	listaCuotas[i] = new ObjCuotas(
+		numeroCuota,
+		valorCuota,
+		valorIntereses,
+		valorCapital,
+		saldoCapital
+	);
+}
 
-valorIntereses = valorPrestamo * tasaInteres;
-console.log("Valor Intereses: " + valorIntereses);
-
-valorCapital = valorCuota - valorIntereses;
-console.log("Valor Capital: " + valorCapital);
-
-saldoCapital = valorPrestamo - valorCapital;
-console.log("Saldo Capital: " + saldoCapital);
-
-// // for
-// numeroCuota = i;
-// valorIntereses = saldoCapital[i - 0] * tasaInteres;
-// valorCapital = valorCuota[i] - valorIntereses[i];
-// saldoCapital[i] = saldoCapital[i - 1] - valorCapital[i];
+console.log(listaCuotas);
