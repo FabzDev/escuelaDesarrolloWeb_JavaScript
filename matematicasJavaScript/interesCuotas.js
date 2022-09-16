@@ -1,7 +1,7 @@
 // Variables a ingresar
-const valorPrestamo = 30000000;
-const tasaInteres = 0.01;
-const periodoTiempo = 60;
+const valorPrestamo = 200000000;
+const tasaInteres = 0.008;
+const periodoTiempo = 240;
 const valorCuota = Math.round(
 	(tasaInteres * valorPrestamo) /
 		(1 - Math.pow(1 + tasaInteres, -periodoTiempo))
