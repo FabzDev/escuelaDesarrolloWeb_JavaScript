@@ -1,3 +1,4 @@
+// LOGICA DE PROGRAMACION BASICA - NO TOCAR
 // Variables a ingresar
 const valorPrestamo = 30000000;
 const tasaInteres = 0.0098;

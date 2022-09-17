@@ -25,7 +25,7 @@
 .form-container {
 	width: 80%;
 	height: 100%;
-	border: 1px solid red;
+	/* border: 1px solid red; */
 	margin: auto;
 	padding: 20px;
 }
@@ -38,7 +38,7 @@ h2 {
 	margin: auto;
 }
 .formulario {
-	border: 1px solid red;
+	/* border: 1px solid red; */
 	height: 90%;
 	display: flex;
 	flex-direction: column;
@@ -75,22 +75,29 @@ h2 {
 	font-family: "Cabin";
 }
 .number-input {
-	margin: 5px;
-	width: 80%;
+	/* margin: 5px; */
+	width: 100%;
 	height: 40px;
 	border-radius: 5px;
 	border: none;
 	padding: 5px;
-	/* border: 1px solid red; */
 }
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
 }
 
+.first-section {
+	display: inline-block;
+}
+
 .second-section > div {
 	display: inline-block;
-	width: 45%;
+	width: 48%;
+}
+
+.right-section label {
+	margin-left: 14px;
 }
 
 #calcular {
@@ -103,9 +110,18 @@ input::-webkit-inner-spin-button {
 	font-size: 18px;
 	font-weight: bold;
 	margin-top: 5px;
+	margin-left: 12px;
 }
 
+#prestamo {
+	width: 95%;
+}
 #termino-years,
+#termino-meses {
+	margin-left: 13px;
+	width: 95%;
+}
 #tasa-interes {
-	margin-left: 18px;
+	margin-left: 13px;
+	width: 94%;
 }
