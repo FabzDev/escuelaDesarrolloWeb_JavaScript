@@ -31,10 +31,43 @@
 
 h2 {
 	color: #004e8e;
-	font-family: sans-serif;
+	font-family: "Cabin", sans-serif;
 	height: 10%;
 }
 .formulario {
 	border: 1px solid red;
 	height: 90%;
+}
+
+.form-title {
+	font-family: "Cabin", sans-serif;
+	font-size: 15px;
+	font-weight: 700;
+	color: #404040;
+	/* border: 1px solid red; */
+}
+
+.q-icon {
+	width: 20px;
+	height: 20px;
+	background-color: #2a353d;
+	color: #ecf1fe;
+	border-radius: 10px;
+	padding-top: 3px;
+	padding-left: 6px;
+	margin: 2px;
+	display: inline-block;
+	/* border: 1px solid red; */
+}
+
+.value {
+	/* border: 1px solid red; */
+	font-family: "Cabin";
+}
+#prestamo {
+	margin-left: 5px;
+	height: 25px;
+	border-radius: 5px;
+	border: none;
+	/* border: 1px solid red; */
 }
