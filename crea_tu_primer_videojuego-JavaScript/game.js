@@ -1,23 +1,13 @@
 const canvas = document.querySelector("#game");
 const context = canvas.getContext("2d");
 
-window.addEventListener("load", startGame);
+window.addEventListener("load", setCanvasSize);
+window.addEventListener("resize", setCanvasSize);
+
+let canvasSize;
+let elementsSize;
 
 function startGame() {
-	let canvasSize;
-	if (window.innerWidth >= window.innerHeight) {
-		canvasSize = innerHeight * 0.8;
-	} else {
-		canvasSize = innerWidth * 0.8;
-	}
-
-	canvas.setAttribute("width", canvasSize);
-	canvas.setAttribute("height", canvasSize);
-	const elementsSize = canvasSize * 0.1;
-
-	console.log(elementsSize);
-	console.log(canvasSize);
-
 	context.textAlign = "end";
 	context.font = elementsSize + "px Verdana";
 	for (i = 1; i <= 10; i++) {
@@ -30,4 +20,19 @@ function startGame() {
 	// context.fillStyle = "green";
 	// context.textAlign = "center";
 	// context.fillText("Fabio", 100, 100);
+}
+
+function setCanvasSize() {
+	canvasSize;
+	if (window.innerWidth >= window.innerHeight) {
+		canvasSize = innerHeight * 0.8;
+	} else {
+		canvasSize = innerWidth * 0.8;
+	}
+
+	canvas.setAttribute("width", canvasSize);
+	canvas.setAttribute("height", canvasSize);
+	elementsSize = canvasSize * 0.1;
+
+	startGame();
 }
