@@ -8,32 +8,31 @@ let canvasSize;
 let elementsSize;
 
 function startGame() {
-	const map = maps[2];
-	const cleanMap = map
-		.trim()
-		.split("\n")
-		.map((row) => row.trim());
-	const matrixMap = cleanMap.map((row) => row.split(""));
-
 	context.textAlign = "end";
 	context.font = elementsSize + "px Verdana";
-	for (rows = 1; rows <= 10; rows++) {
-		for (cols = 1; cols <= 10; cols++) {
-			context.fillText(
-				emojis[matrixMap[rows - 1][cols - 1]],
-				elementsSize * cols + 10,
-				elementsSize * rows - 10
-			);
-		}
-	}
 
-	// context.fillRect(100, 100, 1, 1);
-	// context.clearRect(50, 0, 100, 50);
-	// context.font = "30px Cabin";
-	// context.fillStyle = "green";
-	// context.textAlign = "center";
-	// context.fillText("Fabio", 100, 100);
+	const map = maps[2];
+	const cleanMap = map.trim().split("\n");
+	const matrixMap = cleanMap.map((row) => row.trim().split(""));
+	console.log(matrixMap);
+
+	for (let i = 0; i < 10; i++) {
+		matrixMap.map((row, indice) =>
+			context.fillText(
+				emojis[row[i]],
+				elementsSize * (i + 1),
+				elementsSize * (indice + 1)
+			)
+		);
+	}
 }
+
+// context.fillRect(100, 100, 1, 1);
+// context.clearRect(50, 0, 100, 50);
+// context.font = "30px Cabin";
+// context.fillStyle = "green";
+// context.textAlign = "center";
+// context.fillText("Fabio", 100, 100);
 
 function setCanvasSize() {
 	canvasSize;
