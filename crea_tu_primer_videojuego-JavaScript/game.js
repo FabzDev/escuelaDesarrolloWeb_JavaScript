@@ -10,8 +10,14 @@ let elementsSize;
 function startGame() {
 	context.textAlign = "end";
 	context.font = elementsSize + "px Verdana";
-	for (i = 1; i <= 10; i++) {
-		context.fillText(emojis["X"], elementsSize * i + 10, elementsSize);
+	for (j = 1; j <= 10; j++) {
+		for (i = 1; i <= 10; i++) {
+			context.fillText(
+				emojis["X"],
+				elementsSize * i + 10,
+				elementsSize * j - 10
+			);
+		}
 	}
 
 	// context.fillRect(100, 100, 1, 1);
