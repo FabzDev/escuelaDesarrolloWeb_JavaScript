@@ -16,15 +16,15 @@ function startGame() {
 	const matrixMap = cleanMap.map((row) => row.trim().split(""));
 	console.log(matrixMap);
 
-	for (let i = 0; i < 10; i++) {
-		matrixMap.map((row, indice) =>
+	matrixMap.forEach((row, rowP) => {
+		row.forEach((col, colP) => {
 			context.fillText(
-				emojis[row[i]],
-				elementsSize * (i + 1),
-				elementsSize * (indice + 1)
-			)
-		);
-	}
+				emojis[col],
+				elementsSize * (colP + 1),
+				elementsSize * (rowP + 1)
+			);
+		});
+	});
 }
 
 // context.fillRect(100, 100, 1, 1);
