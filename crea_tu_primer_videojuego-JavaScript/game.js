@@ -8,14 +8,21 @@ let canvasSize;
 let elementsSize;
 
 function startGame() {
+	const map = maps[2];
+	const cleanMap = map
+		.trim()
+		.split("\n")
+		.map((row) => row.trim());
+	const matrixMap = cleanMap.map((row) => row.split(""));
+
 	context.textAlign = "end";
 	context.font = elementsSize + "px Verdana";
-	for (j = 1; j <= 10; j++) {
-		for (i = 1; i <= 10; i++) {
+	for (rows = 1; rows <= 10; rows++) {
+		for (cols = 1; cols <= 10; cols++) {
 			context.fillText(
-				emojis["X"],
-				elementsSize * i + 10,
-				elementsSize * j - 10
+				emojis[matrixMap[rows - 1][cols - 1]],
+				elementsSize * cols + 10,
+				elementsSize * rows - 10
 			);
 		}
 	}
