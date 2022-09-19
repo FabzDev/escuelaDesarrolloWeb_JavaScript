@@ -10,12 +10,19 @@ window.addEventListener("resize", setCanvasSize);
 
 let canvasSize;
 let elementsSize;
+let x;
+let y;
+
+const playerPosition = {
+	x: undefined,
+	y: undefined,
+};
 
 function startGame() {
 	context.textAlign = "end";
 	context.font = elementsSize + "px Verdana";
 
-	const map = maps[2];
+	const map = maps[0];
 	const cleanMap = map.trim().split("\n");
 	const matrixMap = cleanMap.map((row) => row.trim().split(""));
 	console.log(matrixMap);
@@ -24,9 +31,18 @@ function startGame() {
 		row.forEach((col, colP) => {
 			let posX = elementsSize * (colP + 1);
 			let posY = elementsSize * (rowP + 1);
+
+			if (col == "O") {
+				playerPosition.x = posX;
+				playerPosition.y = posY;
+			}
+
 			context.fillText(emojis[col], posX, posY);
 		});
 	});
+	context.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y);
+	x = playerPosition.x;
+	y = playerPosition.y;
 }
 
 // context.fillRect(100, 100, 1, 1);
@@ -57,7 +73,7 @@ btnUp.addEventListener("click", moveUp);
 btnRight.addEventListener("click", moveRight);
 btnDown.addEventListener("click", moveDown);
 
-function moveByKeys() {
+function moveByKeys(event) {
 	const tecla = event.key;
 	switch (tecla) {
 		case "ArrowLeft":
@@ -81,7 +97,8 @@ function moveLeft() {
 	console.log("Left");
 }
 function moveUp() {
-	console.log("Up");
+	y = y - elementsSize;
+	context.fillText(emojis["PLAYER"], x, y - elementsSize);
 }
 function moveRight() {
 	console.log("Right");
