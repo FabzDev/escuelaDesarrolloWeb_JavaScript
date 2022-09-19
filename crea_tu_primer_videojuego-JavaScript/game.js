@@ -19,30 +19,29 @@ const playerPosition = {
 };
 
 function startGame() {
+	context.clearRect(0, 0, canvasSize, canvasSize);
 	context.textAlign = "end";
 	context.font = elementsSize + "px Verdana";
 
 	const map = maps[0];
 	const cleanMap = map.trim().split("\n");
 	const matrixMap = cleanMap.map((row) => row.trim().split(""));
-	console.log(matrixMap);
+	// console.log(matrixMap);
 
 	matrixMap.forEach((row, rowP) => {
 		row.forEach((col, colP) => {
 			let posX = elementsSize * (colP + 1);
 			let posY = elementsSize * (rowP + 1);
 
-			if (col == "O") {
-				playerPosition.x = posX;
-				playerPosition.y = posY;
+			if (col == "O" && x == undefined && y == undefined) {
+				x = posX;
+				y = posY;
 			}
-
 			context.fillText(emojis[col], posX, posY);
 		});
 	});
-	context.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y);
-	x = playerPosition.x;
-	y = playerPosition.y;
+	console.log({ x, y });
+	context.fillText(emojis["PLAYER"], x, y);
 }
 
 // context.fillRect(100, 100, 1, 1);
@@ -97,8 +96,9 @@ function moveLeft() {
 	console.log("Left");
 }
 function moveUp() {
+	// context.fillText(emojis["PLAYER"], x, y - elementsSize);
 	y = y - elementsSize;
-	context.fillText(emojis["PLAYER"], x, y - elementsSize);
+	startGame();
 }
 function moveRight() {
 	console.log("Right");
