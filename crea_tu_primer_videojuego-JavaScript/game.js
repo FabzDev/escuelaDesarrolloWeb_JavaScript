@@ -18,11 +18,9 @@ function startGame() {
 
 	matrixMap.forEach((row, rowP) => {
 		row.forEach((col, colP) => {
-			context.fillText(
-				emojis[col],
-				elementsSize * (colP + 1),
-				elementsSize * (rowP + 1)
-			);
+			let posX = elementsSize * (colP + 1);
+			let posY = elementsSize * (rowP + 1);
+			context.fillText(emojis[col], posX, posY);
 		});
 	});
 }
