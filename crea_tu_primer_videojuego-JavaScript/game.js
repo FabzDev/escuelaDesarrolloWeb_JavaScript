@@ -40,6 +40,7 @@ function startGame() {
 			context.fillText(emojis[col], posX, posY);
 		});
 	});
+	console.log(playerPosition.x, playerPosition.y);
 	movePlayer();
 }
 function movePlayer() {
@@ -97,18 +98,26 @@ function moveByKeys(event) {
 }
 
 function moveLeft() {
-	playerPosition.x -= elementsSize;
+	if (playerPosition.x > elementsSize) {
+		playerPosition.x -= elementsSize;
+	}
 	startGame();
 }
 function moveUp() {
-	playerPosition.y -= elementsSize;
+	if (playerPosition.y > elementsSize) {
+		playerPosition.y -= elementsSize;
+	}
 	startGame();
 }
 function moveRight() {
-	playerPosition.x += elementsSize;
+	if (playerPosition.x < canvasSize) {
+		playerPosition.x += elementsSize;
+	}
 	startGame();
 }
 function moveDown() {
-	playerPosition.y += elementsSize;
+	if (playerPosition.y < canvasSize) {
+		playerPosition.y += elementsSize;
+	}
 	startGame();
 }
