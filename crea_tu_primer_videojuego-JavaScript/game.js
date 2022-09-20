@@ -10,8 +10,6 @@ window.addEventListener("resize", setCanvasSize);
 
 let canvasSize;
 let elementsSize;
-let x;
-let y;
 
 const playerPosition = {
 	x: undefined,
@@ -26,22 +24,24 @@ function startGame() {
 	const map = maps[0];
 	const cleanMap = map.trim().split("\n");
 	const matrixMap = cleanMap.map((row) => row.trim().split(""));
-	// console.log(matrixMap);
 
 	matrixMap.forEach((row, rowP) => {
 		row.forEach((col, colP) => {
 			let posX = elementsSize * (colP + 1);
 			let posY = elementsSize * (rowP + 1);
 
-			if (col == "O" && x == undefined && y == undefined) {
-				x = posX;
-				y = posY;
+			if (
+				col == "O" &&
+				playerPosition.x == undefined &&
+				playerPosition.y == undefined
+			) {
+				playerPosition.x = posX;
+				playerPosition.y = posY;
 			}
 			context.fillText(emojis[col], posX, posY);
 		});
 	});
-	console.log({ x, y });
-	context.fillText(emojis["PLAYER"], x, y);
+	context.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y);
 }
 
 // context.fillRect(100, 100, 1, 1);
@@ -93,16 +93,18 @@ function moveByKeys(event) {
 }
 
 function moveLeft() {
-	console.log("Left");
+	playerPosition.x -= elementsSize;
+	startGame();
 }
 function moveUp() {
-	// context.fillText(emojis["PLAYER"], x, y - elementsSize);
-	y = y - elementsSize;
+	playerPosition.y -= elementsSize;
 	startGame();
 }
 function moveRight() {
-	console.log("Right");
+	playerPosition.x += elementsSize;
+	startGame();
 }
 function moveDown() {
-	console.log("Down");
+	playerPosition.y += elementsSize;
+	startGame();
 }
