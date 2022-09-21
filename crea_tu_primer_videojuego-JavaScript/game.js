@@ -20,6 +20,14 @@ const pricePosition = {
 	x: undefined,
 	y: undefined,
 };
+const bombPosition = {
+	x: 0,
+	y: 0,
+};
+const initialPosition = {
+	x: 0,
+	y: 0,
+};
 
 function startGame() {
 	delMap();
@@ -43,16 +51,25 @@ function startGame() {
 			) {
 				playerPosition.x = posX;
 				playerPosition.y = posY;
+				initialPosition.x = posX;
+				initialPosition.y = posY;
 			}
 			if (col == "I") {
 				pricePosition.x = posX;
 				pricePosition.y = posY;
 			}
 			if (col == "X") {
-				pricePosition.x = posX;
-				pricePosition.y = posY;
+				bombPosition.x = posX;
+				bombPosition.y = posY;
 			}
-
+			if (
+				playerPosition.x == bombPosition.x &&
+				playerPosition.y == bombPosition.y
+			) {
+				playerPosition.x = initialPosition.x;
+				playerPosition.y = initialPosition.y;
+				startGame;
+			}
 			context.fillText(emojis[col], posX, posY);
 		});
 	});
@@ -61,6 +78,8 @@ function startGame() {
 		playerPosition.y,
 		pricePosition.x,
 		pricePosition.y,
+		initialPosition.x,
+		initialPosition.y,
 		level
 	);
 	movePlayer();
@@ -150,5 +169,7 @@ function isPricePosition() {
 		pricePosition.y == playerPosition.y
 	) {
 		level = level + 1;
+		playerPosition.x = undefined;
+		playerPosition.y = undefined;
 	}
 }
