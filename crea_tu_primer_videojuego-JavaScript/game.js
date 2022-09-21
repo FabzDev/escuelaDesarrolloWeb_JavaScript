@@ -10,24 +10,31 @@ window.addEventListener("resize", setCanvasSize);
 
 let canvasSize;
 let elementsSize;
+let level = -1;
 
 const playerPosition = {
+	x: undefined,
+	y: undefined,
+};
+const pricePosition = {
 	x: undefined,
 	y: undefined,
 };
 
 function startGame() {
 	delMap();
+	isPricePosition();
+
 	context.textAlign = "end";
 	context.font = elementsSize + "px Verdana";
 
-	const map = maps[0];
+	let map = maps[level];
 	const cleanMap = map.trim().split("\n");
 	const matrixMap = cleanMap.map((row) => row.trim().split(""));
 	matrixMap.forEach((row, rowP) => {
 		row.forEach((col, colP) => {
-			let posX = elementsSize * (colP + 1);
-			let posY = elementsSize * (rowP + 1);
+			let posX = Math.round(elementsSize * (colP + 1));
+			let posY = Math.round(elementsSize * (rowP + 1));
 
 			if (
 				col == "O" &&
@@ -37,10 +44,25 @@ function startGame() {
 				playerPosition.x = posX;
 				playerPosition.y = posY;
 			}
+			if (col == "I") {
+				pricePosition.x = posX;
+				pricePosition.y = posY;
+			}
+			if (col == "X") {
+				pricePosition.x = posX;
+				pricePosition.y = posY;
+			}
+
 			context.fillText(emojis[col], posX, posY);
 		});
 	});
-	console.log(playerPosition.x, playerPosition.y);
+	console.log(
+		playerPosition.x,
+		playerPosition.y,
+		pricePosition.x,
+		pricePosition.y,
+		level
+	);
 	movePlayer();
 }
 function movePlayer() {
@@ -59,9 +81,9 @@ function delMap() {
 function setCanvasSize() {
 	canvasSize;
 	if (window.innerWidth >= window.innerHeight) {
-		canvasSize = innerHeight * 0.8;
+		canvasSize = Math.round(innerHeight * 0.8);
 	} else {
-		canvasSize = innerWidth * 0.8;
+		canvasSize = Math.round(innerWidth * 0.8);
 	}
 
 	canvas.setAttribute("width", canvasSize);
@@ -120,4 +142,13 @@ function moveDown() {
 		playerPosition.y += elementsSize;
 	}
 	startGame();
+}
+
+function isPricePosition() {
+	if (
+		pricePosition.x == playerPosition.x &&
+		pricePosition.y == playerPosition.y
+	) {
+		level = level + 1;
+	}
 }
