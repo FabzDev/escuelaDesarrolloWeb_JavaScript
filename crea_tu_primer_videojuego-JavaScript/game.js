@@ -11,6 +11,7 @@ window.addEventListener("resize", setCanvasSize);
 let canvasSize;
 let elementsSize;
 let level = -1;
+let lives = 3;
 
 const playerPosition = {
 	x: undefined,
@@ -20,23 +21,23 @@ const pricePosition = {
 	x: undefined,
 	y: undefined,
 };
-const bombPosition = {
-	x: 0,
-	y: 0,
-};
-const initialPosition = {
-	x: 0,
-	y: 0,
-};
+
+const bombPosition = [];
 
 function startGame() {
-	delMap();
 	isPricePosition();
+	delMap();
 
 	context.textAlign = "end";
 	context.font = elementsSize + "px Verdana";
 
 	let map = maps[level];
+
+	if (!map) {
+		gameWin();
+		return;
+	}
+
 	const cleanMap = map.trim().split("\n");
 	const matrixMap = cleanMap.map((row) => row.trim().split(""));
 	matrixMap.forEach((row, rowP) => {
@@ -51,36 +52,20 @@ function startGame() {
 			) {
 				playerPosition.x = posX;
 				playerPosition.y = posY;
-				initialPosition.x = posX;
-				initialPosition.y = posY;
 			}
 			if (col == "I") {
 				pricePosition.x = posX;
 				pricePosition.y = posY;
 			}
 			if (col == "X") {
-				bombPosition.x = posX;
-				bombPosition.y = posY;
-			}
-			if (
-				playerPosition.x == bombPosition.x &&
-				playerPosition.y == bombPosition.y
-			) {
-				playerPosition.x = initialPosition.x;
-				playerPosition.y = initialPosition.y;
+				bombPosition.push({
+					x: posX,
+					y: posY,
+				});
 			}
 			context.fillText(emojis[col], posX, posY);
 		});
 	});
-	console.log(
-		playerPosition.x,
-		playerPosition.y,
-		pricePosition.x,
-		pricePosition.y,
-		initialPosition.x,
-		initialPosition.y,
-		level
-	);
 	movePlayer();
 }
 
@@ -162,10 +147,24 @@ function isPricePosition() {
 		pricePosition.x == playerPosition.x &&
 		pricePosition.y == playerPosition.y
 	) {
-		level = level + 1;
+		level++;
 		playerPosition.x = undefined;
 		playerPosition.y = undefined;
 	}
+}
+
+function gameWin() {
+	console.log("TERMINASTE EL JUEGO!");
+}
+
+function lvlFail() {
+	if (lives <= 1) {
+		level = 0;
+		lives = 3;
+		startGame();
+	}
+	lives--;
+	console.log(lives);
 }
 
 // context.clearRect(50, 0, 100, 50);
