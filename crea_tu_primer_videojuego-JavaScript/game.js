@@ -22,11 +22,10 @@ const pricePosition = {
 	y: undefined,
 };
 
-const bombPosition = [];
+let bombPosition = [];
 
 function startGame() {
 	isPricePosition();
-	delMap();
 
 	context.textAlign = "end";
 	context.font = elementsSize + "px Verdana";
@@ -38,8 +37,11 @@ function startGame() {
 		return;
 	}
 
+	bombPosition = [];
+
 	const cleanMap = map.trim().split("\n");
 	const matrixMap = cleanMap.map((row) => row.trim().split(""));
+	delMap();
 	matrixMap.forEach((row, rowP) => {
 		row.forEach((col, colP) => {
 			let posX = Math.round(elementsSize * (colP + 1));
@@ -70,6 +72,7 @@ function startGame() {
 }
 
 function movePlayer() {
+	isBombColition();
 	context.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y);
 }
 function delMap() {
@@ -148,6 +151,17 @@ function isPricePosition() {
 		pricePosition.y == playerPosition.y
 	) {
 		level++;
+		playerPosition.x = undefined;
+		playerPosition.y = undefined;
+	}
+}
+
+function isBombColition() {
+	const bombColition = bombPosition.find((pos) => {
+		return pos.x == playerPosition.x && pos.y == playerPosition.y;
+	});
+
+	if (bombColition) {
 		playerPosition.x = undefined;
 		playerPosition.y = undefined;
 	}
