@@ -68,7 +68,6 @@ function startGame() {
 			) {
 				playerPosition.x = initialPosition.x;
 				playerPosition.y = initialPosition.y;
-				startGame;
 			}
 			context.fillText(emojis[col], posX, posY);
 		});
@@ -84,18 +83,13 @@ function startGame() {
 	);
 	movePlayer();
 }
+
 function movePlayer() {
 	context.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y);
 }
 function delMap() {
 	context.clearRect(0, 0, canvasSize, canvasSize);
 }
-// context.fillRect(100, 100, 1, 1);
-// context.clearRect(50, 0, 100, 50);
-// context.font = "30px Cabin";
-// context.fillStyle = "green";
-// context.textAlign = "center";
-// context.fillText("Fabio", 100, 100);
 
 function setCanvasSize() {
 	canvasSize;
@@ -173,3 +167,10 @@ function isPricePosition() {
 		playerPosition.y = undefined;
 	}
 }
+
+// context.clearRect(50, 0, 100, 50);
+// context.font = "30px Cabin";
+// context.fillStyle = "green";
+// context.textAlign = "center";
+// context.fillText("Fabio", 100, 100);
+// context.fillRect(100, 100, 1, 1);
