@@ -10,7 +10,7 @@ window.addEventListener("resize", setCanvasSize);
 
 let canvasSize;
 let elementsSize;
-let level = -1;
+let level = 0;
 let lives = 3;
 
 const playerPosition = {
@@ -24,9 +24,8 @@ const pricePosition = {
 
 let bombPosition = [];
 
+//FUNCION PRINCIPAL
 function startGame() {
-	isPricePosition();
-
 	context.textAlign = "end";
 	context.font = elementsSize + "px Verdana";
 
@@ -41,7 +40,7 @@ function startGame() {
 
 	const cleanMap = map.trim().split("\n");
 	const matrixMap = cleanMap.map((row) => row.trim().split(""));
-	delMap();
+	context.clearRect(0, 0, canvasSize, canvasSize);
 	matrixMap.forEach((row, rowP) => {
 		row.forEach((col, colP) => {
 			let posX = Math.round(elementsSize * (colP + 1));
@@ -71,12 +70,36 @@ function startGame() {
 	movePlayer();
 }
 
+function isBombColition() {
+	const bombColition = bombPosition.find((pos) => {
+		return pos.x == playerPosition.x && pos.y == playerPosition.y;
+	});
+
+	if (bombColition) {
+		playerPosition.x = undefined;
+		playerPosition.y = undefined;
+		lvlFail();
+
+		startGame();
+	}
+}
+
+function isPricePosition() {
+	if (
+		pricePosition.x == playerPosition.x &&
+		pricePosition.y == playerPosition.y
+	) {
+		playerPosition.x = undefined;
+		playerPosition.y = undefined;
+		level++;
+		startGame();
+	}
+}
+
 function movePlayer() {
 	isBombColition();
+	isPricePosition();
 	context.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y);
-}
-function delMap() {
-	context.clearRect(0, 0, canvasSize, canvasSize);
 }
 
 function setCanvasSize() {
@@ -145,28 +168,6 @@ function moveDown() {
 	startGame();
 }
 
-function isPricePosition() {
-	if (
-		pricePosition.x == playerPosition.x &&
-		pricePosition.y == playerPosition.y
-	) {
-		level++;
-		playerPosition.x = undefined;
-		playerPosition.y = undefined;
-	}
-}
-
-function isBombColition() {
-	const bombColition = bombPosition.find((pos) => {
-		return pos.x == playerPosition.x && pos.y == playerPosition.y;
-	});
-
-	if (bombColition) {
-		playerPosition.x = undefined;
-		playerPosition.y = undefined;
-	}
-}
-
 function gameWin() {
 	console.log("TERMINASTE EL JUEGO!");
 }
@@ -175,10 +176,10 @@ function lvlFail() {
 	if (lives <= 1) {
 		level = 0;
 		lives = 3;
-		startGame();
+	} else {
+		lives--;
+		console.log(lives);
 	}
-	lives--;
-	console.log(lives);
 }
 
 // context.clearRect(50, 0, 100, 50);
