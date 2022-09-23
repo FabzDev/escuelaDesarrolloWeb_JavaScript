@@ -202,6 +202,10 @@ function moveDown() {
 
 function gameWin() {
 	console.log("TERMINASTE EL JUEGO!");
+	if (timePlayer < localStorage.puntaje) {
+		localStorage.setItem("puntaje", timePlayer);
+	}
+
 	clearInterval(timeInterval);
 }
 
@@ -229,7 +233,8 @@ function showLives() {
 }
 
 function showTime() {
-	time.innerHTML = (Date.now() - timeStart) / 1000;
+	timePlayer = (Date.now() - timeStart) / 1000;
+	time.innerHTML = timePlayer;
 }
 // context.clearRect(50, 0, 100, 50);
 // context.font = "30px Cabin";
