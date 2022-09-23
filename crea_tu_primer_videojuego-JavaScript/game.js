@@ -208,8 +208,9 @@ function lvlFail() {
 }
 
 function showLives() {
-	const heartsArray = Array(lives).fill(emojis["HEART"]); // [~,~,~]
-	vidasR.innerHTML = heartsArray;
+	// const heartsArray = Array(lives).fill(emojis["HEART"]); // [~,~,~]
+	// vidasR.innerHTML = heartsArray;
+	vidasR.innerHTML = emojis["HEART"].repeat(lives);
 }
 // context.clearRect(50, 0, 100, 50);
 // context.font = "30px Cabin";
