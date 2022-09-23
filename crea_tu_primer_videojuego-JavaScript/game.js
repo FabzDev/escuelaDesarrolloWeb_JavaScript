@@ -21,6 +21,10 @@ const pricePosition = {
 	x: undefined,
 	y: undefined,
 };
+let firePosition = {
+	x: undefined,
+	y: undefined,
+};
 
 let bombPosition = [];
 
@@ -63,8 +67,19 @@ function startGame() {
 					x: posX,
 					y: posY,
 				});
+				if (posX == playerPosition.x && posY == playerPosition.y) {
+					firePosition.x = posX;
+					firePosition.y = posY;
+				}
 			}
-			context.fillText(emojis[col], posX, posY);
+			if (posX == firePosition.x && posY == firePosition.y) {
+				context.fillText(emojis["BOMB_COLLISION"], posX, posY);
+			} else {
+				// console.log("KAREN PERO QUE MONDAAAA");
+				// firePosition.x = undefined;
+				// firePosition.y = undefined;
+				context.fillText(emojis[col], posX, posY);
+			}
 		});
 	});
 	movePlayer();
