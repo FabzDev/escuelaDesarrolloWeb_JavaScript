@@ -48,8 +48,8 @@ function startGame() {
 	context.clearRect(0, 0, canvasSize, canvasSize);
 	matrixMap.forEach((row, rowP) => {
 		row.forEach((col, colP) => {
-			let posX = Math.round(elementsSize * (colP + 1));
-			let posY = Math.round(elementsSize * (rowP + 1));
+			let posX = parseFloat((elementsSize * (colP + 1)).toFixed(2));
+			let posY = parseFloat((elementsSize * (rowP + 1)).toFixed(2));
 
 			if (
 				col == "O" &&
@@ -76,9 +76,6 @@ function startGame() {
 			if (posX == firePosition.x && posY == firePosition.y) {
 				context.fillText(emojis["BOMB_COLLISION"], posX, posY);
 			} else {
-				// console.log("KAREN PERO QUE MONDAAAA");
-				// firePosition.x = undefined;
-				// firePosition.y = undefined;
 				context.fillText(emojis[col], posX, posY);
 			}
 		});
@@ -125,14 +122,14 @@ function movePlayer() {
 function setCanvasSize() {
 	canvasSize;
 	if (window.innerWidth >= window.innerHeight) {
-		canvasSize = Math.round(innerHeight * 0.8);
+		canvasSize = Math.round((innerHeight * 0.8).toFixed(2));
 	} else {
-		canvasSize = Math.round(innerWidth * 0.8);
+		canvasSize = Math.round((innerWidth * 0.8).toFixed(2));
 	}
 
 	canvas.setAttribute("width", canvasSize);
 	canvas.setAttribute("height", canvasSize);
-	elementsSize = Math.round(canvasSize * 0.1);
+	elementsSize = Math.round((canvasSize * 0.1).toFixed(2));
 
 	startGame();
 }
@@ -166,26 +163,30 @@ function moveByKeys(event) {
 function moveLeft() {
 	if (playerPosition.x > elementsSize) {
 		playerPosition.x -= elementsSize;
+		startGame();
 	}
-	startGame();
+	console.log(playerPosition.x, canvasSize);
 }
 function moveUp() {
 	if (playerPosition.y > elementsSize) {
 		playerPosition.y -= elementsSize;
 	}
 	startGame();
+	console.log(playerPosition.y, canvasSize, elementsSize);
 }
 function moveRight() {
 	if (playerPosition.x < canvasSize) {
 		playerPosition.x += elementsSize;
 	}
 	startGame();
+	console.log(playerPosition.x, canvasSize);
 }
 function moveDown() {
 	if (playerPosition.y < canvasSize) {
 		playerPosition.y += elementsSize;
 	}
 	startGame();
+	console.log(playerPosition.y, canvasSize);
 }
 
 function gameWin() {
