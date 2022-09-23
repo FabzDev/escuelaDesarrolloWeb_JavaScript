@@ -5,6 +5,7 @@ const btnUp = document.querySelector("#up");
 const btnRight = document.querySelector("#right");
 const btnDown = document.querySelector("#down");
 const vidasR = document.querySelector("#lifesR");
+const time = document.querySelector("#timeID");
 
 window.addEventListener("load", setCanvasSize);
 window.addEventListener("resize", setCanvasSize);
@@ -13,6 +14,11 @@ let canvasSize;
 let elementsSize;
 let level = 0;
 let lives = 3;
+let timeStart;
+let timePlayer;
+let timeInterval;
+time.innerHTML = timeInterval;
+
 showLives();
 
 const playerPosition = {
@@ -34,12 +40,16 @@ let bombPosition = [];
 function startGame() {
 	context.textAlign = "end";
 	context.font = elementsSize + "px Verdana";
-
 	let map = maps[level];
 
 	if (!map) {
 		gameWin();
 		return;
+	}
+
+	if (!timeStart) {
+		timeStart = Date.now();
+		timeInterval = setInterval(showTime, 100);
 	}
 
 	bombPosition = [];
@@ -192,6 +202,7 @@ function moveDown() {
 
 function gameWin() {
 	console.log("TERMINASTE EL JUEGO!");
+	clearInterval(timeInterval);
 }
 
 function lvlFail() {
@@ -201,6 +212,8 @@ function lvlFail() {
 		firePosition.x = undefined;
 		firePosition.y = undefined;
 		showLives();
+		clearInterval(timeInterval);
+		timeStart = undefined;
 	} else {
 		lives--;
 		showLives();
@@ -213,6 +226,10 @@ function showLives() {
 	// vidasR.innerHTML = emojis["HEART"].repeat(lives);
 	vidasR.innerHTML = "";
 	heartsArray.forEach((heart) => vidasR.append(heart));
+}
+
+function showTime() {
+	time.innerHTML = (Date.now() - timeStart) / 1000;
 }
 // context.clearRect(50, 0, 100, 50);
 // context.font = "30px Cabin";
