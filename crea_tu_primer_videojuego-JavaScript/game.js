@@ -6,6 +6,7 @@ const btnRight = document.querySelector("#right");
 const btnDown = document.querySelector("#down");
 const vidasR = document.querySelector("#lifesR");
 const time = document.querySelector("#timeID");
+const record = document.querySelector("#recordID");
 
 window.addEventListener("load", setCanvasSize);
 window.addEventListener("resize", setCanvasSize);
@@ -20,7 +21,7 @@ let timeInterval;
 time.innerHTML = timeInterval;
 
 showLives();
-
+record.innerHTML = localStorage.puntaje + " seg";
 const playerPosition = {
 	x: undefined,
 	y: undefined,
@@ -234,7 +235,7 @@ function showLives() {
 
 function showTime() {
 	timePlayer = (Date.now() - timeStart) / 1000;
-	time.innerHTML = timePlayer;
+	time.innerHTML = timePlayer.toFixed(1) + " seg";
 }
 // context.clearRect(50, 0, 100, 50);
 // context.font = "30px Cabin";
