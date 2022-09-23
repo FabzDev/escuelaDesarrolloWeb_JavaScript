@@ -4,6 +4,7 @@ const btnLeft = document.querySelector("#left");
 const btnUp = document.querySelector("#up");
 const btnRight = document.querySelector("#right");
 const btnDown = document.querySelector("#down");
+const vidasR = document.querySelector("#lifesR");
 
 window.addEventListener("load", setCanvasSize);
 window.addEventListener("resize", setCanvasSize);
@@ -93,6 +94,7 @@ function isBombColition() {
 	if (bombColition) {
 		playerPosition.x = undefined;
 		playerPosition.y = undefined;
+
 		lvlFail();
 
 		startGame();
@@ -106,6 +108,9 @@ function isPricePosition() {
 	) {
 		playerPosition.x = undefined;
 		playerPosition.y = undefined;
+		firePosition.x = undefined;
+		firePosition.y = undefined;
+
 		level++;
 		startGame();
 	}
@@ -191,10 +196,13 @@ function lvlFail() {
 	if (lives <= 1) {
 		level = 0;
 		lives = 3;
+		firePosition.x = undefined;
+		firePosition.y = undefined;
 	} else {
 		lives--;
 		console.log(lives);
 	}
+	vidasR.innerHTML = lives;
 }
 
 // context.clearRect(50, 0, 100, 50);
