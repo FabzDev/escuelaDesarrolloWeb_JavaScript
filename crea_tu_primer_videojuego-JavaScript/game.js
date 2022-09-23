@@ -13,6 +13,7 @@ let canvasSize;
 let elementsSize;
 let level = 0;
 let lives = 3;
+showLives();
 
 const playerPosition = {
 	x: undefined,
@@ -199,13 +200,17 @@ function lvlFail() {
 		lives = 3;
 		firePosition.x = undefined;
 		firePosition.y = undefined;
+		showLives();
 	} else {
 		lives--;
-		console.log(lives);
+		showLives();
 	}
-	vidasR.innerHTML = lives;
 }
 
+function showLives() {
+	const heartsArray = Array(lives).fill(emojis["HEART"]); // [~,~,~]
+	vidasR.innerHTML = heartsArray;
+}
 // context.clearRect(50, 0, 100, 50);
 // context.font = "30px Cabin";
 // context.fillStyle = "green";
