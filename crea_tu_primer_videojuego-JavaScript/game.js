@@ -10,6 +10,12 @@ const recordSpan = document.querySelector("#recordID");
 
 window.addEventListener("load", setCanvasSize);
 window.addEventListener("resize", setCanvasSize);
+window.addEventListener("resize", positionPlayer);
+
+function positionPlayer() {
+	playerPosition.x = undefined;
+	playerPosition.y = undefined;
+}
 
 let canvasSize;
 let elementsSize;
@@ -180,28 +186,28 @@ function moveLeft() {
 		playerPosition.x -= elementsSize;
 		startGame();
 	}
-	console.log(playerPosition.x, canvasSize);
+	// console.log(playerPosition.x, canvasSize);
 }
 function moveUp() {
 	if (playerPosition.y > elementsSize) {
 		playerPosition.y -= elementsSize;
 	}
 	startGame();
-	console.log(playerPosition.y, canvasSize, elementsSize);
+	// console.log(playerPosition.y, canvasSize, elementsSize);
 }
 function moveRight() {
 	if (playerPosition.x < canvasSize) {
 		playerPosition.x += elementsSize;
 	}
 	startGame();
-	console.log(playerPosition.x, canvasSize);
+	// console.log(playerPosition.x, canvasSize);
 }
 function moveDown() {
 	if (playerPosition.y < canvasSize) {
 		playerPosition.y += elementsSize;
 	}
 	startGame();
-	console.log(playerPosition.y, canvasSize);
+	// console.log(playerPosition.y, canvasSize);
 }
 
 function gameWin() {
