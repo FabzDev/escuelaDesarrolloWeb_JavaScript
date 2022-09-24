@@ -6,7 +6,7 @@ const btnRight = document.querySelector("#right");
 const btnDown = document.querySelector("#down");
 const vidasR = document.querySelector("#lifesR");
 const time = document.querySelector("#timeID");
-const record = document.querySelector("#recordID");
+const recordSpan = document.querySelector("#recordID");
 
 window.addEventListener("load", setCanvasSize);
 window.addEventListener("resize", setCanvasSize);
@@ -18,10 +18,13 @@ let lives = 3;
 let timeStart;
 let timePlayer;
 let timeInterval;
+let record;
 time.innerHTML = timeInterval;
 
 showLives();
-record.innerHTML = localStorage.puntaje + " seg";
+
+showRecord();
+
 const playerPosition = {
 	x: undefined,
 	y: undefined,
@@ -202,12 +205,18 @@ function moveDown() {
 }
 
 function gameWin() {
-	console.log("TERMINASTE EL JUEGO!");
 	if (timePlayer < localStorage.puntaje) {
 		localStorage.setItem("puntaje", timePlayer);
 	}
 
 	clearInterval(timeInterval);
+}
+
+function showRecord() {
+	if (!localStorage.puntaje) {
+		localStorage.setItem("puntaje", 9999);
+	}
+	recordSpan.innerHTML = localStorage.puntaje + " seg";
 }
 
 function lvlFail() {
