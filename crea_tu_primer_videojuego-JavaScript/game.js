@@ -281,9 +281,3 @@ function showTime() {
 	timePlayer = (Date.now() - timeStart) / 1000;
 	time.innerHTML = timePlayer.toFixed(1) + " seg";
 }
-// context.clearRect(50, 0, 100, 50);
-// context.font = "30px Cabin";
-// context.fillStyle = "green";
-// context.textAlign = "center";
-// context.fillText("Fabio", 100, 100);
-// context.fillRect(100, 100, 1, 1);
