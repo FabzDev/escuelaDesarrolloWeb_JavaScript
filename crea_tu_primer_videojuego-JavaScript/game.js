@@ -148,13 +148,13 @@ function startGame() {
 const looser = function (x, y, index) {
 	setTimeout(function () {
 		context.fillText(emojis["COLLISION"], x, y);
-	}, index * 50);
+	}, index * 20);
 };
 
 const winner = function (x, y, index) {
 	setTimeout(function () {
 		context.fillText(emojis["WIN"], x, y);
-	}, index * 50);
+	}, index * 20);
 };
 
 function isBombColition() {
@@ -176,16 +176,15 @@ function isPricePosition() {
 		pricePosition.x == playerPosition.x &&
 		pricePosition.y == playerPosition.y
 	) {
-		win = true;
-		removePositions();
-		startGame();
-		level++;
 		if (!maps[level]) {
 			gameWin();
 			return;
 		}
-
-		setTimeout(winFunction, 1100);
+		win = true;
+		removePositions();
+		startGame();
+		level++;
+		setTimeout(winFunction, 600);
 	}
 }
 function winFunction() {
