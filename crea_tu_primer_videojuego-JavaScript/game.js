@@ -71,76 +71,79 @@ function startGame() {
 	const cleanMap = map.trim().split("\n");
 	let matrixMap = cleanMap.map((row) => row.trim().split(""));
 	context.clearRect(0, 0, canvasSize, canvasSize);
-	matrixMap.forEach((row, rowP) => {
-		row.forEach((col, colP) => {
-			let posX = parseFloat((elementsSize * (colP + 1)).toFixed(2));
-			let posY = parseFloat((elementsSize * (rowP + 1)).toFixed(2));
-			if (!win && !lose) {
-				if (
-					col == "O" &&
-					playerPosition.x == undefined &&
-					playerPosition.y == undefined
-				) {
-					playerPosition.x = posX;
-					playerPosition.y = posY;
-				}
-				if (col == "I") {
-					pricePosition.x = posX;
-					pricePosition.y = posY;
-				}
-				if (col == "X") {
-					bombPosition.push({
-						x: posX,
-						y: posY,
-					});
-					if (posX == playerPosition.x && posY == playerPosition.y) {
-						if (firePosition.x == undefined && firePosition.y == undefined) {
-							firePosition.x = posX;
-							firePosition.y = posY;
-						} else {
-							firePosition.a = posX;
-							firePosition.b = posY;
+
+	setInterval(
+		matrixMap.forEach((row, rowP) => {
+			row.forEach((col, colP) => {
+				let posX = parseFloat((elementsSize * (colP + 1)).toFixed(2));
+				let posY = parseFloat((elementsSize * (rowP + 1)).toFixed(2));
+				if (!win && !lose) {
+					if (
+						col == "O" &&
+						playerPosition.x == undefined &&
+						playerPosition.y == undefined
+					) {
+						playerPosition.x = posX;
+						playerPosition.y = posY;
+					}
+					if (col == "I") {
+						pricePosition.x = posX;
+						pricePosition.y = posY;
+					}
+					if (col == "X") {
+						bombPosition.push({
+							x: posX,
+							y: posY,
+						});
+						if (posX == playerPosition.x && posY == playerPosition.y) {
+							if (firePosition.x == undefined && firePosition.y == undefined) {
+								firePosition.x = posX;
+								firePosition.y = posY;
+							} else {
+								firePosition.a = posX;
+								firePosition.b = posY;
+							}
 						}
 					}
-				}
-				if (firePosition.x != undefined && firePosition.y != undefined) {
-					context.clearRect(
-						firePosition.x - elementsSize,
-						firePosition.y - elementsSize + 10,
-						elementsSize,
-						elementsSize
-					);
-					context.fillText(
-						emojis["BOMB_COLLISION"],
-						firePosition.x,
-						firePosition.y
-					);
-					if (firePosition.a != undefined && firePosition.b != undefined) {
+					if (firePosition.x != undefined && firePosition.y != undefined) {
 						context.clearRect(
-							firePosition.a - elementsSize,
-							firePosition.b - elementsSize + 10,
+							firePosition.x - elementsSize,
+							firePosition.y - elementsSize + 10,
 							elementsSize,
 							elementsSize
 						);
 						context.fillText(
 							emojis["BOMB_COLLISION"],
-							firePosition.a,
-							firePosition.b
+							firePosition.x,
+							firePosition.y
 						);
+						if (firePosition.a != undefined && firePosition.b != undefined) {
+							context.clearRect(
+								firePosition.a - elementsSize,
+								firePosition.b - elementsSize + 10,
+								elementsSize,
+								elementsSize
+							);
+							context.fillText(
+								emojis["BOMB_COLLISION"],
+								firePosition.a,
+								firePosition.b
+							);
+						}
+					}
+					context.fillText(emojis[col], posX, posY);
+				} else if (lose) {
+					if (col == "X") {
+						context.fillText(emojis["COLLISION"], posX, posY);
+					}
+				} else if (win) {
+					if (col == "X") {
+						context.fillText(emojis["WIN"], posX, posY);
 					}
 				}
-				context.fillText(emojis[col], posX, posY);
-			} else if (lose) {
-				if (col == "X") {
-					context.fillText(emojis["COLLISION"], posX, posY);
-				}
-			} else if (win) {
-				if (col == "X") {
-					context.fillText(emojis["WIN"], posX, posY);
-				}
-			}
-		});
-	});
+			});
+		}, 5000)
+	);
 	movePlayer();
 }
 
@@ -158,7 +161,6 @@ function isBombColition() {
 		startGame();
 	}
 }
-// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 function isPricePosition() {
 	if (
 		pricePosition.x == playerPosition.x &&

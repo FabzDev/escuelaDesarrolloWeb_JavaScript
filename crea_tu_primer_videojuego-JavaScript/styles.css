@@ -48,7 +48,9 @@ canvas {
 .grid-class {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	width: 40%;
+	width: 70%;
+	max-width: 70vh;
+	margin-top: 20px;
 }
 
 .flex-class {
@@ -80,17 +82,13 @@ button:not(:last-child) {
 .messages {
 	display: flex;
 	flex-wrap: wrap;
-	margin: 20px 10px 0px 0px;
-	width: 80%;
-	max-width: 460px;
 	justify-content: center;
 	min-width: 120px;
+	margin-left: 30%;
 }
 .btn-reset {
 	display: flex;
 	justify-content: center;
-	width: 100%;
-	margin: 20px 10px 0px 0px;
 }
 
 p {
@@ -120,5 +118,8 @@ p {
 	}
 	.grid-class {
 		width: 60%;
+	}
+	.messages {
+		margin-left: 0%;
 	}
 }
