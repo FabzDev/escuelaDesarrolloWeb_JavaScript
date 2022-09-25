@@ -133,11 +133,11 @@ function startGame() {
 				context.fillText(emojis[col], posX, posY);
 			} else if (lose) {
 				if (col == "X") {
-					context.fillText(emojis["COLLISION"], posX, posY);
+					looser(posX, posY, rowP);
 				}
 			} else if (win) {
 				if (col == "X") {
-					conteo(posX, posY, colP);
+					winner(posX, posY, colP);
 				}
 			}
 		});
@@ -145,10 +145,16 @@ function startGame() {
 	movePlayer();
 }
 
-const conteo = function (x, y, index) {
+const looser = function (x, y, index) {
+	setTimeout(function () {
+		context.fillText(emojis["COLLISION"], x, y);
+	}, index * 50);
+};
+
+const winner = function (x, y, index) {
 	setTimeout(function () {
 		context.fillText(emojis["WIN"], x, y);
-	}, index * 1000);
+	}, index * 50);
 };
 
 function isBombColition() {
@@ -179,7 +185,7 @@ function isPricePosition() {
 			return;
 		}
 
-		setTimeout(winFunction, 11000);
+		setTimeout(winFunction, 1100);
 	}
 }
 function winFunction() {
