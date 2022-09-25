@@ -72,8 +72,8 @@ function startGame() {
 	let matrixMap = cleanMap.map((row) => row.trim().split(""));
 	context.clearRect(0, 0, canvasSize, canvasSize);
 
-	setInterval(
-		matrixMap.forEach((row, rowP) => {
+	matrixMap.forEach((row, rowP) => {
+		setTimeout(
 			row.forEach((col, colP) => {
 				let posX = parseFloat((elementsSize * (colP + 1)).toFixed(2));
 				let posY = parseFloat((elementsSize * (rowP + 1)).toFixed(2));
@@ -141,9 +141,9 @@ function startGame() {
 						context.fillText(emojis["WIN"], posX, posY);
 					}
 				}
-			});
-		}, 5000)
-	);
+			}, 3000)
+		);
+	});
 	movePlayer();
 }
 
@@ -169,12 +169,17 @@ function isPricePosition() {
 		win = true;
 		removePositions();
 		startGame();
+		level++;
+		if (!maps[level]) {
+			gameWin();
+			return;
+		}
+
 		setTimeout(winFunction, 3000);
 	}
 }
 function winFunction() {
 	win = false;
-	level++;
 	startGame();
 }
 
