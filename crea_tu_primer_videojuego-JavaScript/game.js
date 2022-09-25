@@ -101,12 +101,24 @@ function startGame() {
 				}
 			}
 			if (firePosition.x != undefined && firePosition.y != undefined) {
+				context.clearRect(
+					firePosition.x - elementsSize,
+					firePosition.y - elementsSize + 10,
+					elementsSize,
+					elementsSize
+				);
 				context.fillText(
 					emojis["BOMB_COLLISION"],
 					firePosition.x,
 					firePosition.y
 				);
 				if (firePosition.a != undefined && firePosition.b != undefined) {
+					context.clearRect(
+						firePosition.a - elementsSize,
+						firePosition.b - elementsSize + 10,
+						elementsSize,
+						elementsSize
+					);
 					context.fillText(
 						emojis["BOMB_COLLISION"],
 						firePosition.a,
@@ -141,8 +153,10 @@ function isPricePosition() {
 		pricePosition.y == playerPosition.y
 	) {
 		removePositions();
-		level++;
-		startGame();
+		setTimeout(() => {
+			level++;
+			startGame();
+		}, 3000);
 	}
 }
 
