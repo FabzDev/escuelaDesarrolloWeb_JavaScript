@@ -128,7 +128,7 @@ function startGame() {
 					}
 				}
 				context.fillText(emojis[col], posX, posY);
-			} else {
+			} else if (col == "X") {
 				context.fillText(emojis["WIN"], posX, posY);
 			}
 		});
