@@ -91,15 +91,30 @@ function startGame() {
 					y: posY,
 				});
 				if (posX == playerPosition.x && posY == playerPosition.y) {
-					firePosition.x = posX;
-					firePosition.y = posY;
+					if (firePosition.x == undefined && firePosition.y == undefined) {
+						firePosition.x = posX;
+						firePosition.y = posY;
+					} else {
+						firePosition.a = posX;
+						firePosition.b = posY;
+					}
 				}
 			}
-			if (posX == firePosition.x && posY == firePosition.y) {
-				context.fillText(emojis["BOMB_COLLISION"], posX, posY);
-			} else {
-				context.fillText(emojis[col], posX, posY);
+			if (firePosition.x != undefined && firePosition.y != undefined) {
+				context.fillText(
+					emojis["BOMB_COLLISION"],
+					firePosition.x,
+					firePosition.y
+				);
+				if (firePosition.a != undefined && firePosition.b != undefined) {
+					context.fillText(
+						emojis["BOMB_COLLISION"],
+						firePosition.a,
+						firePosition.b
+					);
+				}
 			}
+			context.fillText(emojis[col], posX, posY);
 		});
 	});
 	movePlayer();
@@ -129,7 +144,7 @@ function isPricePosition() {
 		playerPosition.y = undefined;
 		firePosition.x = undefined;
 		firePosition.y = undefined;
-
+		removeColition();
 		level++;
 		startGame();
 	}
@@ -231,6 +246,13 @@ function showRecord() {
 	recordSpan.innerHTML = localStorage.puntaje + " seg";
 }
 
+function removeColition() {
+	firePosition.x = undefined;
+	firePosition.y = undefined;
+	firePosition.a = undefined;
+	firePosition.b = undefined;
+}
+
 function lvlFail() {
 	if (lives <= 1) {
 		level = 0;
@@ -240,6 +262,7 @@ function lvlFail() {
 		showLives();
 		clearInterval(timeInterval);
 		timeStart = undefined;
+		removeColition();
 	} else {
 		lives--;
 		showLives();
