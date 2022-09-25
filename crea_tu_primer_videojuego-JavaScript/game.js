@@ -7,6 +7,7 @@ const btnDown = document.querySelector("#down");
 const vidasR = document.querySelector("#lifesR");
 const time = document.querySelector("#timeID");
 const recordSpan = document.querySelector("#recordID");
+const resetBtn = document.querySelector("#reset");
 
 window.addEventListener("load", setCanvasSize);
 window.addEventListener("resize", setCanvasSize);
@@ -160,6 +161,11 @@ btnLeft.addEventListener("click", moveLeft);
 btnUp.addEventListener("click", moveUp);
 btnRight.addEventListener("click", moveRight);
 btnDown.addEventListener("click", moveDown);
+resetBtn.addEventListener("click", reload);
+
+function reload() {
+	location.reload();
+}
 
 function moveByKeys(event) {
 	const tecla = event.key;
