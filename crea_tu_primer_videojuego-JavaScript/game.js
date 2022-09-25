@@ -137,7 +137,7 @@ function startGame() {
 				}
 			} else if (win) {
 				if (col == "X") {
-					conteo(colP, posX, posY);
+					conteo(posX, posY, colP);
 				}
 			}
 		});
@@ -145,13 +145,11 @@ function startGame() {
 	movePlayer();
 }
 
-const conteo = function (index, x, y) {
+const conteo = function (x, y, index) {
 	setTimeout(function () {
 		context.fillText(emojis["WIN"], x, y);
 	}, index * 1000);
 };
-
-function replace(x, y) {}
 
 function isBombColition() {
 	const bombColition = bombPosition.find((pos) => {
