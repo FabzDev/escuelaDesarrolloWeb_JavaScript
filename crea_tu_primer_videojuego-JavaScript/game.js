@@ -26,7 +26,9 @@ let timeStart;
 let timePlayer;
 let timeInterval;
 let record;
-let estado = 0;
+let win = false;
+let lose = false;
+
 time.innerHTML = timeInterval;
 
 showLives();
@@ -73,7 +75,7 @@ function startGame() {
 		row.forEach((col, colP) => {
 			let posX = parseFloat((elementsSize * (colP + 1)).toFixed(2));
 			let posY = parseFloat((elementsSize * (rowP + 1)).toFixed(2));
-			if (estado == 0) {
+			if (!win && !lose) {
 				if (
 					col == "O" &&
 					playerPosition.x == undefined &&
@@ -128,8 +130,14 @@ function startGame() {
 					}
 				}
 				context.fillText(emojis[col], posX, posY);
-			} else if (col == "X") {
-				context.fillText(emojis["WIN"], posX, posY);
+			} else if (lose) {
+				if (col == "X") {
+					context.fillText(emojis["COLLISION"], posX, posY);
+				}
+			} else if (win) {
+				if (col == "X") {
+					context.fillText(emojis["WIN"], posX, posY);
+				}
 			}
 		});
 	});
@@ -150,20 +158,20 @@ function isBombColition() {
 		startGame();
 	}
 }
-
+// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 function isPricePosition() {
 	if (
 		pricePosition.x == playerPosition.x &&
 		pricePosition.y == playerPosition.y
 	) {
-		estado = 1;
+		win = true;
 		removePositions();
 		startGame();
-		setTimeout(prueba, 5000);
+		setTimeout(winFunction, 3000);
 	}
 }
-function prueba() {
-	estado = 0;
+function winFunction() {
+	win = false;
 	level++;
 	startGame();
 }
@@ -272,15 +280,21 @@ function removePositions() {
 	playerPosition.x = undefined;
 	playerPosition.y = undefined;
 }
-
+function loseFunction() {
+	level = 0;
+	lose = false;
+	startGame();
+}
 function lvlFail() {
 	if (lives <= 1) {
-		level = 0;
 		lives = 3;
 		showLives();
 		clearInterval(timeInterval);
 		timeStart = undefined;
 		removePositions();
+		lose = true;
+		startGame();
+		setTimeout(loseFunction, 3000);
 	} else {
 		lives--;
 		showLives();

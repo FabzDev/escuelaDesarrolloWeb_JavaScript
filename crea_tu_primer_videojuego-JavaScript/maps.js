@@ -8,6 +8,7 @@ const emojis = {
 	GAME_OVER: "👎",
 	WIN: "🏆",
 	HEART: "❤️",
+	COLLISION: "💥",
 };
 const maps = [];
 maps.push(`
