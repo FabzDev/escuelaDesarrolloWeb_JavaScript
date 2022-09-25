@@ -12,17 +12,20 @@
 			<canvas id="game"></canvas>
 
 			<div class="btns">
-				<button id="up">Arriba</button>
-				<button id="left">Izquierda</button>
-				<button id="right">Derecha</button>
-				<button id="down">Abajo</button>
+				<div class="btns-mov">
+					<button id="up">Arriba</button>
+					<button id="left">Izquierda</button>
+					<button id="right">Derecha</button>
+					<button id="down">Abajo</button>
+				</div>
 			</div>
-
-			<div class="messages">
-				<p>Lifes: <span id="lifesR"></span></p>
-				<p>Time ⏱️: <span id="timeID"></span></p>
-
-				<p>Record 🏆: <span id="recordID"></span></p>
+			<div class="grid-class">
+				<div class="messages">
+					<p>Lifes: <span id="lifesR"></span></p>
+					<p>Time ⏱️: <span id="timeID"></span></p>
+					<p>Record 🏆: <span id="recordID"></span></p>
+				</div>
+				<div class="btn-reset"><button id="reset">Reset</button></div>
 			</div>
 		</div>
 		<script src="./maps.js"></script>

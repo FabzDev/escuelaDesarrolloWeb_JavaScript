@@ -7,6 +7,7 @@
 body {
 	background-color: indigo;
 	color: #fff;
+	font-size: small;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	margin: 0;
 	padding: 0;
@@ -14,25 +15,53 @@ body {
 
 .game-container {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	flex-wrap: wrap;
 	height: 100vh;
 	width: 100vw;
+	padding: 30px 0;
+	min-width: 250px;
 }
 
 canvas {
 	border: 4px solid #ff6600;
 	border-radius: 8px;
 	background-color: #feff9d;
+	min-width: 175px;
 }
 
 .btns {
+	display: flex;
+	flex-direction: column;
+}
+
+.btns-mov {
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
 	margin: 0 auto;
 	width: 100%;
+	margin-top: 10px;
+}
+
+.grid-class {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	width: 40%;
+}
+
+.flex-class {
+	display: flex;
+}
+
+#reset {
+	border-radius: 50px;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	padding: 0;
+	font-weight: 600;
 }
 
 button {
@@ -51,9 +80,17 @@ button:not(:last-child) {
 .messages {
 	display: flex;
 	flex-wrap: wrap;
-	margin: 0 auto;
+	margin: 20px 10px 0px 0px;
 	width: 80%;
 	max-width: 460px;
+	justify-content: center;
+	min-width: 120px;
+}
+.btn-reset {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin: 20px 10px 0px 0px;
 }
 
 p {
@@ -70,5 +107,18 @@ p {
 	#down {
 		margin-left: 100%;
 		margin-right: 100%;
+	}
+	#reset {
+		border-radius: 50px;
+		width: 50px;
+		height: 50px;
+		text-align: center;
+		padding: 0;
+		font-weight: 600;
+		justify-content: center;
+		margin-top: 0;
+	}
+	.grid-class {
+		width: 60%;
 	}
 }

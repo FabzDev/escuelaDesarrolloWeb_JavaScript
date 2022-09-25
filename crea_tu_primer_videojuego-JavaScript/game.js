@@ -49,7 +49,7 @@ let bombPosition = [];
 //FUNCION PRINCIPAL
 function startGame() {
 	context.textAlign = "end";
-	context.font = elementsSize + "px Verdana";
+	context.font = elementsSize * 0.9 + "px Verdana";
 	let map = maps[level];
 
 	if (!map) {
@@ -143,9 +143,9 @@ function movePlayer() {
 function setCanvasSize() {
 	canvasSize;
 	if (window.innerWidth >= window.innerHeight) {
-		canvasSize = Math.round((innerHeight * 0.8).toFixed(2));
+		canvasSize = Math.round((innerHeight * 0.7).toFixed(2));
 	} else {
-		canvasSize = Math.round((innerWidth * 0.8).toFixed(2));
+		canvasSize = Math.round((innerWidth * 0.7).toFixed(2));
 	}
 
 	canvas.setAttribute("width", canvasSize);
