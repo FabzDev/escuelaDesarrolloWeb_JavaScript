@@ -140,11 +140,7 @@ function isPricePosition() {
 		pricePosition.x == playerPosition.x &&
 		pricePosition.y == playerPosition.y
 	) {
-		playerPosition.x = undefined;
-		playerPosition.y = undefined;
-		firePosition.x = undefined;
-		firePosition.y = undefined;
-		removeColition();
+		removePositions();
 		level++;
 		startGame();
 	}
@@ -246,23 +242,23 @@ function showRecord() {
 	recordSpan.innerHTML = localStorage.puntaje + " seg";
 }
 
-function removeColition() {
+function removePositions() {
 	firePosition.x = undefined;
 	firePosition.y = undefined;
 	firePosition.a = undefined;
 	firePosition.b = undefined;
+	playerPosition.x = undefined;
+	playerPosition.y = undefined;
 }
 
 function lvlFail() {
 	if (lives <= 1) {
 		level = 0;
 		lives = 3;
-		firePosition.x = undefined;
-		firePosition.y = undefined;
 		showLives();
 		clearInterval(timeInterval);
 		timeStart = undefined;
-		removeColition();
+		removePositions();
 	} else {
 		lives--;
 		showLives();
