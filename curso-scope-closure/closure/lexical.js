@@ -15,3 +15,20 @@ function myFunction() {
 		}
 	}
 }
+
+// VIDEO YOUTUBE
+
+function crearContador() {
+	let contador = 0;
+	return function incrementar() {
+		contador++;
+		return contador;
+	};
+}
+
+const contador1 = crearContador();
+contador1();
+contador1();
+contador1();
+const contador2 = crearContador();
+contador2();
