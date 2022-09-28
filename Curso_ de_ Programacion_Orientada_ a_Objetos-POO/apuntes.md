@@ -14,16 +14,34 @@ walk()
 
 <!-- Java -->
 
-class Person{}
+class Person{};
+
+class Person {
+String name = "";
+void Walk{}
+}
 
 <!-- Python -->
 
+class Person: ;
+
 class Person:
+name = "";
+def walk():
 
 <!-- JavaScript -->
 
-function Person(){}
+function Person(){};
+
+Person.prototype.walk = function(){
+
+};
 
 <!-- PHP -->
 
 class Person{}
+
+class Person{
+$name="";
+function walk(){}
+}
