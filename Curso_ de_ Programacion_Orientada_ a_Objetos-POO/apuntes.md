@@ -44,3 +44,12 @@ class Person{};
 class Person{
 $name="";
 function walk(){};
+
+% POO herencia:
+en la herencia se establece una relacion padre hijo
+
+Pasos:
+detectar elementos repetidos (redundantes)
+Analizar o detectar relaciones
+Generar abstraccion
+Crear una clase con los elementos en comun
