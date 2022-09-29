@@ -39,9 +39,8 @@ Person.prototype.walk = function(){
 
 <!-- PHP -->
 
-class Person{}
+class Person{};
 
 class Person{
 $name="";
-function walk(){}
-}
+function walk(){};
