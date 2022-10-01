@@ -1,6 +1,6 @@
 class Car {
   Integer id;
   String license;
-  Account driver;
+  String driver;
   Integer passenger;
 }
