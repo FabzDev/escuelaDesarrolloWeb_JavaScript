@@ -1,5 +1,5 @@
 <?php
-require_once("car.php"):
+require_once("car.php");
 
 class UberX extends Car {
   public $brand;
@@ -11,5 +11,8 @@ class UberX extends Car {
     $this->model = $model;
   }
 
+  public function printDataUberX(){
+    echo "Licencia: $this->license, Driver: " . $this->driver->name . ", Marca: " . $this->brand . ", Modelo: " . $this->model;
+  }
 }
 ?>

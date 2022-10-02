@@ -1,5 +1,5 @@
 <?php
-require_once("account.php"):
+require_once("account.php");
 class Car extends Account{
   public $id;
   public $license;
