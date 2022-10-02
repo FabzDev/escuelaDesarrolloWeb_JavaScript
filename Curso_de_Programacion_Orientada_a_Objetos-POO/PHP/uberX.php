@@ -12,7 +12,7 @@ class UberX extends Car {
   }
 
   public function printDataUberX(){
-    echo "Licencia: $this->license, Driver: " . $this->driver->name . ", Marca: " . $this->brand . ", Modelo: " . $this->model;
+    echo "Licencia: $this->license, Driver: " , $this->driver->name , ", Marca: " , $this->brand , ", Modelo: " . $this->model;
   }
 }
 ?>
