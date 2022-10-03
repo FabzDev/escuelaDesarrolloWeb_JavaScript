@@ -35,3 +35,25 @@ Student.prototype.aprobarCurso = function (cursoAprobado) {
 //LLAMADO DE OBJETO Y METODO
 const juanita = new Student("Juanita", 15, ["curso1", "curso2"]);
 juanita.aprobarCurso("curso3");
+
+//PROTOTIPOS CON LA SINTAXIS CLASE
+class Student2 {
+	constructor({ name, age, email, cursosAprobados = [] }) {
+		this.age = age;
+		this.email = email;
+		this.cursosAprobados = cursosAprobados;
+		this.name = name;
+	}
+	// METODO DECLARADO DENTRO DE LA CLASE PROTOTIPO:
+	aprobarCurso(cursoAprobado) {
+		this.cursosAprobados.push(cursoAprobado);
+	}
+}
+
+const miguel = new Student2({
+	age: 28,
+	name: "Miguelito",
+	email: "miguelito@platzi.com",
+});
+
+miguel.aprobarCurso("Desarrollo Python para ciencia de datos");
