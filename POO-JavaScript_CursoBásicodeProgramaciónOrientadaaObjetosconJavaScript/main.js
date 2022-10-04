@@ -1,59 +1,46 @@
-// OBJETO LITERAL
-const natalia = {
-	name: "Natalia",
-	age: "20",
-	cursosAprobados: [
-		"Curso definitivo de HTML y CSS",
-		"Curso practico de HTML y CSS",
-	],
-
-	aprobarCurso(cursoAprobado) {
-		this.cursosAprobados.push(cursoAprobado);
-	},
-};
-
-natalia.aprobarCurso(
-	"Curso Básico de Programación Orientada a Objetos con JavaScript"
-);
-
-//OBJETO POO
-function Student(name, age, cursosAprobados) {
-	this.name = name;
-	this.age = age;
-	this.cursosAprobados = cursosAprobados;
-
-	// METODO DECLARADO DENTRO DE LA CLASE PROTOTIPO:
-	// Student.prototype.aprobarCurso = function (cursoAprobado) {
-	//   this.cursosAprobados.push(cursoAprobado);
-	// }
-}
-
-Student.prototype.aprobarCurso = function (cursoAprobado) {
-	this.cursosAprobados.push(cursoAprobado);
-};
-
-//LLAMADO DE OBJETO Y METODO
-const juanita = new Student("Juanita", 15, ["curso1", "curso2"]);
-juanita.aprobarCurso("curso3");
-
-//PROTOTIPOS CON LA SINTAXIS CLASE
-class Student2 {
-	constructor({ name, age, email, cursosAprobados = [] }) {
-		this.age = age;
-		this.email = email;
-		this.cursosAprobados = cursosAprobados;
+class Student {
+	constructor({
+		name,
+		username,
+		email = undefined,
+		facebook = undefined,
+		twitter = undefined,
+		instagram = undefined,
+		approvedCourses = [],
+		learningPaths = [],
+	}) {
 		this.name = name;
-	}
-	// METODO DECLARADO DENTRO DE LA CLASE PROTOTIPO:
-	aprobarCurso(cursoAprobado) {
-		this.cursosAprobados.push(cursoAprobado);
+		this.email = email;
+		this.username = username;
+		this.socialMedia = {
+			facebook,
+			instagram,
+			twitter,
+		};
+		this.approvedCourses = approvedCourses;
+		this.learningPaths = learningPaths;
 	}
 }
-
-const miguel = new Student2({
-	age: 28,
-	name: "Miguelito",
-	email: "miguelito@platzi.com",
+const fabio = new Student({
+	name: "Fabio Escobar",
+	username: "fabio04",
+	email: "fabioescobar02@hotmail.com",
+	facebook: "@fabioalejandro",
+	twitter: "@fabiopolitica",
+	instagram: "@fabioelpaspi",
+	approvedCourses: [
+		"Curso basico de programacion",
+		"Curso gratis de programacion",
+		"Curso de git hub",
+	],
+	learningPaths: [
+		{
+			name: "desarrolloWeb",
+			contenido: "Curso 1, Curso2, Curso3",
+		},
+		{
+			name: "englishAcademy",
+			contenido: "Curso 4, Curso5, Curso6",
+		},
+	],
 });
-
-miguel.aprobarCurso("Desarrollo Python para ciencia de datos");
