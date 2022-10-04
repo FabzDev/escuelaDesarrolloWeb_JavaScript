@@ -21,6 +21,14 @@ class Student {
 		this.learningPaths = learningPaths;
 	}
 }
+
+class path {
+	constructor({ name, contenido = [] }) {
+		this.name = name;
+		this.contenido = contenido;
+	}
+}
+
 const fabio = new Student({
 	name: "Fabio Escobar",
 	username: "fabio04",
@@ -34,13 +42,17 @@ const fabio = new Student({
 		"Curso de git hub",
 	],
 	learningPaths: [
-		{
-			name: "desarrolloWeb",
-			contenido: "Curso 1, Curso2, Curso3",
-		},
-		{
-			name: "englishAcademy",
-			contenido: "Curso 4, Curso5, Curso6",
-		},
+		new path({
+			name: "Escuela de desarrollo Web",
+			contenido: ["Curso1", "Curso2", "Curso3"],
+		}),
+		new path({
+			name: "Escuela de dataSciense",
+			contenido: ["Curso4", "Curso5", "Curso6"],
+		}),
+		new path({
+			name: "English Academy",
+			contenido: ["Curso7", "Curso8", "Curso9"],
+		}),
 	],
 });
