@@ -41,18 +41,18 @@ const fabio = new Student({
 		"Curso gratis de programacion",
 		"Curso de git hub",
 	],
-	learningPaths: [
-		new path({
-			name: "Escuela de desarrollo Web",
-			contenido: ["Curso1", "Curso2", "Curso3"],
-		}),
-		new path({
-			name: "Escuela de dataSciense",
-			contenido: ["Curso4", "Curso5", "Curso6"],
-		}),
-		new path({
-			name: "English Academy",
-			contenido: ["Curso7", "Curso8", "Curso9"],
-		}),
-	],
+	learningPaths: [desarrolloWeb, dataSciense, englishAcademy],
+});
+
+const desarrolloWeb = new path({
+	name: "Escuela de desarrollo Web",
+	contenido: ["Curso1", "Curso2", "Curso3"],
+});
+const dataSciense = new path({
+	name: "Escuela de dataSciense",
+	contenido: ["Curso4", "Curso5", "Curso6"],
+});
+const englishAcademy = new path({
+	name: "English Academy",
+	contenido: ["Curso7", "Curso8", "Curso9"],
 });
