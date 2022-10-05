@@ -22,12 +22,46 @@ class Student {
 	}
 }
 
-class path {
+class Path {
 	constructor({ name, contenido = [] }) {
 		this.name = name;
 		this.contenido = contenido;
 	}
 }
+
+class Courses {
+	constructor({ name, clases }) {
+		this.name = name;
+		this.clases = clases;
+	}
+}
+const cursoProgBasica = new Courses({
+	name: "Programacion Básica",
+	clases: ["clase1", "clase2", "clase3"],
+});
+
+const cursoPython = new Courses({
+	name: "Introducción a Python",
+	clases: ["clase4", "clase5", "clase6"],
+});
+
+const cursoJava = new Courses({
+	name: "Programacion en Java",
+	clases: ["clase1", "clase2", "clase3"],
+});
+
+const desarrolloWeb = new Path({
+	name: "Escuela de desarrollo Web",
+	contenido: [cursoProgBasica, "Curso2", "Curso3"],
+});
+const dataSciense = new Path({
+	name: "Escuela de dataSciense",
+	contenido: [cursoProgBasica, "Curso5", "Curso6"],
+});
+const englishAcademy = new Path({
+	name: "English Academy",
+	contenido: [cursoProgBasica, "Curso8", "Curso9"],
+});
 
 const fabio = new Student({
 	name: "Fabio Escobar",
@@ -36,23 +70,6 @@ const fabio = new Student({
 	facebook: "@fabioalejandro",
 	twitter: "@fabiopolitica",
 	instagram: "@fabioelpaspi",
-	approvedCourses: [
-		"Curso basico de programacion",
-		"Curso gratis de programacion",
-		"Curso de git hub",
-	],
+	approvedCourses: [cursoProgBasica, cursoPython, cursoJava],
 	learningPaths: [desarrolloWeb, dataSciense, englishAcademy],
-});
-
-const desarrolloWeb = new path({
-	name: "Escuela de desarrollo Web",
-	contenido: ["Curso1", "Curso2", "Curso3"],
-});
-const dataSciense = new path({
-	name: "Escuela de dataSciense",
-	contenido: ["Curso4", "Curso5", "Curso6"],
-});
-const englishAcademy = new path({
-	name: "English Academy",
-	contenido: ["Curso7", "Curso8", "Curso9"],
 });
