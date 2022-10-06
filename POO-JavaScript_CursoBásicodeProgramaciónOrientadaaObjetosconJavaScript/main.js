@@ -11,7 +11,7 @@ class Student {
 	}) {
 		this.name = name;
 		this.email = email;
-		this.username = username;
+		this._username = username;
 		this.socialMedia = {
 			facebook,
 			instagram,
@@ -20,19 +20,37 @@ class Student {
 		this.approvedCourses = approvedCourses;
 		this.learningPaths = learningPaths;
 	}
+	get username() {
+		return this._username;
+	}
+
+	set name(newUsername) {
+		this._username = newUsername;
+	}
 }
 
 class Path {
 	constructor({ name, contenido = [] }) {
-		this.name = name;
+		this._name = name;
 		this.contenido = contenido;
+	}
+
+	get name() {
+		return this._name;
+	}
+
+	set name(newName) {
+		this._name = newName;
 	}
 }
 
 class Courses {
-	constructor({ name, clases }) {
-		this.name = name;
+	constructor({ name, clases = [] }) {
+		this._name = name;
 		this.clases = clases;
+	}
+	get name() {
+		return this._name;
 	}
 }
 const cursoProgBasica = new Courses({
