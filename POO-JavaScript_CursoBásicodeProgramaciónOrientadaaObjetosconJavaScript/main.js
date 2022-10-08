@@ -26,6 +26,7 @@ class Student {
 		facebook = undefined,
 		twitter = undefined,
 		instagram = undefined,
+		rol = "Student",
 		approvedCourses = [],
 		learningPaths = [],
 	}) {
@@ -37,6 +38,7 @@ class Student {
 			instagram,
 			twitter,
 		};
+		this.rol = rol;
 		this.approvedCourses = approvedCourses;
 		this.learningPaths = learningPaths;
 	}
@@ -44,8 +46,13 @@ class Student {
 		return this._username;
 	}
 
-	set name(newUsername) {
+	set username(newUsername) {
 		this._username = newUsername;
+	}
+	makeComment(coment) {
+		console.log(this.name); // Fabio Escobar
+		console.log(this.rol); // Estudiante/Profesor
+		console.log(coment); // Me encantó este curso
 	}
 }
 
@@ -84,6 +91,17 @@ class BasicStudent extends Student {
 class ExpertStudent extends Student {
 	constructor(props) {
 		super(props);
+	}
+
+	approveCourse(newCourse) {
+		this.approveCourse.push(newCourse);
+	}
+}
+
+class TeacherStudent extends Student {
+	constructor(props) {
+		super(props);
+		this.rol = "Professor";
 	}
 
 	approveCourse(newCourse) {
@@ -154,6 +172,16 @@ const fabio = new Student({
 	facebook: "@fabioalejandro",
 	twitter: "@fabiopolitica",
 	instagram: "@fabioelpaspi",
+	approvedCourses: [cursoProgBasica, cursoPython, cursoJava],
+	learningPaths: [desarrolloWeb, dataSciense, englishAcademy],
+});
+const juanDC = new TeacherStudent({
+	name: "Juan David",
+	username: "juan04",
+	email: "juan02@hotmail.com",
+	facebook: "@juandc2",
+	twitter: "@juandplatzi",
+	instagram: "@juandcelpaspi",
 	approvedCourses: [cursoProgBasica, cursoPython, cursoJava],
 	learningPaths: [desarrolloWeb, dataSciense, englishAcademy],
 });
