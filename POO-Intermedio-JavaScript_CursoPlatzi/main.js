@@ -11,4 +11,11 @@ const fabio = {
 // console.log(Object.keys(fabio));
 // console.log(Object.getOwnPropertyNames(fabio));
 // console.log(Object.entries(fabio));
-console.log(Object.getOwnPropertyDescriptors(fabio));
+// console.log(Object.getOwnPropertyDescriptors(fabio));
+
+Object.defineProperty(fabio, "carrera", {
+	value: "Ingenieria",
+	writable: true,
+	enumerable: true,
+	configurable: true,
+});
