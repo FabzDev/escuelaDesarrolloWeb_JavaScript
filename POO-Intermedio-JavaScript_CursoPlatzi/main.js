@@ -8,36 +8,21 @@ const fabio = {
 		this.approvedCourses.push(newCourse);
 	},
 };
-// console.log(Object.keys(fabio));
-// console.log(Object.getOwnPropertyNames(fabio));
-// console.log(Object.entries(fabio));
 
-Object.defineProperty(fabio, "pruebaNasa", {
-	value: "Extreterrestre",
-	enumerable: false,
-	writable: false,
-	configurable: false,
-});
+const obj1 = {
+	a: "a",
+	b: "b",
+	c: {
+		d: "d",
+		e: "e",
+	},
+};
 
-Object.defineProperty(fabio, "navigator", {
-	value: "Chrome",
-	enumerable: false,
-	writable: true,
-	configurable: true,
-});
+const obj2 = {};
+for (prop in obj1) {
+	obj2[prop] = obj1[prop];
+}
 
-Object.defineProperty(fabio, "editor", {
-	value: "VSCode",
-	enumerable: true,
-	writable: false,
-	configurable: true,
-});
+const obj3 = Object.assign({}, obj1);
 
-Object.defineProperty(fabio, "terminal", {
-	value: "WSL",
-	enumerable: true,
-	writable: true,
-	configurable: false,
-});
-
-console.log(Object.getOwnPropertyDescriptors(fabio));
+const obj4 = Object.create(obj1);
