@@ -11,11 +11,33 @@ const fabio = {
 // console.log(Object.keys(fabio));
 // console.log(Object.getOwnPropertyNames(fabio));
 // console.log(Object.entries(fabio));
-// console.log(Object.getOwnPropertyDescriptors(fabio));
 
-Object.defineProperty(fabio, "carrera", {
-	value: "Ingenieria",
+Object.defineProperty(fabio, "pruebaNasa", {
+	value: "Extreterrestre",
+	enumerable: false,
+	writable: false,
+	configurable: false,
+});
+
+Object.defineProperty(fabio, "navigator", {
+	value: "Chrome",
+	enumerable: false,
 	writable: true,
-	enumerable: true,
 	configurable: true,
 });
+
+Object.defineProperty(fabio, "editor", {
+	value: "VSCode",
+	enumerable: true,
+	writable: false,
+	configurable: true,
+});
+
+Object.defineProperty(fabio, "terminal", {
+	value: "WSL",
+	enumerable: true,
+	writable: true,
+	configurable: false,
+});
+
+console.log(Object.getOwnPropertyDescriptors(fabio));
