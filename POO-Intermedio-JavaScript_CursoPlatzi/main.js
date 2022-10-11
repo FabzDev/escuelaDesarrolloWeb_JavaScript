@@ -91,15 +91,15 @@ function deepCopy(subject) {
 // Object.isSealed(juan);
 
 function createStudent({
-	name,
-	age,
-	email,
+	name = requiredParam("name "),
+	age = requiredParam("age "),
+	email = requiredParam("email "),
 	twitter,
 	instagram,
 	facebook,
-	approvedCourses,
-	learningPaths,
-}) {
+	approvedCourses = [],
+	learningPaths = [],
+} = {}) {
 	return {
 		name: name,
 		age: age,
@@ -114,9 +114,13 @@ function createStudent({
 	};
 }
 
+function requiredParam(param) {
+	throw console.error(param + "es un parametro requerido");
+}
+
 const fabio = createStudent({
-	name: "fabito",
-	age: 14,
+	name: "Fabito",
+	age: 12,
 	email: "fabito37@hotmail.com",
 	twitter: "fabitoPlay",
 });
