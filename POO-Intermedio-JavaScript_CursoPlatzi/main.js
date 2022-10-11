@@ -9,15 +9,6 @@
 // 	},
 // };
 
-// const obj1 = {
-// 	a: "a",
-// 	b: "b",
-// 	c: {
-// 		d: "d",
-// 		e: "e",
-// 	},
-// };
-
 // const stringifiedComplexObj = JSON.stringify(obj1);
 // const obj2 = JSON.parse(stringifiedComplexObj);
 
@@ -28,21 +19,51 @@
 // 		// llamados normales, sin recursividad
 // 	}
 // }
-const numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 5665, 2, 5, 5, 41, 2, 3, 6, 5];
-let numero = 0;
 
-// for (let index = 0; index < numeros.length; index++) {
-// 	numero = numeros[index];
-// 	console.log({ index, numero });
-// }
+const obj1 = {
+	a: "a",
+	b: "b",
+	c: {
+		d: "d",
+		e: "e",
+	},
+	editA() {
+		this.a = "AAAAAA";
+	},
+};
 
-function recursiva(numbersArray) {
-	if (numbersArray.length != 0) {
-		const firstNum = numbersArray[0];
-		console.log(firstNum);
-		numbersArray.shift();
-		return recursiva(numbersArray);
-	}
+function isObject(obj) {
+	return typeof obj == "object";
 }
 
-recursiva(numeros);
+function isArray(arr) {
+	return Array.isArray(arr);
+}
+
+function deepCopy(subject) {
+	let copySubject;
+	const subjectIsArray = isArray(subject);
+	const subjectIsObject = isObject(subject);
+
+	if (subjectIsArray) {
+		copySubject = [];
+	} else if (subjectIsObject) {
+		copySubject = {};
+	} else {
+		return subject;
+	}
+
+	for (key in subject) {
+		const keyIsObject = isObject(subject[key]);
+		const keyIsArray = isArray(subject[key]);
+		if (keyIsObject) {
+			copySubject[key] = deepCopy(subject[key]);
+		} else if (keyIsArray) {
+			copySubject.push(subject[key]);
+		} else {
+			copySubject[key] = subject[key];
+		}
+	}
+
+	return copySubject;
+}
