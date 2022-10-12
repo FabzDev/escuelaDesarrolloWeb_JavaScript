@@ -127,3 +127,5 @@ const fabio = createStudent({
 	email: "fabito37@hotmail.com",
 	twitter: "fabitoPlay",
 });
+
+SI ESTAS VIENDO ESTO DESCUBRISTE UNA PEQUENIA TRAMPA JEJEJEJEJEJEJEJEJ
