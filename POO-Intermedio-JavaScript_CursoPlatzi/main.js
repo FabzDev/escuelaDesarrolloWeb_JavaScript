@@ -102,6 +102,9 @@ function createStudent({
 } = {}) {
 	return {
 		name: name,
+		changeName(newName) {
+			this.name = newName;
+		},
 		age: age,
 		email: email,
 		socialMedia: {
