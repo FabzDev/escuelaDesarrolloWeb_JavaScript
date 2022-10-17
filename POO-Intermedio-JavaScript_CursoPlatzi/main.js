@@ -114,12 +114,25 @@ function createStudent({
 		},
 		approvedCourses: approvedCourses,
 		learningPaths: learningPaths,
+		readName() {
+			return private["_name"];
+		},
 		changeName(newName) {
-			private._name = newName;
+			private["_name"] = newName;
 		},
 	};
 
-	return {};
+	Object.defineProperty(public, "readName", {
+		writable: false,
+		configurable: false,
+	});
+
+	Object.defineProperty(public, "changeName", {
+		writable: false,
+		configurable: false,
+	});
+
+	return public;
 }
 
 function requiredParam(param) {
