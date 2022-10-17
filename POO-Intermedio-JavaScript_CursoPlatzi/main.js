@@ -91,7 +91,7 @@ function deepCopy(subject) {
 // Object.isSealed(juan);
 
 function createStudent({
-	_name = requiredParam("name "),
+	name = requiredParam("name "),
 	age = requiredParam("age "),
 	email = requiredParam("email "),
 	twitter,
@@ -101,10 +101,7 @@ function createStudent({
 	learningPaths = [],
 } = {}) {
 	const private = {
-		_name,
-		changeName(newName) {
-			this._name = newName;
-		},
+		_name: name,
 	};
 
 	const public = {
@@ -117,24 +114,12 @@ function createStudent({
 		},
 		approvedCourses: approvedCourses,
 		learningPaths: learningPaths,
+		changeName(newName) {
+			private._name = newName;
+		},
 	};
 
-	Object.defineProperty(private, "changeName", {
-		configurable: false,
-	});
-
-	function readName(_name){
-		return _name
-	}
-
-	function changeName(newName){
-		return newName
-	}
-
-	return {
-		readName(_name)
-		
-	};
+	return {};
 }
 
 function requiredParam(param) {
