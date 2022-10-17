@@ -100,8 +100,19 @@ function createStudent({
 	approvedCourses = [],
 	learningPaths = [],
 } = {}) {
+	const private = {
+		name,
+		approvedCourses,
+		learningPaths,
+	};
+
 	return {
-		name: name,
+		Object.defineProperty(private, name2, {
+			value: name2,
+			enumeable
+			configurable: false,
+		})
+		name,
 		changeName(newName) {
 			this.name = newName;
 		},
@@ -127,5 +138,3 @@ const fabio = createStudent({
 	email: "fabito37@hotmail.com",
 	twitter: "fabitoPlay",
 });
-
-SI ESTAS VIENDO ESTO DESCUBRISTE UNA PEQUENIA TRAMPA JEJEJEJEJEJEJEJEJ
