@@ -133,6 +133,14 @@ function Student({
 	approvedCourses = [],
 	learningPaths = [],
 } = {}) {
+	this.name = name;
+	this.age = age;
+	this.email = email;
+	this.twitter = twitter;
+	this.instagram = instagram;
+	this.facebook = facebook;
+	this.approvedCourses = approvedCourses;
+
 	if (!isArray(learningPaths)) {
 		console.warn("LearningPath no es un array");
 		return;
@@ -146,14 +154,6 @@ function Student({
 			return;
 		}
 	}
-
-	this.name = name;
-	this.age = age;
-	this.email = email;
-	this.twitter = twitter;
-	this.instagram = instagram;
-	this.facebook = facebook;
-	this.approvedCourses = approvedCourses;
 	this.learningPaths = learningPaths;
 
 	// const private = {
