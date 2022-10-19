@@ -96,24 +96,24 @@ function createLearningPath({ name = requiredParam("name"), courses = [] }) {
 		_courses: courses,
 	};
 
-	const public = {
-		get name() {
-			return private["_name"];
-		},
+	// 	const public = {
+	// 		get name() {
+	// 			return private["_name"];
+	// 		},
 
-		set name(newName) {
-			if (newName.length != 0) {
-				private["_name"] = newName;
-			} else {
-				console.warn("Tu nombre debe tener al menos 1 caracter");
-			}
-		},
+	// 		set name(newName) {
+	// 			if (newName.length != 0) {
+	// 				private["_name"] = newName;
+	// 			} else {
+	// 				console.warn("Tu nombre debe tener al menos 1 caracter");
+	// 			}
+	// 		},
 
-		get courses() {
-			return private["_courses"];
-		},
-	};
-	return public;
+	// 		get courses() {
+	// 			return private["_courses"];
+	// 		},
+	// 	};
+	// 	return public;
 }
 
 function createStudent({
