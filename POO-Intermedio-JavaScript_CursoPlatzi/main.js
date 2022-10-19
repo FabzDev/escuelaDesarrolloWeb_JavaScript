@@ -90,11 +90,18 @@ function deepCopy(subject) {
 // Object.seal(juan);
 // Object.isSealed(juan);
 
-function createLearningPath({ name = requiredParam("name"), courses = [] }) {
-	const private = {
-		_name: name,
-		_courses: courses,
-	};
+//
+// INSTANCE OF / LEARNING PATHS / STUDENT CLASS / ETC
+//
+
+function LearningPath({ name = requiredParam("name"), courses = [] }) {
+	this.name = name;
+	this.courses = courses;
+
+	// const private = {
+	// 	_name: name,
+	// 	_courses: courses,
+	// };
 
 	// 	const public = {
 	// 		get name() {
@@ -116,7 +123,7 @@ function createLearningPath({ name = requiredParam("name"), courses = [] }) {
 	// 	return public;
 }
 
-function createStudent({
+function Student({
 	name = requiredParam("name "),
 	age = requiredParam("age "),
 	email = requiredParam("email "),
@@ -126,60 +133,81 @@ function createStudent({
 	approvedCourses = [],
 	learningPaths = [],
 } = {}) {
-	const private = {
-		_name: name,
-		_learningPaths: learningPaths,
-	};
+	if (!isArray(learningPaths)) {
+		console.warn("LearningPath no es un array");
+		return;
+	}
 
-	const public = {
-		age: age,
-		email: email,
-		socialMedia: {
-			twitter: twitter,
-			instagram: instagram,
-			facebook: facebook,
-		},
-		approvedCourses: approvedCourses,
+	for (paths of learningPaths) {
+		if (!paths instanceof learningPaths) {
+			console.warn("Uno de los cursos no es un array");
+			return;
+		}
+	}
 
-		get name() {
-			return private["_name"];
-		},
+	this.name = name;
+	this.age = age;
+	this.email = email;
+	this.twitter = twitter;
+	this.instagram = instagram;
+	this.facebook = facebook;
+	this.approvedCourses = approvedCourses;
+	this.learningPaths = learningPaths;
 
-		set name(newName) {
-			if (newName.length != 0) {
-				private["_name"] = newName;
-			} else {
-				console.warn("Tu nombre debe tener al menos 1 caracter");
-			}
-		},
+	// const private = {
+	// 	_name: name,
+	// 	_learningPaths: learningPaths,
+	// };
 
-		get learningPaths() {
-			return private["_learningPaths"];
-		},
+	// const public = {
+	// 	age: age,
+	// 	email: email,
+	// 	socialMedia: {
+	// 		twitter: twitter,
+	// 		instagram: instagram,
+	// 		facebook: facebook,
+	// 	},
+	// 	approvedCourses: approvedCourses,
 
-		set learningPaths(newLP) {
-			if (!newLP.name) {
-				console.warn("Tu Learning Path debe tener un nombre");
-				return;
-			}
-			if (!newLP.courses) {
-				console.warn("Tu Learning Path no tiene courses");
-				return;
-			}
-			if (!isArray(newLP.courses)) {
-				console.warn("Tu Learning Path no es una lista de courses");
-			}
-			private["_learningPaths"].push(newLP);
-		},
-	};
-	return public;
+	// 	get name() {
+	// 		return private["_name"];
+	// 	},
+
+	// 	set name(newName) {
+	// 		if (newName.length != 0) {
+	// 			private["_name"] = newName;
+	// 		} else {
+	// 			console.warn("Tu nombre debe tener al menos 1 caracter");
+	// 		}
+	// 	},
+
+	// 	get learningPaths() {
+	// 		return private["_learningPaths"];
+	// 	},
+
+	// 	set learningPaths(newLP) {
+	// 		if (!newLP.name) {
+	// 			console.warn("Tu Learning Path debe tener un nombre");
+	// 			return;
+	// 		}
+	// 		if (!newLP.courses) {
+	// 			console.warn("Tu Learning Path no tiene courses");
+	// 			return;
+	// 		}
+	// 		if (!isArray(newLP.courses)) {
+	// 			console.warn("Tu Learning Path no es una lista de courses");
+	// 		}
+	// 		private["_learningPaths"].push(newLP);
+	// 	},
+	// };
+	// return public;
 }
 
 function requiredParam(param) {
 	throw console.error(param + "es un parametro requerido");
 }
 
-const fabio = createStudent({
+const fabio = new Student({
 	name: "Fabito",
 	age: 12,
 	email: "fabito37@hotmail.com",
