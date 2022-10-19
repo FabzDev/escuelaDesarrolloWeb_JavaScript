@@ -128,6 +128,7 @@ function createStudent({
 } = {}) {
 	const private = {
 		_name: name,
+		_learningPaths: learningPaths,
 	};
 
 	const public = {
@@ -139,7 +140,6 @@ function createStudent({
 			facebook: facebook,
 		},
 		approvedCourses: approvedCourses,
-		learningPaths: learningPaths,
 
 		get name() {
 			return private["_name"];
@@ -148,6 +148,18 @@ function createStudent({
 		set name(newName) {
 			if (newName.length != 0) {
 				private["_name"] = newName;
+			} else {
+				console.warn("Tu nombre debe tener al menos 1 caracter");
+			}
+		},
+
+		get learningPaths() {
+			return private["_learningPaths"];
+		},
+
+		set addLearninPath(newLP) {
+			if (newLP.length != 0) {
+				learningPaths.push(newLP);
 			} else {
 				console.warn("Tu nombre debe tener al menos 1 caracter");
 			}
