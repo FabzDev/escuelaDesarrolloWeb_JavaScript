@@ -139,8 +139,10 @@ function Student({
 	}
 
 	for (paths of learningPaths) {
-		if (!paths instanceof learningPaths) {
-			console.warn("Uno de los cursos no es un array");
+		if (!(paths instanceof LearningPath)) {
+			console.warn(
+				"Uno de los learningPaths no es una instancia de LearningPath"
+			);
 			return;
 		}
 	}
@@ -181,9 +183,9 @@ function Student({
 	// 		}
 	// 	},
 
-	// 	get learningPaths() {
-	// 		return private["_learningPaths"];
-	// 	},
+	// get learningPaths() {
+	// 	return private["_learningPaths"];
+	// };
 
 	// 	set learningPaths(newLP) {
 	// 		if (!newLP.name) {
@@ -206,10 +208,24 @@ function Student({
 function requiredParam(param) {
 	throw console.error(param + "es un parametro requerido");
 }
+const escuelaWeb = new LearningPath({
+	name: "Escuela de Desarrollo Web",
+	courses: [],
+});
+
+const escuelaData = new LearningPath({
+	name: "Escuela de Data Science",
+	courses: [],
+});
 
 const fabio = new Student({
 	name: "Fabito",
 	age: 12,
 	email: "fabito37@hotmail.com",
 	twitter: "fabitoPlay",
+	learningPaths: [
+		escuelaWeb,
+		escuelaData,
+		{ name: "escuela del IMPOSTOR", courses: [] },
+	],
 });
