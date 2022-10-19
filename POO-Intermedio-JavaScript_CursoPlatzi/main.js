@@ -90,6 +90,27 @@ function deepCopy(subject) {
 // Object.seal(juan);
 // Object.isSealed(juan);
 
+function createLearningPath({ name = requiredParam("name"), courses = [] }) {
+	const private = {
+		_name: name,
+	};
+
+	const public = {
+		get name() {
+			return private["_name"];
+		},
+
+		set name(newName) {
+			if (newName.length != 0) {
+				private["_name"] = newName;
+			} else {
+				console.warn("Tu nombre debe tener al menos 1 caracter");
+			}
+		},
+	};
+	return public;
+}
+
 function createStudent({
 	name = requiredParam("name "),
 	age = requiredParam("age "),
