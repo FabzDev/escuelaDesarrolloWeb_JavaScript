@@ -157,25 +157,21 @@ function createStudent({
 			return private["_learningPaths"];
 		},
 
-		set addLearninPath(newLP) {
-			if (newLP.length != 0) {
-				learningPaths.push(newLP);
-			} else {
-				console.warn("Tu nombre debe tener al menos 1 caracter");
+		set learningPaths(newLP) {
+			if (!newLP.name) {
+				console.warn("Tu Learning Path debe tener un nombre");
+				return;
 			}
+			if (!newLP.courses) {
+				console.warn("Tu Learning Path no tiene courses");
+				return;
+			}
+			if (!isArray(newLP.courses)) {
+				console.warn("Tu Learning Path no es una lista de courses");
+			}
+			private["_learningPaths"].push(newLP);
 		},
 	};
-
-	// Object.defineProperty(public, "readName", {
-	// 	writable: false,
-	// 	configurable: false,
-	// });
-
-	// Object.defineProperty(public, "changeName", {
-	// 	writable: false,
-	// 	configurable: false,
-	// });
-
 	return public;
 }
 
