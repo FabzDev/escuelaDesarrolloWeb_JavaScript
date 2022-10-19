@@ -93,6 +93,7 @@ function deepCopy(subject) {
 function createLearningPath({ name = requiredParam("name"), courses = [] }) {
 	const private = {
 		_name: name,
+		_courses: courses,
 	};
 
 	const public = {
@@ -106,6 +107,10 @@ function createLearningPath({ name = requiredParam("name"), courses = [] }) {
 			} else {
 				console.warn("Tu nombre debe tener al menos 1 caracter");
 			}
+		},
+
+		get courses() {
+			return private["_courses"];
 		},
 	};
 	return public;
