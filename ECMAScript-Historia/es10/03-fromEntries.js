@@ -11,4 +11,3 @@ const entries2 = [
 ];
 console.log(entries2); //[ [ 'name', 'oscar' ], [ 'age', 34 ] ]
 console.log(Object.fromEntries(entries2)); // { name: 'oscar', age: 34 }
-//{[papa: "Fabio", mama: "Yulieth", hijo: "Alejandro"], tia: "Laurita", tio: "Giova"};
