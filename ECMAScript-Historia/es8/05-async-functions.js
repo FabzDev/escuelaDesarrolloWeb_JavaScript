@@ -9,6 +9,7 @@ const fnAsync = () => {
 const qualityFn = async () => {
 	//async debe ir antes del argunmento de la arrow function
 	const something = await fnAsync(); // await debe ir antes de llamado a la funcion de la promesa
+
 	console.log(something);
 	console.log("lost(?)");
 };
