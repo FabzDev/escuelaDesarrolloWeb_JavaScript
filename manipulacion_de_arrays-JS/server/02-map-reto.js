@@ -10,4 +10,5 @@ let newProducts = products.map((item) => {
 	return { ...item, taxes: Math.trunc(item.price * 0.19) };
 });
 
-console.log(newProducts);
+console.log("Original Array", products);
+console.log("New Array", newProducts);
