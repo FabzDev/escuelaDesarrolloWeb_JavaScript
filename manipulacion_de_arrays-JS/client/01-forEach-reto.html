@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Lista de pagos pendientes</title>
+	</head>
+	<body>
+		<h1>Pagos pendientes Fabio</h1>
+		<div id="app"></div>
+	</body>
+	<script>
+		const pendCharges = [
+			{ charge: "Buzo Zara", amount: "$110.000" },
+			{ charge: "Zapatos Bershka", amount: "$200.000" },
+			{ charge: "Ropa Yulieth Bershka", amount: "$159.800" },
+			{ charge: "Hotel Morgana Week", amount: "$420.000" },
+			{ charge: "Hotel Morgana Weekend", amount: "$357.408" },
+			{ charge: "Restaurante Mexicano", amount: "$50.160" },
+			{ charge: "Otros gastos Medellín", amount: "$17.900" },
+		];
+		const app = document.querySelector("#app");
+		pendCharges.forEach((eachValue) => {
+			app.innerHTML += `<ul><input type="checkbox">
+					<b>${eachValue.charge}:</b> ${eachValue.amount}<ul>
+				`;
+		});
+	</script>
+</html>
