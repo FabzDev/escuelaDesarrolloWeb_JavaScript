@@ -1,0 +1,24 @@
+{
+  "name": "npm-init",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "npm",
+    "JavaScript",
+    "Node"
+  ],
+  "author": "Fabio Escobar <fabztech@outlook.com>",
+  "license": "MIT",
+  "dependencies": {
+    "json-server": "^0.17.0",
+    "moment": "^2.29.4",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.26.0"
+  }
+}
