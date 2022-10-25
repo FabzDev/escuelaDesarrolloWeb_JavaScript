@@ -1,4 +1,4 @@
-const numbers = [1, 5, 2, 3, 7];
+const numbers = [1, 5, 3, 7];
 
 let isPar = false;
 for (item of numbers) {
@@ -10,3 +10,7 @@ for (item of numbers) {
 console.log(isPar);
 
 // Con Some
+
+const rta = numbers.some((item) => item % 2 == 0);
+
+console.log(rta);
