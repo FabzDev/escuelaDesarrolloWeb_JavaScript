@@ -1,10 +1,10 @@
-// REDUCE reto SIN Filter
 const data = [
 	1, 2, 3, 4, 5, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8,
 	8, 8, 9, 9, 9, 10, 10,
 ];
 
-const rtaRangos = data.reduce((acum, item) => {
+// REDUCE reto SIN Filter
+const rtaSinFilter = data.reduce((acum, item) => {
 	//1-5
 	if (item <= 5) {
 		if (!acum["1-5"]) {
@@ -32,13 +32,15 @@ const rtaRangos = data.reduce((acum, item) => {
 	return acum;
 }, {});
 
-console.log(rtaRangos);
-
-/*
-OUTPUT
-1-5: 5
-6-8: 23
-9-10: 5
-*/
+console.log("con Reduce", rtaSinFilter);
 
 // REDUCE reto CON Filter
+let rtaConFilter = (array) => {
+	let acum = {};
+	acum["1-5"] = array.filter((item) => item <= 5).length;
+	acum["6-8"] = array.filter((item) => item > 5 && item <= 8).length;
+	acum["9-10"] = array.filter((item) => item > 8 && item <= 10).length;
+	return acum;
+};
+
+console.log("con Filter", rtaConFilter(data));
