@@ -1,80 +1,44 @@
-// Reduce reloaded
-const arrayReloaded = [1, 3, 2, 3, 3, 1, 10];
-const rta5 = arrayReloaded.reduce((obj, item) => {
-	if (obj[item]) {
-		obj[item] += 1;
-	} else {
-		obj[item] = 1;
-	}
-	return obj;
-}, {});
-
-console.log(rta5);
-
-// output
-// 1: 1,
-// 3: 2,
-// 2: 1
-
+// REDUCE reto SIN Filter
 const data = [
-	{
-		name: "Nicolas",
-		level: "low",
-	},
-	{
-		name: "Andrea",
-		level: "medium",
-	},
-	{
-		name: "Zulema",
-		level: "high",
-	},
-	{
-		name: "Santiago",
-		level: "low",
-	},
-	{
-		name: "Valentina",
-		level: "medium",
-	},
-	{
-		name: "Lucia",
-		level: "low",
-	},
+	1, 2, 3, 4, 5, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8,
+	8, 8, 9, 9, 9, 10, 10,
 ];
 
-const rta = data.reduce((acum, item) => {
-	//case low
-	if (item["level"] == "low") {
-		if (!acum["Low"]) {
-			acum["Low"] = 1;
+const rtaRangos = data.reduce((acum, item) => {
+	//1-5
+	if (item <= 5) {
+		if (!acum["1-5"]) {
+			acum["1-5"] = 1;
 		} else {
-			acum["Low"] += 1;
+			acum["1-5"] += 1;
 		}
 	}
-	//case medium
-	if (item["level"] == "medium") {
-		if (!acum["Medium"]) {
-			acum["Medium"] = 1;
+	//6-8
+	if (item > 5 && item <= 8) {
+		if (!acum["6-8"]) {
+			acum["6-8"] = 1;
 		} else {
-			acum["Medium"] += 1;
+			acum["6-8"] += 1;
 		}
 	}
-	//case high
-	if (item["level"] == "high") {
-		if (!acum["High"]) {
-			acum["High"] = 1;
+	//9-10
+	if (item > 8 && item <= 10) {
+		if (!acum["9-10"]) {
+			acum["9-10"] = 1;
 		} else {
-			acum["High"] += 1;
+			acum["9-10"] += 1;
 		}
 	}
 	return acum;
 }, {});
 
-console.log(rta);
-// OUTPUT
-// low: 3
-// medium: 2
-// high: 4
+console.log(rtaRangos);
 
-// REDUCE RETO
+/*
+OUTPUT
+1-5: 5
+6-8: 23
+9-10: 5
+*/
+
+// REDUCE reto CON Filter
