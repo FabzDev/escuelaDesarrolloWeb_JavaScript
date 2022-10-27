@@ -4,19 +4,11 @@ const products = [
 	{ title: "Hot cakes", price: 121, id: "🥞" },
 ];
 
-function asd(productID, datos) {
-	const productIndex = datos.find((item) => item.id == productID);
-	const carrito = [];
-	const inventario = [];
-	for (food of datos) {
-		if (food == productIndex) {
-			carrito.push(productIndex);
-		} else {
-			inventario.push(food);
-		}
-	}
-	console.log(carrito);
-	console.log(inventario);
-}
+const carrito = (productID, foodData) =>
+	foodData.filter((food) => food.id == productID);
 
-asd("🥞", products);
+const stock = (productID, foodData) =>
+	foodData.filter((food) => food.id != productID);
+
+console.log("Carrito: ", carrito("🍔", products));
+console.log("Stock: ", stock("🍔", products));
