@@ -7,5 +7,5 @@ const users = [
 const usersFlat = users.map((item) => item.attributes).flat();
 console.log("con flat: ", usersFlat);
 
-const usersFlatMap = users.map((item) => item.attributes).flat();
+const usersFlatMap = users.flatMap((item) => item.attributes);
 console.log("con flat-map: ", usersFlatMap);
