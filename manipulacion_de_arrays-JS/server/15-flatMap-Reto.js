@@ -26,7 +26,22 @@ const calendars = {
 };
 
 // calendars.primaryCalendar[0].startDate
-const rta = Object.values(calendars)
+const rta3 = Object.values(calendars)
 	.flat()
 	.map((item) => item.startDate);
-console.log(rta);
+console.log(rta3);
+
+// Desafios playgroung
+
+const phyton = [
+	"Beautiful is better than ugly",
+	"Explicit is better than implicit",
+	"Simple is better than complex",
+	"Complex is better than complicated",
+];
+
+const rta = phyton.join(" ").split(" ").length;
+console.log("Fabio: ", rta);
+
+const rta2 = phyton.flatMap((item) => item.split(" ")).length;
+console.log("Comunidad: ", rta2);
