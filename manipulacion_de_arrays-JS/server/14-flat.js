@@ -10,10 +10,10 @@ for (vector of matriz) {
 		newMatriz.push(item);
 	}
 }
-// console.log("con for: ", newMatriz);
+console.log("con for: ", newMatriz);
 
-// const newMatriz2 = matriz.flat();
-// console.log("con flat: ", newMatriz2);
+const newMatriz2 = matriz.flat();
+console.log("con flat: ", newMatriz2);
 
 // flat con recursividad
 
