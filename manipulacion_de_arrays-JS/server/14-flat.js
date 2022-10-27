@@ -18,16 +18,15 @@ for (vector of matriz) {
 // flat con recursividad
 
 const matrizMakia = [[1, 2, [3, 4, [11, 12]]], 5, 6, [7, 8], 9, 0];
-// const newArray = [];
 function flatHechiza(matriz) {
-	let newArray = [];
+	let nuevoArray = [];
 	for (vector of matriz) {
 		if (Array.isArray(vector)) {
-			newArray = newArray.concat(flatHechiza(vector));
+			nuevoArray = nuevoArray.concat(flatHechiza(vector));
 		} else {
-			newArray.push(vector);
+			nuevoArray.push(vector);
 		}
 	}
-	return newArray;
+	return nuevoArray;
 }
 console.log(flatHechiza(matrizMakia));
