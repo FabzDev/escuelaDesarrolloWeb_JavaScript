@@ -35,16 +35,21 @@ const changes = {
 // IN: update
 // OUT: productsVF
 
-function solution(update) {
-	const productIndex = productsV2.findIndex((item) => item.id == update.id);
-	const productToUpdate = productsV2.find((item) => item.id == update.id);
-	const updatedProduct = { ...productToUpdate, ...update.changes };
-	const replacedProduct = productsV2.splice(productIndex, 1, updatedProduct);
-	return productsV2;
-}
+//SOLUCION FABIO
+// function solution(update) {
+// const productIndex = productsV2.findIndex((item) => item.id == update.id);
+// 	const productToUpdate = productsV2.find((item) => item.id == update.id);
+// 	const updatedProduct = { ...productToUpdate, ...update.changes };
+// 	const replacedProduct = productsV2.splice(productIndex, 1, updatedProduct);
+// 	return productsV2;
+// }
+// console.log(solution(changes));
 
-// { title: 'Pizza', price: 121, id: '🍕' }
-// { title: 'Pizza', price: 200, id: '🍕', description: "delicious", }
-//     if (typeof array === 'object')}
+//SOLUCION COMUNIDAD
 
-console.log(solution(changes));
+const products2Update = { ...productsV2 };
+const productIndex = productsV2.findIndex((item) => item.id == changes.id);
+
+productsV2[productIndex] = { ...productsV2[productIndex], ...changes.changes };
+
+console.log(productsV2);
