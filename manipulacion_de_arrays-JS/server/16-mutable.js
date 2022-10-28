@@ -13,20 +13,6 @@
 // console.log("Carrito: ", carrito("🍔", products));
 // console.log("Stock: ", stock("🍔", products));
 
-const productsV2 = [
-	{ title: "Pizza", price: 120, id: "🍕" },
-	{ title: "Burger", price: 160, id: "🍔" },
-	{ title: "Hot cakes", price: 80, id: "🥞" },
-];
-
-const changes = {
-	id: "🍕",
-	changes: {
-		price: 250,
-		description: "X-Large",
-	},
-};
-
 // const prueba = {productsV2}
 // const productV3 = productsV2.find((object) => object.id == update.id);
 // const productV4 = { ...productV3, ...update };
@@ -35,15 +21,29 @@ const changes = {
 // IN: update
 // OUT: productsVF
 
+const productsV2 = [
+	{ title: "Pizza", price: 120, id: "🍕" },
+	{ title: "Burger", price: 160, id: "🍔" },
+	{ title: "Hot cakes", price: 80, id: "🥞" },
+];
+
+const update = {
+	id: "🍕",
+	changes: {
+		price: 250,
+		description: "X-Large",
+	},
+};
+
 //SOLUCION FABIO
-function solution(update) {
-	const productIndex = productsV2.findIndex((item) => item.id == update.id);
-	const productToUpdate = productsV2.find((item) => item.id == update.id);
-	const updatedProduct = { ...productToUpdate, ...update.changes };
+function solution(updt) {
+	const productIndex = productsV2.findIndex((item) => item.id == updt.id);
+	const productToUpdate = productsV2.find((item) => item.id == updt.id);
+	const updatedProduct = { ...productToUpdate, ...updt.changes };
 	const replacedProduct = productsV2.splice(productIndex, 1, updatedProduct);
 	return productsV2;
 }
-console.log(solution(changes));
+console.log(solution(update));
 
 // //SOLUCION COMUNIDAD
 // const products2Update = { ...productsV2 };
@@ -51,11 +51,11 @@ console.log(solution(changes));
 // productsV2[productIndex] = { ...productsV2[productIndex], ...changes.changes };
 // console.log(productsV2);
 
-//SOLUCION PROFE
-const rta = productsV2.map((item) => {
-	if (item.id == changes.id) {
-		return { ...item, ...changes.changes };
-	}
-	return item;
-});
-console.log(rta);
+// //SOLUCION PROFE
+// const rta = productsV2.map((item) => {
+// 	if (item.id == changes.id) {
+// 		return { ...item, ...changes.changes };
+// 	}
+// 	return item;
+// });
+// console.log(rta);
