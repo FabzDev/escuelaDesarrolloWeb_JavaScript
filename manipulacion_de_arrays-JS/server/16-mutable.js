@@ -20,10 +20,10 @@ const productsV2 = [
 ];
 
 const changes = {
-	id: "🥞",
+	id: "🍕",
 	changes: {
-		price: 120,
-		description: " USA",
+		price: 250,
+		description: "X-Large",
 	},
 };
 
@@ -36,20 +36,26 @@ const changes = {
 // OUT: productsVF
 
 //SOLUCION FABIO
-// function solution(update) {
-// const productIndex = productsV2.findIndex((item) => item.id == update.id);
-// 	const productToUpdate = productsV2.find((item) => item.id == update.id);
-// 	const updatedProduct = { ...productToUpdate, ...update.changes };
-// 	const replacedProduct = productsV2.splice(productIndex, 1, updatedProduct);
-// 	return productsV2;
-// }
-// console.log(solution(changes));
+function solution(update) {
+	const productIndex = productsV2.findIndex((item) => item.id == update.id);
+	const productToUpdate = productsV2.find((item) => item.id == update.id);
+	const updatedProduct = { ...productToUpdate, ...update.changes };
+	const replacedProduct = productsV2.splice(productIndex, 1, updatedProduct);
+	return productsV2;
+}
+console.log(solution(changes));
 
-//SOLUCION COMUNIDAD
+// //SOLUCION COMUNIDAD
+// const products2Update = { ...productsV2 };
+// const productIndex = productsV2.findIndex((item) => item.id == changes.id);
+// productsV2[productIndex] = { ...productsV2[productIndex], ...changes.changes };
+// console.log(productsV2);
 
-const products2Update = { ...productsV2 };
-const productIndex = productsV2.findIndex((item) => item.id == changes.id);
-
-productsV2[productIndex] = { ...productsV2[productIndex], ...changes.changes };
-
-console.log(productsV2);
+//SOLUCION PROFE
+const rta = productsV2.map((item) => {
+	if (item.id == changes.id) {
+		return { ...item, ...changes.changes };
+	}
+	return item;
+});
+console.log(rta);
