@@ -21,7 +21,15 @@ class HashTable {
 	get(key) {
 		for (let i = 0; i < this.bucket.length; i++) {
 			if (this.bucket[i]) {
-				if (this.bucket[i][this.bucket[i].length - 1][0] == key) {
+				if (this.bucket[i].length > 1) {
+					// Logica colisiones:
+					for (let j = 0; j < this.bucket[i].length; j++) {
+						if (this.bucket[i][j][0] == key) {
+							console.log(i);
+							return i;
+						}
+					}
+				} else if (this.bucket[i][0][0] == key) {
 					console.log(i);
 					return i;
 				}
@@ -36,3 +44,4 @@ test.insert("Alejandro", 2023);
 test.insert("Laurita", 1995);
 test.insert("Giova", 2001);
 test.insert("Fabio Fernando", 1966);
+test.get("Yulieth");
