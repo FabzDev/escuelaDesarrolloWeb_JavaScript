@@ -19,20 +19,19 @@ class HashTable {
 		return this.bucket;
 	}
 	get(key) {
-		for (let i = 0; i < this.bucket.length; i++) {
-			if (this.bucket[i]) {
-				if (this.bucket[i].length > 1) {
-					// Logica colisiones:
-					for (let j = 0; j < this.bucket[i].length; j++) {
-						if (this.bucket[i][j][0] == key) {
-							console.log(i);
-							return i;
-						}
+		const address = this.hashMethod(key);
+		const currentBucket = this.bucket[address];
+		if (currentBucket) {
+			if (currentBucket.length > 1) {
+				// Inicio de Logica para colisiones:
+				for (let i = 0; i < currentBucket.length; i++) {
+					if (currentBucket[i][0] == key) {
+						return currentBucket[i][1];
 					}
-				} else if (this.bucket[i][0][0] == key) {
-					console.log(i);
-					return i;
 				}
+				// Fin de Logica para colisiones:
+			} else if (currentBucket[0][0] == key) {
+				return currentBucket[0][1];
 			}
 		}
 	}
