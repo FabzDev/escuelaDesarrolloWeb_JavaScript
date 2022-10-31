@@ -39,7 +39,7 @@ class MySinglyLinkedList {
 		let pointer = pointerStr.replaceAll("'");
 
 		const newNode = new Nodo(value);
-		const resto = this.head + ".next.next.next";
+		const resto = this.head.next.next.next;
 
 		this.head.next.next.next = newNode;
 		this.head.next.next.next.next = resto;
