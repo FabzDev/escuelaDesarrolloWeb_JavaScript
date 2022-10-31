@@ -1,21 +1,3 @@
-// 1 --> 2 --> 3 --> 4 --> 5--> null
-
-// let singlyLinkedList = {
-// 	head: {
-// 		value: 1,
-// 		next: {
-// 			value: 2,
-// 			next: {
-// 				value: 3,
-// 				next: {
-// 					value: 4,
-// 					next: null,
-// 				},
-// 			},
-// 		},
-// 	},
-// };
-
 class Nodo {
 	constructor(value) {
 		this.value = value;
@@ -51,9 +33,43 @@ class MySinglyLinkedList {
 
 		return this;
 	}
+
+	insert(value, position) {
+		const pointerStr = "this.head" + ".next".repeat(position);
+		let pointer = pointerStr.replaceAll("'");
+
+		const newNode = new Nodo(value);
+		const resto = this.head + ".next.next.next";
+
+		this.head.next.next.next = newNode;
+		this.head.next.next.next.next = resto;
+
+		this.length++;
+
+		return this;
+	}
 }
 
 let list = new MySinglyLinkedList(1);
 list.append(2);
 list.append(3);
 list.append(4);
+list.append(5);
+list.insert(3.5, 3);
+// 1 --> 2 --> 3 --> 4 --> 5--> null
+
+// let singlyLinkedList = {
+// 	head: {
+// 		value: 1,
+// 		next: {
+// 			value: 2,
+// 			next: {
+// 				value: 3,
+// 				next: {
+// 					value: 4,
+// 					next: null,
+// 				},
+// 			},
+// 		},
+// 	},
+// };
