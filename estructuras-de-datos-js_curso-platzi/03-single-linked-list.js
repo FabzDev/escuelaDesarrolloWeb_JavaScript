@@ -35,8 +35,18 @@ class MySinglyLinkedList {
 
 	append(value) {
 		const newNode = new Nodo(value);
-		this.head.next = newNode;
+		this.tail.next = newNode;
+		this.tail = newNode;
+		this.length++;
+
+		return this;
+	}
+
+	prepend(value) {
+		const body = this.head;
+		const newNode = new Nodo(value);
 		this.head = newNode;
+		this.head.next = body;
 		this.length++;
 
 		return this;
