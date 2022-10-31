@@ -34,19 +34,28 @@ class MySinglyLinkedList {
 		return this;
 	}
 
-	insert(value, position) {
-		const pointerStr = "this.head" + ".next".repeat(position);
-		let pointer = pointerStr.replaceAll("'");
-
+	insert(value, index) {
 		const newNode = new Nodo(value);
-		const resto = this.head.next.next.next;
+		const resto = this.findIndex(index);
+		const pointer = this.findIndex(index - 1);
 
-		this.head.next.next.next = newNode;
-		this.head.next.next.next.next = resto;
+		pointer.next = newNode;
+		pointer.next.next = resto;
 
 		this.length++;
 
 		return this;
+	}
+
+	findIndex(index) {
+		let counter = 0;
+		let currentNodo = this.head;
+
+		while (counter !== index) {
+			currentNodo = currentNodo.next;
+			counter++;
+		}
+		return currentNodo;
 	}
 }
 
