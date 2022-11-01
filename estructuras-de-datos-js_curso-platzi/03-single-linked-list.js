@@ -57,6 +57,17 @@ class MySinglyLinkedList {
 		}
 		return currentNodo;
 	}
+
+	delete(index) {
+		const resto = this.findIndex(index);
+		const pointer = this.findIndex(index - 1);
+
+		pointer.next = resto;
+
+		this.length++;
+
+		return this;
+	}
 }
 
 let list = new MySinglyLinkedList(1);
