@@ -6,6 +6,14 @@ class Nodo {
 	}
 }
 
+class PrevNode {
+	constructor(value) {
+		this.value = value;
+		this.next = null;
+		this.prev = null;
+	}
+}
+
 class MySinglyLinkedList {
 	constructor(value) {
 		this.head = {
@@ -13,71 +21,71 @@ class MySinglyLinkedList {
 			next: null,
 			prev: null,
 		};
+		const prevNode = new PrevNode(value);
 		this.tail = this.head;
 		this.length = 1;
 	}
 
 	append(value) {
 		const newNode = new Nodo(value);
-		const prevNode = this.tail;
+		newNode.prev = this.prevNode;
 		this.tail.next = newNode;
-		this.tail.prev = prevNode;
 		this.tail = newNode;
 		this.length++;
-
+		this.prevNode = new PrevNode(value);
 		return this;
 	}
 
-	prepend(value) {
-		const body = this.head;
-		const newNode = new Nodo(value);
-		this.head = newNode;
-		this.head.next = body;
-		this.length++;
+	// prepend(value) {
+	// 	const body = this.head;
+	// 	const newNode = new Nodo(value);
+	// 	this.head = newNode;
+	// 	this.head.next = body;
+	// 	this.length++;
 
-		return this;
-	}
+	// 	return this;
+	// }
 
-	insert(value, index) {
-		const newNode = new Nodo(value);
-		const resto = this.findIndex(index);
-		const pointer = this.findIndex(index - 1);
+	// insert(value, index) {
+	// 	const newNode = new Nodo(value);
+	// 	const resto = this.findIndex(index);
+	// 	const pointer = this.findIndex(index - 1);
 
-		pointer.next = newNode;
-		pointer.next.next = resto;
+	// 	pointer.next = newNode;
+	// 	pointer.next.next = resto;
 
-		this.length++;
+	// 	this.length++;
 
-		return this;
-	}
+	// 	return this;
+	// }
 
-	findIndex(index) {
-		let counter = 0;
-		let currentNodo = this.head;
+	// findIndex(index) {
+	// 	let counter = 0;
+	// 	let currentNodo = this.head;
 
-		while (counter !== index) {
-			currentNodo = currentNodo.next;
-			counter++;
-		}
-		return currentNodo;
-	}
+	// 	while (counter !== index) {
+	// 		currentNodo = currentNodo.next;
+	// 		counter++;
+	// 	}
+	// 	return currentNodo;
+	// }
 
-	delete(index) {
-		const resto = this.findIndex(index);
-		const pointer = this.findIndex(index - 2);
+	// delete(index) {
+	// 	const resto = this.findIndex(index);
+	// 	const pointer = this.findIndex(index - 2);
 
-		pointer.next = resto;
+	// 	pointer.next = resto;
 
-		this.length--;
+	// 	this.length--;
 
-		return this;
-	}
+	// 	return this;
+	// }
 }
 
 let list = new MySinglyLinkedList(1);
 list.append(2);
 list.append(3);
 list.append(4);
-list.append(5);
-list.insert(3.5, 3);
-list.delete(1);
+// list.append(5);
+// list.insert(3.5, 3);
+// list.delete(1);
