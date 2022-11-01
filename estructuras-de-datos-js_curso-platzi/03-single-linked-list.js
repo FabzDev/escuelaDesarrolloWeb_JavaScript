@@ -60,11 +60,11 @@ class MySinglyLinkedList {
 
 	delete(index) {
 		const resto = this.findIndex(index);
-		const pointer = this.findIndex(index - 1);
+		const pointer = this.findIndex(index - 2);
 
 		pointer.next = resto;
 
-		this.length++;
+		this.length--;
 
 		return this;
 	}
@@ -76,20 +76,4 @@ list.append(3);
 list.append(4);
 list.append(5);
 list.insert(3.5, 3);
-// 1 --> 2 --> 3 --> 4 --> 5--> null
-
-// let singlyLinkedList = {
-// 	head: {
-// 		value: 1,
-// 		next: {
-// 			value: 2,
-// 			next: {
-// 				value: 3,
-// 				next: {
-// 					value: 4,
-// 					next: null,
-// 				},
-// 			},
-// 		},
-// 	},
-// };
+list.delete(1);
