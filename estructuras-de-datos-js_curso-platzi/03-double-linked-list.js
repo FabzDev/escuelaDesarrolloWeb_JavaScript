@@ -35,6 +35,28 @@ class MySinglyLinkedList {
 		this.length++;
 		return this;
 	}
+
+	insert(value, index) {
+		const newNode = new Nodo(value);
+		const resto = this.findIndex(index);
+		const newPos = this.findIndex(index - 1);
+		newPos.next = newNode;
+		newNode.next = resto;
+		newNode.prev = newPos;
+		this.length++;
+		return this;
+	}
+
+	findIndex(index) {
+		let counter = 0;
+		let currentNodo = this.head;
+
+		while (counter !== index) {
+			currentNodo = currentNodo.next;
+			counter++;
+		}
+		return currentNodo;
+	}
 }
 
 let list = new MySinglyLinkedList(1);
