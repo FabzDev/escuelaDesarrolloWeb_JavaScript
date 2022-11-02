@@ -39,9 +39,11 @@ class MySinglyLinkedList {
 
 let list = new MySinglyLinkedList(1);
 list.append(2);
-// list.append(3);
-// list.append(4);
-// list.append(5);
+list.append(3);
+list.append(4);
+list.append(5);
+list.prepend(0);
+
 // list.insert(3.5, 3);
 // list.delete(1);
 
