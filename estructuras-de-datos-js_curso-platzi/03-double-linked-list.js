@@ -26,7 +26,25 @@ class MySinglyLinkedList {
 		this.length++;
 		return this;
 	}
+
+	prepend(value) {
+		const newNode = new Nodo(value);
+		this.head.prev = newNode;
+		newNode.next = this.head;
+		this.head = newNode;
+		this.length++;
+		return this;
+	}
 }
+
+let list = new MySinglyLinkedList(1);
+list.append(2);
+// list.append(3);
+// list.append(4);
+// list.append(5);
+// list.insert(3.5, 3);
+// list.delete(1);
+
 // 	prepend(value) {
 // 		const body = this.head;
 // 		const newNode = new Nodo(value);
@@ -71,11 +89,3 @@ class MySinglyLinkedList {
 
 // 		return this;
 // 	}
-
-let list = new MySinglyLinkedList(1);
-list.append(2);
-// list.append(3);
-// list.append(4);
-// list.append(5);
-// list.insert(3.5, 3);
-// list.delete(1);
