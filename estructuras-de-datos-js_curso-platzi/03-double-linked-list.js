@@ -6,7 +6,7 @@ class Nodo {
 	}
 }
 
-class MySinglyLinkedList {
+class MyDoublyLinkedList {
 	constructor(value) {
 		this.head = {
 			value: value,
@@ -49,6 +49,16 @@ class MySinglyLinkedList {
 		return this;
 	}
 
+	delete(index) {
+		const delNode = this.findIndex(index);
+		const prevDelNode = this.findIndex(index - 1);
+		delNode.next.prev = delNode.prev;
+		prevDelNode.next = delNode.next;
+
+		this.length--;
+		return this;
+	}
+
 	findIndex(index) {
 		let counter = 0;
 		let currentNodo = this.head;
@@ -61,7 +71,7 @@ class MySinglyLinkedList {
 	}
 }
 
-let list = new MySinglyLinkedList(4);
+let list = new MyDoublyLinkedList(4);
 list.append(8);
 list.append(12);
 list.append(16);
