@@ -43,6 +43,8 @@ class MySinglyLinkedList {
 		newPos.next = newNode;
 		newNode.next = resto;
 		newNode.prev = newPos;
+		resto.prev = newNode;
+
 		this.length++;
 		return this;
 	}
@@ -59,12 +61,12 @@ class MySinglyLinkedList {
 	}
 }
 
-let list = new MySinglyLinkedList(1);
-list.append(2);
-list.append(3);
-list.append(4);
-list.append(5);
-list.prepend(0);
+let list = new MySinglyLinkedList(4);
+list.append(8);
+list.append(12);
+list.append(16);
+list.append(20);
+list.insert(14, 3);
 
 // list.insert(3.5, 3);
 // list.delete(1);
