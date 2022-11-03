@@ -8,9 +8,8 @@ class Node {
 class Stack {
 	constructor(value) {
 		this.top = new Node(value);
-		this.bottom = null;
-		this.length = 0;
 		this.bottom = this.top;
+		this.length = 1;
 
 		return this;
 	}
@@ -21,10 +20,13 @@ class Stack {
 
 	push(value) {
 		const newNode = new Node(value);
-		this.top.next = newNode;
+		const holdingPointer = this.top;
 		this.top = newNode;
+		this.top.next = holdingPointer;
 
 		this.length++;
 		return this;
 	}
+
+	pop() {}
 }

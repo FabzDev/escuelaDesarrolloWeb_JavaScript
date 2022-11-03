@@ -17,7 +17,7 @@ top = bottom
 
 // 1
 ref 1 = value: 1
-next: ref 2
+next: null
 
 newNode = ref 1
 top = ref 1
@@ -26,18 +26,12 @@ length = 1
 
 // 2
 ref 2 = value: 2
-next: ref 3
+next: ref 1
 
 newNode = ref 2
+holdingPointer = ref 1
 top = ref 2
 bottom = ref 1
 length = 2
 
 // 3
-ref 3 = value: 3
-next: null
-
-newNode = ref 3
-top = ref 3
-bottom = ref 1
-length = 2
