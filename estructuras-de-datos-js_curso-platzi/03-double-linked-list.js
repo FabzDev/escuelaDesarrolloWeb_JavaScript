@@ -19,7 +19,6 @@ class MyDoublyLinkedList {
 
 	append(value) {
 		const newNode = new Nodo(value);
-		const prevNode = this.tail;
 		newNode.prev = this.tail;
 		this.tail.next = newNode;
 		this.tail = newNode;
@@ -50,13 +49,26 @@ class MyDoublyLinkedList {
 	}
 
 	delete(index) {
-		const delNode = this.findIndex(index);
-		const prevDelNode = this.findIndex(index - 1);
-		delNode.next.prev = delNode.prev;
-		prevDelNode.next = delNode.next;
+		if (index == 0) {
+			this.head = this.head.next;
+			this.head.prev = null;
+			this.length--;
+			return this;
+		}
+		if (index > 0 && index < this.length - 1) {
+			const delNode = this.findIndex(index);
+			delNode.next.prev = delNode.prev;
+			delNode.prev.next = delNode.next;
 
-		this.length--;
-		return this;
+			this.length--;
+			return this;
+		}
+		if (index == this.length - 1) {
+			this.tail.prev.next = null;
+			this.tail = this.tail.prev;
+			this.length--;
+			return this;
+		}
 	}
 
 	findIndex(index) {
@@ -76,52 +88,3 @@ list.append(8);
 list.append(12);
 list.append(16);
 list.append(20);
-list.insert(14, 3);
-
-// list.insert(3.5, 3);
-// list.delete(1);
-
-// 	prepend(value) {
-// 		const body = this.head;
-// 		const newNode = new Nodo(value);
-// 		this.head = newNode;
-// 		this.head.next = body;
-// 		this.length++;
-
-// 		return this;
-// 	}
-
-// 	insert(value, index) {
-// 		const newNode = new Nodo(value);
-// 		const resto = this.findIndex(index);
-// 		const pointer = this.findIndex(index - 1);
-
-// 		pointer.next = newNode;
-// 		pointer.next.next = resto;
-
-// 		this.length++;
-
-// 		return this;
-// 	}
-
-// 	findIndex(index) {
-// 		let counter = 0;
-// 		let currentNodo = this.head;
-
-// 		while (counter !== index) {
-// 			currentNodo = currentNodo.next;
-// 			counter++;
-// 		}
-// 		return currentNodo;
-// 	}
-
-// 	delete(index) {
-// 		const resto = this.findIndex(index);
-// 		const pointer = this.findIndex(index - 2);
-
-// 		pointer.next = resto;
-
-// 		this.length--;
-
-// 		return this;
-// 	}
