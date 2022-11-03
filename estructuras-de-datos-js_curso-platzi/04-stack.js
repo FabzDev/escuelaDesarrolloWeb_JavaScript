@@ -28,5 +28,15 @@ class Stack {
 		return this;
 	}
 
-	pop() {}
+	pop() {
+		this.top = this.top.next;
+
+		this.length--;
+		return this;
+	}
 }
+
+const stack = new Stack(4);
+stack.push(8);
+stack.push(12);
+stack.pop();
