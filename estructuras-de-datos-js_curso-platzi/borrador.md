@@ -22,7 +22,7 @@ top = ref 8
 bottom = ref 4
 length = 2
 
-// 8
+// 12
 
 - ref 12 =
   value: 12
@@ -37,7 +37,6 @@ length = 3
 
 // pop
 newNode = ref 12
-holdingPointer = ref 8
 top = ref 12
 
 bottom = ref 4
