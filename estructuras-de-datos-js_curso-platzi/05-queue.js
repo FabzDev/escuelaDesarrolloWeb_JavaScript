@@ -11,10 +11,14 @@ class Queue {
 			value,
 			next: null,
 		};
-		this.last = this.firts;
+		this.last = this.first;
 
 		this.length = 1;
 		return this;
+	}
+
+	peek() {
+		return this.first;
 	}
 
 	enqueue(value) {
@@ -27,7 +31,7 @@ class Queue {
 	}
 }
 
-let queue = new Queue(value);
+let queue = new Queue(1);
 queue.enqueue(2);
 queue.enqueue(3);
 queue.enqueue(4);
