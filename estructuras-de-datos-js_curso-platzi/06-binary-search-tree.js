@@ -1,9 +1,8 @@
 class Node {
 	constructor(value) {
-		value = value;
-		prev = null;
-		nextUp = null;
-		nextDown = null;
+		this.left = null;
+		this.right = null;
+		this.value = value;
 	}
 }
 
@@ -21,23 +20,22 @@ class BinaryTree {
 	}
 
 	add(value) {
-		const newNode = new Node(value);
 		if (this.length == 0) {
-			this.head.value = newnode.value;
-			this.tail = newNode;
+			const firstNode = new Node(value);
+			this.head = firstNode;
+			this.tail = firstNode;
+
 			this.length++;
-		} else if (this.length > 0) {
-			this.tail.nextUp = new Node;
-      this.tail.nextUp = newNode.value;
-      
-      this,nextUp = 
-      this,nextDown = 
-
-		} else if (this.length < 0) {
-			this.tail.nextDown = value;
+			return this;
+		} else if (this.length == 1) {
+			const nodeUp = new Node(value);
+			const nodeDown = new Node(value);
+			this.tail.nextUp = nodeUp;
+			this.tail.nextDown = nodeDown;
+			this.nodeUp.prev = this.tail;
+			this.nodeDown.prev = this.tail;
+			this.tail = nodwUp;
+		} else if (this.length > 1) {
 		}
-
-		this.length++;
-		return this;
 	}
 }
