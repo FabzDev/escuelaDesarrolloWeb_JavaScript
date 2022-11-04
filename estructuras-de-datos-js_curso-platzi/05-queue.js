@@ -29,6 +29,11 @@ class Queue {
 		this.length++;
 		return this;
 	}
+	dequeue() {
+		this.first = this.first.next;
+		this.length--;
+		return this;
+	}
 }
 
 let queue = new Queue(1);
