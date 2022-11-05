@@ -1,9 +1,3 @@
-//          10
-
-//    4           20
-
-// 2     8     17    170
-
 class Node {
 	constructor(value) {
 		this.left = null;
@@ -19,15 +13,17 @@ class BinaryTree {
 
 	search(value) {
 		if (this.root) {
-			currentNode = this.root;
+			let currentNode = this.root;
 			while (true) {
-				if (value < currentNode.value) {
-					currentNode = currentNode.left;
-				} else if (value > currentNode) {
-					currentNode = currentNode.right;
-				} else {
-					return currentNode;
-				}
+				if (currentNode) {
+					if (value < currentNode.value) {
+						currentNode = currentNode.left;
+					} else if (value > currentNode.value) {
+						currentNode = currentNode.right;
+					} else {
+						return currentNode;
+					}
+				} else return "Ugh, that number does not exist";
 			}
 		} else {
 			return "This Binary Tree is empty";
@@ -68,4 +64,6 @@ tree.insert(20);
 tree.insert(2);
 tree.insert(8);
 tree.insert(17);
+tree.insert(54);
 tree.insert(170);
+tree.search(54);
