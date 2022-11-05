@@ -5,8 +5,19 @@ class Graph {
 	}
 
 	addVertex(node) {
-		this.adjacentList[node] = [0, 0, 0, 0];
+		if (!this.adjacentList[node]) {
+			this.adjacentList[node] = [];
+		}
+		const keys = Object.keys(this.adjacentList);
+		for (let i = 0; i <= this.nodes; i++) {
+			this.adjacentList[keys[i]] = [];
+			for (let j = 0; j <= this.nodes; j++) {
+				this.adjacentList[keys[i]].push(0);
+			}
+		}
+
 		this.nodes++;
+		return this;
 	}
 
 	addEdge(node1, node2) {
@@ -21,8 +32,5 @@ class Graph {
 	}
 }
 const myGraph = new Graph();
-myGraph.addVertex(8);
-myGraph.addVertex(5);
-myGraph.addVertex(2);
-myGraph.addVertex(7);
-myGraph.addEdge(8, 5);
+myGraph.addVertex();
+myGraph.addEdge();
