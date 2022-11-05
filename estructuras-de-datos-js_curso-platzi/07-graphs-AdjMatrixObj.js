@@ -32,5 +32,16 @@ class Graph {
 	}
 }
 const myGraph = new Graph();
-myGraph.addVertex();
-myGraph.addEdge();
+myGraph.addVertex(8);
+myGraph.addVertex(4);
+myGraph.addVertex(1);
+myGraph.addVertex(5);
+myGraph.addVertex(3);
+myGraph.addVertex(6);
+myGraph.addEdge(8, 4);
+myGraph.addEdge(4, 1);
+myGraph.addEdge(4, 5);
+myGraph.addEdge(1, 3);
+myGraph.addEdge(5, 3);
+myGraph.addEdge(1, 6);
+myGraph.addEdge(3, 6);
