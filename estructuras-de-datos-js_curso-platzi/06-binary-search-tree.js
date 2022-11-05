@@ -17,6 +17,23 @@ class BinaryTree {
 		this.root = null;
 	}
 
+	search(value) {
+		if (this.root) {
+			currentNode = this.root;
+			while (true) {
+				if (value < currentNode.value) {
+					currentNode = currentNode.left;
+				} else if (value > currentNode) {
+					currentNode = currentNode.right;
+				} else {
+					return currentNode;
+				}
+			}
+		} else {
+			return "This Binary Tree is empty";
+		}
+	}
+
 	insert(value) {
 		const newNode = new Node(value);
 		if (this.root === null) {
