@@ -45,3 +45,13 @@ O(n^2 + 50) -> O(n^2)
 
 **El crecimiento siempre importa**
 La complejidad de un algoritmo nace de cuántos recursos utiliza el algoritmo al ejecutarse. La notación Big-O solo se enfoca en el crecimiento en el peor de los casos, no en los valores que puede tener un algoritmo en segundos o bytes.
+
+**_Clase: Recomendaciones para la evaluacion de algoritmos_**
+
+Hey, hasta ahora sabes que un algoritmo con O(1) es mejor que uno con O(n). ¡Genial! Pero, ¿Y si ese algoritmo con O(1) se ejecuta en 1000 horas?
+💚 La complejidad algorítmica es importante, pero dónde se ejecuta tu algoritmo determina qué tan importante es.
+📉 Cuando la Complejidad Algorítmica deja de ser relevante, es donde debemos mejorar nuestro algoritmo para alcanzar nuestro objetivo de eficiencia.
+🚀 Tal vez tengamos el mejor algoritmo jamás visto, pero si lo ejecutamos en una computadora de hace 20 años con Intel Celeron, pues no podemos esperar mucha rapidez.
+
+// https://platzi.com/clases/2517-complejidad-js/42454-notas-sobre-algoritmos/
+Notas finales del curso
