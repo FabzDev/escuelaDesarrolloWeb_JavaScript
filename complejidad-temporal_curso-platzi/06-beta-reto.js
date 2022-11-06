@@ -1,5 +1,5 @@
 /**
- * Complejidad Temporal -> O( n^2 + n + 12 ) Simplificando -> O( n^2 )
+ * Complejidad Temporal -> O( n^3 + n + 12 ) Simplificando -> O( n^3 )
  * Complejidad Espacial -> O( n^4 + n^2 + 2n + 8 ) Simplificando -> O( n^4)
  * Espacio Auxiliar -> O( n^4 + n^2 + 8) - O(n^4) Simplificando -> O( n^2 )
  */
