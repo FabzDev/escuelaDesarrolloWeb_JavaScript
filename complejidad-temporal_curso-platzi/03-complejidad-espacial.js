@@ -17,9 +17,6 @@ function convertirAString(arreglo) {
 function dosDimensiones(valor) {
 	let x = new Array(valor);
 	for (let i = 0; i < valor; i++) {
-		x[i] = new Array(valor);
-		for (let j = 0; j < valor; j++) {
-			x[i][j] = 0;
-		}
+		x[i] = new Array(valor).fill(0);
 	}
 }
