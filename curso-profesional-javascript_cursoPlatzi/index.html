@@ -21,6 +21,25 @@
 
 		<script>
 			const video = document.querySelector(".movie");
+			const button = document.querySelector("button");
+
+			function mediaVideo(multimedia) {
+				this.multimedia = multimedia.el;
+				this.status = 0;
+			}
+
+			mediaVideo.prototype.play = function () {
+				if (this.status === 0) {
+					this.multimedia.play();
+					this.status = 1;
+				} else {
+					this.multimedia.pause();
+					this.status = 0;
+				}
+			};
+			const player = new mediaVideo({ el: video });
+
+			button.onclick = () => player.play();
 		</script>
 	</body>
 </html>
