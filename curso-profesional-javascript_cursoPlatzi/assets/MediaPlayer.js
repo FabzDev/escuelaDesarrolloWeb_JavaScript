@@ -35,4 +35,12 @@ MediaPlayer.prototype.mute = function () {
 	} else {
 		this.media.muted = true;
 	}
+	// this.media.muted = !this.media.muted ---> reversar boolean
 };
+
+// otro ejemplo de reversar boolean
+let caro = true;
+function reversar() {
+	caro = !caro;
+	return caro;
+}
