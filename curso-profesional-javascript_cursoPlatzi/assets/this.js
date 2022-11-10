@@ -36,3 +36,5 @@ function Persona(name) {
 Persona.prototype.presentarse = function () {
 	console.log(`Hola, me llamo ${this.name}`);
 };
+
+const fabio = new Persona("Fabio");
