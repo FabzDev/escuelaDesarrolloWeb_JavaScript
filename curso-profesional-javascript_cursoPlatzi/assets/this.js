@@ -29,3 +29,10 @@ const accion = person.saludar;
 accion();
 
 // this en el contexto de una clase
+function Persona(name) {
+	this.name = name;
+}
+
+Persona.prototype.presentarse = function () {
+	console.log(`Hola, me llamo ${this.name}`);
+};
