@@ -53,15 +53,24 @@
 			// Ahora hagamos un ejemplo un poco más complejo: la secuencia fibonacci
 
 			// 1 1 2 3 5 8 13
-			let n1 = 0;
-			let n2 = 1;
-			let n3 = 1;
-			while (true) {       //   1   / 2 / 3 / 4 / 5 / 6  / 7
-				    yield n3;      // n3: 1 / 1 / 2 / 3 / 5 / 8  / 13
-			      n3 = n1 + n2;  // n3: 1 / 2 / 3 / 5 / 8 / 13 / 21
-			      n1 = n2;       // n1: 1 / 1 / 2 / 3 / 5 / 8  / 13
-			      n2 = n3;       // n2: 1 / 2 / 3 / 5 / 8 / 13 / 21
-			  }
+
+			function* fibonacci() {
+				let n1 = 0;
+				let n2 = 1;
+				let n3 = 1;
+				let reset;
+				while (true) {
+					//   1   / 2 / 3 / 4 / 5 / 6  / 7
+					reset = yield n3; // n3: 1 / 1 / 2 / 3 / 5 / 8  / 13
+					reset
+						? ((n1 = 0), (n2 = 1), (n3 = 1))
+						: ((n3 = n1 + n2), // n3: 1 / 2 / 3 / 5 / 8 / 13 / 21
+						  (n1 = n2), // n1: 1 / 1 / 2 / 3 / 5 / 8  / 13
+						  (n2 = n3)); // n2: 1 / 2 / 3 / 5 / 8 / 13 / 21
+				}
+			}
+
+			let fibo = fibonacci();
 		</script>
 	</body>
 </html>
