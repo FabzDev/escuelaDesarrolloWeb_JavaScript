@@ -118,14 +118,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"ejercicios/typescript/index.ts":[function(require,module,exports) {
-console.log("Hola Fabio");
-
-function add(a, b) {
-  return a + b;
-}
-
-var sum = add(3, 4);
-console.log(sum);
+// Boolean
+var muted = true;
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
