@@ -43,4 +43,18 @@ function add(a:number, b:number): number {
   return a + b;
 }
 
-add(5,10);
+const sum = add(5,10);
+
+
+function createAdder (a: number): (number) => number {
+  return function (b: number){
+    return b + a;
+  }
+}
+
+let addFour = createAdder(4);
+let fourPlus6 = addFour(6);
+console.log(fourPlus6);
+
+
+
