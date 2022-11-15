@@ -58,3 +58,9 @@ console.log(fourPlus6);
 
 
 
+function fullName(name: string, lastName: string = "Escobar"):string {
+  return `${name} ${lastName}`
+}
+
+const fabio = fullName("Fabio")
+console.log(fabio);
