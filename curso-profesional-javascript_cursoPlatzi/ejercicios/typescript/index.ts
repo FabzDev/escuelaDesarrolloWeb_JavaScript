@@ -66,16 +66,35 @@ const fabio = fullName("Agente Fabio")
 // console.log(fabio);
 
 // Interfaces
+enum Hijos{
+  Hijo = "Alejando",
+  Hija = "Avril"
+}
+
 interface Matrimonio {
   marido: string;
   mujer: string;
+  hijo?: string
 }
 
 let escobarHorta = {
   marido: "Fabio",
   mujer: "Yulieth",
+  hijo: Hijos.Hijo
 }
 
 console.log(escobarHorta);
 
+function casados(m: Matrimonio): string {
+  return `${m.marido} y ${m.mujer}, los declaro marido y mujer`
+}
 
+const mensajeCasados = casados(escobarHorta);
+
+console.log(mensajeCasados);
+
+escobarHorta.toString = function () {
+  return this.hijo ? `Esposo: ${this.marido}, Esposa: ${this.mujer} Hijo: ${this.hijo}`: `Esposo: ${this.marido}, Esposa: ${this.mujer}`
+}
+
+console.log(escobarHorta.toString())
