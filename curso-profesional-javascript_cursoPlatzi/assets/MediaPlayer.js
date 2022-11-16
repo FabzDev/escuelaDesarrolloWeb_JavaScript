@@ -1,46 +1,50 @@
-export default MediaPlayer;
-
 function MediaPlayer(config) {
-	this.media = config.el;
-	this.plugins = config.plugins || [];
+  this.media = config.el;
+  this.plugins = config.plugins || [];
 
-	this._initPlugins();
+  this._initPlugins();
 }
 
-MediaPlayer.prototype._initPlugins = function () {
-	this.plugins.forEach((plugin) => {
-		plugin.run(this);
-	});
+MediaPlayer.prototype._initPlugins = function() {
+  const player = {
+    play: () => this.play(),
+    pause: () => this.pause(),
+    media: this.media,
+    get muted() {
+      return this.media.muted;
+    },
+    set muted(value) {
+      this.media.muted = value;
+    },
+  };
+
+  this.plugins.forEach(plugin => {
+    plugin.run(player);
+  });
 };
 
-MediaPlayer.prototype.play = function () {
-	this.media.play();
+MediaPlayer.prototype.play = function() {
+  this.media.play();
 };
 
-MediaPlayer.prototype.pause = function () {
-	this.media.pause();
+MediaPlayer.prototype.pause = function() {
+  this.media.pause();
 };
 
-MediaPlayer.prototype.tooglePlay = function () {
-	if (this.media.paused) {
-		this.play();
-	} else {
-		this.pause();
-	}
+MediaPlayer.prototype.togglePlay = function() {
+  if (this.media.paused) {
+    this.play();
+  } else {
+    this.pause();
+  }
 };
 
-MediaPlayer.prototype.mute = function () {
-	if (this.media.muted) {
-		this.media.muted = false;
-	} else {
-		this.media.muted = true;
-	}
-	// this.media.muted = !this.media.muted ---> reversar boolean
+MediaPlayer.prototype.mute = function() {
+  this.media.muted = true;
 };
 
-// otro ejemplo de reversar boolean
-let caro = true;
-function reversar() {
-	caro = !caro;
-	return caro;
-}
+MediaPlayer.prototype.unmute = function() {
+  this.media.muted = false;
+};
+
+export default MediaPlayer;
