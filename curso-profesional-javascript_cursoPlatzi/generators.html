@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<title>Generators</title>
+	</head>
+
+	<body>
+		<a href="/ejercicios/">Go back</a>
+		<p><em>Abre la consola</em></p>
+
+		<script>
+			// Los generadores son funciones de las que se puede salir y volver a entrar.
+			// Su contexto (asociación de variables) será conservado entre las reentradas.
+			// Cada vez que llamamos next, la ejecución del generador va a continuar hasta el proximo yield
+			function* simpleGenerator() {
+				console.log("Clase 1");
+				yield 1;
+				console.log("Clase 2");
+				yield 2;
+				console.log("Clase 3");
+				yield 3;
+				console.log("Curso completado");
+			}
+			const gen = simpleGenerator();
+
+			// Podemos hacer generadores infinitos.
+			function* idGenerator() {
+				let id = 1;
+
+				while (true) {
+					value ? (id = 1) : (id = id);
+					yield id;
+					id++;
+				}
+			}
+			const idG = idGenerator();
+
+			// Cuando llamamos next también podemos pasar valores que la función recibe.
+			// con reset
+			function* idGeneratorReset() {
+				let id = 1;
+				let reset;
+				while (true) {
+					reset = yield id;
+					if (reset) {
+						id = 1;
+					} else {
+						id++;
+					}
+				}
+			}
+			const idGR = idGeneratorReset();
+
+			// Ahora hagamos un ejemplo un poco más complejo: la secuencia fibonacci
+
+			// 1 1 2 3 5 8 13
+
+			function* fibonacci() {
+				let n1 = 0;
+				let n2 = 1;
+				let n3 = 1;
+				let reset;
+				while (true) {
+					//   1   / 2 / 3 / 4 / 5 / 6  / 7
+					reset = yield n3; // n3: 1 / 1 / 2 / 3 / 5 / 8  / 13
+					reset
+						? ((n1 = 0), (n2 = 1), (n3 = 1))
+						: ((n3 = n1 + n2), // n3: 1 / 2 / 3 / 5 / 8 / 13 / 21
+						  (n1 = n2), // n1: 1 / 1 / 2 / 3 / 5 / 8  / 13
+						  (n2 = n3)); // n2: 1 / 2 / 3 / 5 / 8 / 13 / 21
+				}
+			}
+
+			let fibo = fibonacci();
+		</script>
+	</body>
+</html>
