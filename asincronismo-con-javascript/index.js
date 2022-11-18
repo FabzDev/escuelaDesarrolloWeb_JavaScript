@@ -18,7 +18,7 @@ setTimeout(() => saludo("Fabio"), 2000);
 
 // reto playground
 export function runCode(callback) {
-	setTimeout(callback, 2000);
+	window.setTimeout(callback, 2000);
 }
 
-window.runCode(() => console.log("Log after 2s"));
+runCode(() => console.log("Log after 2s"));
