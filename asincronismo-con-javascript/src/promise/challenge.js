@@ -22,4 +22,6 @@ dataFetch(`${API}/products`)
 		return dataFetch(`${API}/categories/${product.category.id}`);
 	})
 	.then((response) => response.json())
-	.then((category) => console.log(category.name));
+	.then((category) => console.log(category.name))
+	.catch((err) => console.log(err))
+	.finally(console.log("Terminado y entendido!"));
