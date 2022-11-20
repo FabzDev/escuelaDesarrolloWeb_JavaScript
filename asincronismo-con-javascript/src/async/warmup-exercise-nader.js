@@ -17,13 +17,28 @@ After you are done the about ^:
 
 */
 
-function fetchPokemon() {
-	new Promise((resolve, reject) => {
+const pikachu = { data: { name: "Pikachu", power: 20 } };
+const fetchPokemon = (poke) => {
+	return new Promise((resolve, reject) => {
 		setTimeout(() => {
-			resolve(console.log({ data: { name: "Pikachu", power: 20 } }));
+			if (false) {
+				resolve(poke);
+			} else {
+				reject("Danger, danger!");
+			}
 		}, 2000);
 	});
-	console.log("Program starting...");
-}
+};
+const asyncFetchPokemon = async (pok) => {
+	try {
+		console.log("Program starting...");
+		const respuesta = await fetchPokemon(pok);
+		console.log(respuesta);
+		console.log("Program complete!");
+	} catch (error) {
+		console.log(error);
+		console.log(new Error("There was an error with our code but we are ok!"));
+	}
+};
 
-fetchPokemon();
+asyncFetchPokemon(pikachu);
