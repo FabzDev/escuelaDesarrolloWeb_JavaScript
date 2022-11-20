@@ -20,6 +20,7 @@
 6. Call the async function you created
 7. Log out "Program complete!"
 */
+
 const monkey = { data: { user: "Monkey", admin: true } };
 const buti = { data: { user: "Buti", admin: false } };
 
@@ -31,10 +32,11 @@ const fetchUser = (user) => {
 	});
 };
 
+/* MODO PROFESOR FABIO*/
+
 const login = async (usuario) => {
 	console.log("Program starting...");
 	const response = await fetchUser(usuario);
-	// console.log(response);
 	if (response.data.admin === true) {
 		console.log("Successfully logged in!");
 	} else {
@@ -43,4 +45,21 @@ const login = async (usuario) => {
 	console.log("Program complete!");
 };
 
-login(buti);
+login(buti); // respuesta modo Fabio
+
+/* MODO PROFESOR NADER*/
+const loginCorrect = (usuario) => {
+	if (usuario.admin === true) {
+		console.log("Successfully logged in!");
+	} else {
+		console.log("Failed to log in, please try again");
+	}
+};
+
+const userAdmin = async (usr) => {
+	const response = await fetchUser(usr);
+	loginCorrect(response.data);
+	console.log("Program complete!");
+};
+
+userAdmin(monkey); // respuesta modo profesor Nader
