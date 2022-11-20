@@ -19,5 +19,28 @@
 
 6. Call the async function you created
 7. Log out "Program complete!"
-
 */
+const monkey = { data: { user: "Monkey", admin: true } };
+const buti = { data: { user: "Buti", admin: false } };
+
+const fetchUser = (user) => {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve(user);
+		}, 3000);
+	});
+};
+
+const login = async (usuario) => {
+	console.log("Program starting...");
+	const response = await fetchUser(usuario);
+	// console.log(response);
+	if (response.data.admin === true) {
+		console.log("Successfully logged in!");
+	} else {
+		console.log("Failed to log in, please try again");
+	}
+	console.log("Program complete!");
+};
+
+login(buti);
