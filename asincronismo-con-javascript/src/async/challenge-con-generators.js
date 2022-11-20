@@ -7,10 +7,6 @@ async function fetchData(urlApi) {
 	return data;
 }
 
-// const dataBase = fetchData(API);
-// const dataBase2 = await dataBase;
-// console.log(dataBase2[5]);
-
 const counter = async function* (urlApi) {
 	const products = await fetchData(`${urlApi}/products`);
 	yield products[1];
@@ -23,13 +19,6 @@ const counter = async function* (urlApi) {
 };
 
 const counterGenerator = counter(API);
-
-// counterGenerator.next().then((res) => console.log(res.value));
-// console.log(await counterGenerator.next());
-
-// for (const promise of counterGenerator) {
-// 	console.log(promise.then((val) => console.log(val)));
-// }
 
 for await (const promise of counterGenerator) {
 	console.log(promise);
