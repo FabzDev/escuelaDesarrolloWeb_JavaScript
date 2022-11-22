@@ -45,6 +45,10 @@ hello
 	})
 	.then((firstChainResult) => {
 		console.log(firstChainResult);
+	});
+
+hello
+	.then(() => {
 		return new Promise((resolve, reject) => {
 			setTimeout(() => {
 				resolve("Second promise chain complete!");
