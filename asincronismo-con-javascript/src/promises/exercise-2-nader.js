@@ -1,37 +1,36 @@
 /*
-
-1. Print out "Program started" at the start of your code 
-2. Create a Promise that resolves after 3 seconds 
-	 and rejects after 2 seconds 
-3. Log out the promise while it's pending
-4. print out "Program in progress..." as well 
-
-5. Print out "Program complete" if the promise fulflls
-6. Print out "Program failure. If the promise rejects 
-
-HINT: Use setrimeout for the delay 
-
+    1. Print out "Program started" at the start of your code
+    2. Create a Promise that resolves after 3 seconds
+    3. Log out the promise while it's pending
+    4. Print out "Program in progress..." as well
+    5. Print out "Step 1 complete" when the first promise fulfills
+    6. Have the first promise return another new Promise that will
+       fulfill after 3 seconds with the message: "Step 2 Complete"
+    7. Print out the message from the second promise after it
+       fulfills ("Step 2 Complete")
+    HINT: Use setTimeout for the delay
 */
-console.log("Program started");
+console.log("Program Started");
 
-const myPromise = new Promise((resolve, reject) => {
-	if (false) {
-		setTimeout(() => {
-			resolve("Program Complete");
-		}, 3000);
-	} else {
-		setTimeout(() => {
-			reject("Program failure");
-		}, 2000);
-	}
+const myPromise = new Promise((resolves, rejects) => {
+	setTimeout(() => {
+		resolves("Step 1 complete");
+	}, 3000);
 });
 
-console.log("Program in process...");
+const myPromise2 = new Promise((resolves, rejects) => {
+	setTimeout(() => {
+		resolves("Step 2 complete");
+	}, 3000);
+});
 
 myPromise
 	.then((result) => {
 		console.log(result);
+		return myPromise2;
 	})
-	.catch((otherResult) => {
-		console.log(otherResult);
+	.then((result2) => {
+		console.log(result2);
 	});
+
+console.log("Program in process...");
