@@ -42,10 +42,14 @@ console.log("Program starting...");
 const firstTime = new Date();
 
 const useData = async () => {
-	const fast = await fetchFast();
-	console.log(fast);
-	const slow = await fetchSlow();
-	console.log(slow);
+	const fast = fetchFast();
+	const slow = fetchSlow();
+	// ?
+	const results = await Promise.all([fast, slow]);
+	// console.log(results);
+	console.log(results[0]);
+	console.log(results[1]);
+
 	const secondTime = new Date();
 	console.log(secondTime - firstTime);
 };

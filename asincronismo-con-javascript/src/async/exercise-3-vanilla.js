@@ -30,22 +30,6 @@ const goGetCandies = () => {
 	});
 };
 
-/* METODO FABIO */
-
-const sellCandies2 = async () => {
-	const candy = await goGetCandies();
-	const totalAmount = 25 * candy.quantity;
-	return new Promise((resolve, reject) => {
-		setTimeout(() => {
-			resolve(console.log(`1. We made $${totalAmount / 100} dollars selling candies`));
-		}, 3000);
-	});
-};
-
-// sellCandies2();
-
-/* METODO NADER */
-
 const sellCandies = (obj) => {
 	const totalAmount = 25 * obj.quantity;
 	return new Promise((resolve, reject) => {
@@ -55,12 +39,12 @@ const sellCandies = (obj) => {
 	});
 };
 
-const asynCandy = async () => {
-	const candyObject = await goGetCandies();
-	const totalSell = await sellCandies(candyObject);
-	console.log(`2. We made $${totalSell / 100} dollars selling candies`);
-};
+// const asynCandy = async () => {
+// 	const candyObject = await goGetCandies();
+// 	const totalSell = await sellCandies(candyObject);
+// 	console.log(`2. We made $${totalSell / 100} dollars selling candies`);
+// };
 
-console.log("Program starting...");
-asynCandy();
-console.log("Program complete");
+const candy = goGetCandies();
+
+candy.then((result) => sellCandies(result));
