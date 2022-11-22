@@ -18,16 +18,14 @@ const myPromise = new Promise((resolves, rejects) => {
 	}, 3000);
 });
 
-const myPromise2 = new Promise((resolves, rejects) => {
-	setTimeout(() => {
-		resolves("Step 2 complete");
-	}, 3000);
-});
-
 myPromise
 	.then((result) => {
 		console.log(result);
-		return myPromise2;
+		return new Promise((resolves, rejects) => {
+			setTimeout(() => {
+				resolves("Step 2 complete");
+			}, 3000);
+		});
 	})
 	.then((result2) => {
 		console.log(result2);

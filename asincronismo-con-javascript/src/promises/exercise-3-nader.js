@@ -34,26 +34,22 @@ const hello = new Promise((resolve, reject) => {
 	}, 5000);
 });
 
-const firstChain = new Promise((resolve, reject) => {
-	setTimeout(() => {
-		resolve("First promise chain complete!");
-	}, 2000);
-});
-
-const secondChain = new Promise((resolve, reject) => {
-	setTimeout(() => {
-		resolve("Second promise chain complete!");
-	}, 10000);
-});
-
 hello
 	.then((result) => {
 		console.log(result);
-		return firstChain;
+		return new Promise((resolve, reject) => {
+			setTimeout(() => {
+				resolve("First promise chain complete!");
+			}, 2000);
+		});
 	})
 	.then((firstChainResult) => {
 		console.log(firstChainResult);
-		return secondChain;
+		return new Promise((resolve, reject) => {
+			setTimeout(() => {
+				resolve("Second promise chain complete!");
+			}, 10000);
+		});
 	})
 	.then((secondChainResult) => {
 		console.log(secondChainResult);
