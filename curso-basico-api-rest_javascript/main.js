@@ -1,7 +1,10 @@
 import fetch from "node-fetch";
 
-const API = "https://api.thedogapi.com/v1/images/search";
+const URL = "https://api.thedogapi.com/v1/images/search";
+const img = document.querySelector("img");
 
-fetch(url)
-	.then((rawData) => rawDat.json())
-	.then((jsonData) => console.log(jsonData));
+fetch(URL)
+	.then((rawData) => rawData.json())
+	.then((jsonData) => {
+		img.src = jsonData[0].url;
+	});
