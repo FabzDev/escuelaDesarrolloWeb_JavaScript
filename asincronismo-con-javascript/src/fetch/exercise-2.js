@@ -14,10 +14,16 @@
 
 import fetch from "node-fetch";
 
-const pikaFetched = async () => {
-	const pikachu = await fetch("https://pokeapi.co/api/v2/pokemon/pikachu");
-	const pikachuJson = await pikachu.json();
-	console.log(pikachuJson.sprites.other["official-artwork"].front_default);
-};
+// const pikaFetched = async () => {
+// 	const pikachu = await fetch("https://pokeapi.co/api/v2/pokemon/pikachu");
+// 	const pikachuJson = await pikachu.json();
+// 	console.log(pikachuJson.sprites.other["official-artwork"].front_default);
+// };
 
-pikaFetched();
+// pikaFetched();
+
+fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
+	.then((pikachu) => pikachu.json())
+	.then((pikachuJson) => {
+		console.log(pikachuJson.sprites.other["official-artwork"].front_default);
+	});

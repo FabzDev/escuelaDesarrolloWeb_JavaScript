@@ -17,12 +17,14 @@
 */
 
 import fetch from "node-fetch";
-import js from "fs/promises";
+import fs from "fs/promises";
 
 const aotPic = async () => {
 	const pic = await fetch("https://w.wallhaven.cc/full/1k/wallhaven-1ke2qv.jpg");
-	const picReceived = await pic.blob();
-	console.log(picReceived);
+	const picReceived = await pic.arrayBuffer();
+	return picReceived;
 };
 
-aotPic();
+const aotPhoto = await aotPic();
+
+fs.writeFile("erenEye.jpg", Buffer.from(aotPhoto));
