@@ -12,9 +12,6 @@ const btn = document.querySelector(".boton");
 	const jsonData = await rawData.json();
 	console.log(jsonData);
 	img1.src = jsonData[0].url;
-	img2.src = jsonData[1].url;
-	img3.src = jsonData[2].url;
-	img4.src = jsonData[3].url;
 })();
 
 btn.addEventListener("click", reload);
