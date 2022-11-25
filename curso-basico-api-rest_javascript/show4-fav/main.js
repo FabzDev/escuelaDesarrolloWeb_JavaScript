@@ -1,5 +1,3 @@
-// import fetch from "node-fetch";
-
 const API_URL_RANDOM =
 	"https://api.thedogapi.com/v1/images/search?limit=4&api_key=live_fEQTW9cdqcD8Zbj6LSL5UjMs4XBT6DdzaFNUienaGAI81nOIURATazEUkacciDBH";
 
@@ -8,10 +6,13 @@ const API_URL_FAVORITES =
 
 const API_URL_DELETE = "https://api.thedogapi.com/v1/favourites/{favourite_id}";
 
+const content = document.querySelector("#content");
+
 const img1 = document.querySelector("#img1");
 const img2 = document.querySelector("#img2");
 const img3 = document.querySelector("#img3");
 const img4 = document.querySelector("#img4");
+
 const btn = document.querySelector("#btn");
 
 const btn1 = document.querySelector("#btn1");
@@ -19,18 +20,18 @@ const btn2 = document.querySelector("#btn2");
 const btn3 = document.querySelector("#btn3");
 const btn4 = document.querySelector("#btn4");
 
-let img1obj;
-let img2obj;
-let img3obj;
-let img4obj;
+let imgId1;
+let imgId2;
+let imgId3;
+let imgId4;
 
 async function loadRandomPuppies() {
 	const rawData = await fetch(API_URL_RANDOM);
 	const jsonData = await rawData.json();
-	img1obj = jsonData[0];
-	img2obj = jsonData[1];
-	img3obj = jsonData[2];
-	img4obj = jsonData[3];
+	imgId1 = jsonData[0].id;
+	imgId2 = jsonData[1].id;
+	imgId3 = jsonData[2].id;
+	imgId4 = jsonData[3].id;
 
 	img1.src = jsonData[0].url;
 	img2.src = jsonData[1].url;
@@ -40,105 +41,64 @@ async function loadRandomPuppies() {
 
 async function addPuppieToFavorites1() {
 	const rawData = await fetch(API_URL_FAVORITES, {
-		method: "POST", // *GET, POST, PUT, DELETE, etc.
-		// mode: "cors", // no-cors, *cors, same-origin
-		// cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-		// credentials: "same-origin", // include, *same-origin, omit
+		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			// 'Content-Type': 'application/x-www-form-urlencoded',
 		},
-		// redirect: "follow", // manual, *follow, error
-		// referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 		body: JSON.stringify({
-			image_id: img1obj.id,
-		}), // body data type must match "Content-Type" header
+			image_id: imgId1,
+		}),
 	});
-	const jsonData = await rawData.json();
-	console.log(jsonData);
+	renderFavoritePuppies();
 }
 
 async function addPuppieToFavorites2() {
 	const rawData = await fetch(API_URL_FAVORITES, {
-		method: "POST", // *GET, POST, PUT, DELETE, etc.
-		// mode: "cors", // no-cors, *cors, same-origin
-		// cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-		// credentials: "same-origin", // include, *same-origin, omit
+		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			// 'Content-Type': 'application/x-www-form-urlencoded',
 		},
-		// redirect: "follow", // manual, *follow, error
-		// referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 		body: JSON.stringify({
-			image_id: img2obj.id,
-		}), // body data type must match "Content-Type" header
+			image_id: imgId2,
+		}),
 	});
-	const jsonData = await rawData.json();
-	console.log(jsonData);
+	renderFavoritePuppies();
 }
 
 async function addPuppieToFavorites3() {
 	const rawData = await fetch(API_URL_FAVORITES, {
-		method: "POST", // *GET, POST, PUT, DELETE, etc.
-		// mode: "cors", // no-cors, *cors, same-origin
-		// cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-		// credentials: "same-origin", // include, *same-origin, omit
+		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			// 'Content-Type': 'application/x-www-form-urlencoded',
 		},
-		// redirect: "follow", // manual, *follow, error
-		// referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 		body: JSON.stringify({
-			image_id: img3obj.id,
-		}), // body data type must match "Content-Type" header
+			image_id: imgId3,
+		}),
 	});
-	const jsonData = await rawData.json();
-	console.log(jsonData);
+	renderFavoritePuppies();
 }
 
 async function addPuppieToFavorites4() {
 	const rawData = await fetch(API_URL_FAVORITES, {
-		method: "POST", // *GET, POST, PUT, DELETE, etc.
-		// mode: "cors", // no-cors, *cors, same-origin
-		// cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-		// credentials: "same-origin", // include, *same-origin, omit
+		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			// 'Content-Type': 'application/x-www-form-urlencoded',
 		},
-		// redirect: "follow", // manual, *follow, error
-		// referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 		body: JSON.stringify({
-			image_id: img4obj.id,
-		}), // body data type must match "Content-Type" header
+			image_id: imgId4,
+		}),
 	});
-	const jsonData = await rawData.json();
-	console.log(jsonData);
+	renderFavoritePuppies();
 }
 
 async function deletePuppieFromFavorites(favourite_id) {
 	const rawData = await fetch(
 		`https://api.thedogapi.com/v1/favourites/${favourite_id}?api_key=live_fEQTW9cdqcD8Zbj6LSL5UjMs4XBT6DdzaFNUienaGAI81nOIURATazEUkacciDBH`,
 		{
-			method: "DELETE", // *GET, POST, PUT, DELETE, etc.
-			// mode: "cors", // no-cors, *cors, same-origin
-			// cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-			// credentials: "same-origin", // include, *same-origin, omit
-			headers: {
-				"Content-Type": "application/json",
-				// 'Content-Type': 'application/x-www-form-urlencoded',
-			},
-			// redirect: "follow", // manual, *follow, error
-			// referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-			body: JSON.stringify({
-				image_id: "dje",
-			}), // body data type must match "Content-Type" header
+			method: "DELETE",
 		}
 	);
-	const jsonData = rawData.json();
-	console.log(jsonData);
+	renderFavoritePuppies();
 }
 
 async function loadFavoritePuppies() {
@@ -155,4 +115,20 @@ btn3.addEventListener("click", addPuppieToFavorites3);
 btn4.addEventListener("click", addPuppieToFavorites4);
 
 loadRandomPuppies();
-// loadFavoritePuppies();
+
+async function renderFavoritePuppies() {
+	const rawData = await fetch(API_URL_FAVORITES);
+	const jsonData = await rawData.json();
+	let view = `${jsonData
+		.map(
+			(eachPuppie) =>
+				`<div class= "img-container">
+				<img id="img-fav" src="${eachPuppie.image.url}" alt="foto puppie favorito" />
+					<button onclick="deletePuppieFromFavorites(${eachPuppie.id})" class="boton-like">Unlike 💔</button>
+					</div>`
+		)
+		.join("")}`;
+	content.innerHTML = view;
+}
+
+renderFavoritePuppies();

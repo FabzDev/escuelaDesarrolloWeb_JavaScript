@@ -8,6 +8,7 @@
 
 body {
 	height: 100vh;
+	min-width: 320px;
 	display: flex;
 	justify-content: center;
 }
@@ -16,8 +17,9 @@ body {
 	display: grid;
 	height: 90%;
 	width: 40%;
+	min-width: 320px;
 	grid-template-rows: 1fr 8fr 1fr 4fr;
-	/* justify-content: center; */
+	justify-content: center;
 	margin-top: 35px;
 }
 
@@ -57,14 +59,21 @@ img {
 	align-items: center;
 	text-align: center;
 }
+.btn-container {
+	margin: 15px 0;
+}
 
-.imgs-container {
+.imgs-container,
+.fav-img-container {
 	display: grid;
 	gap: 10px;
 	grid-template-columns: repeat(2, auto);
 	padding: 20px 5px;
 	align-items: flex-end;
 	text-align: center;
+}
+.fav-img-container {
+	grid-template-columns: repeat(4, auto);
 }
 
 .boton-like {
@@ -80,9 +89,4 @@ img {
 	padding: 20px 5px;
 	align-items: flex-end;
 	text-align: center;
-}
-
-.fav-img-container {
-	display: flex;
-	flex-direction: column;
 }
