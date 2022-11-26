@@ -7,10 +7,6 @@ const API_URL_FAVORITES =
 const API_URL_DELETE = (id) =>
 	`https://api.thedogapi.com/v1/favourites/${id}?api_key=live_fEQTW9cdqcD8Zbj6LSL5UjMs4XBT6DdzaFNUienaGAI81nOIURATazEUkacciDBH`;
 
-// function deleteUrl(id) {
-// 	return `https://api.thedogapi.com/v1/favourites/${id}?api_key=live_fEQTW9cdqcD8Zbj6LSL5UjMs4XBT6DdzaFNUienaGAI81nOIURATazEUkacciDBH`;
-// }
-
 const content = document.querySelector("#content");
 const content2 = document.querySelector("#content2");
 

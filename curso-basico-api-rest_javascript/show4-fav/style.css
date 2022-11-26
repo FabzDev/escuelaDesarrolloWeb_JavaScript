@@ -24,8 +24,8 @@ body {
 }
 
 .boton {
-	height: 30px;
-	width: 100px;
+	height: 40px;
+	width: 120px;
 	border: 2px gray solid;
 	border-radius: 5px;
 	background-color: white;
@@ -84,9 +84,9 @@ img {
 
 .favorites {
 	display: grid;
-	gap: 10px;
 	grid-template-columns: repeat(1, auto);
-	padding: 20px 5px;
+
+	padding: 40px 5px;
 	align-items: flex-end;
 	text-align: center;
 }
