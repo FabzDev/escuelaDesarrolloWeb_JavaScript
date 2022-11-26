@@ -1,11 +1,9 @@
 const API_URL_RANDOM =
 	"https://api.thedogapi.com/v1/images/search?limit=4&api_key=live_fEQTW9cdqcD8Zbj6LSL5UjMs4XBT6DdzaFNUienaGAI81nOIURATazEUkacciDBH";
 
-const API_URL_FAVORITES =
-	"https://api.thedogapi.com/v1/favourites?api_key=live_fEQTW9cdqcD8Zbj6LSL5UjMs4XBT6DdzaFNUienaGAI81nOIURATazEUkacciDBH";
+const API_URL_FAVORITES = "https://api.thedogapi.com/v1/favourites";
 
-const API_URL_DELETE = (id) =>
-	`https://api.thedogapi.com/v1/favourites/${id}?api_key=live_fEQTW9cdqcD8Zbj6LSL5UjMs4XBT6DdzaFNUienaGAI81nOIURATazEUkacciDBH`;
+const API_URL_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}`;
 
 const content = document.querySelector("#content");
 const content2 = document.querySelector("#content2");
@@ -34,6 +32,7 @@ async function addPuppieToFavorites(imgId) {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
+			"X-API-KEY": "live_fEQTW9cdqcD8Zbj6LSL5UjMs4XBT6DdzaFNUienaGAI81nOIURATazEUkacciDBH",
 		},
 		body: JSON.stringify({
 			image_id: imgId,
@@ -45,18 +44,33 @@ async function addPuppieToFavorites(imgId) {
 async function deletePuppieFromFavorites(favourite_id) {
 	const rawData = await fetch(API_URL_DELETE(favourite_id), {
 		method: "DELETE",
+		headers: {
+			"x-api-key": "live_fEQTW9cdqcD8Zbj6LSL5UjMs4XBT6DdzaFNUienaGAI81nOIURATazEUkacciDBH",
+		},
 	});
 	renderFavoritePuppies();
 }
 
 async function loadFavoritePuppies() {
-	const rawData = await fetch(API_URL_FAVORITES);
+	const rawData = await fetch(API_URL_FAVORITES, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			"x-api-key": "live_fEQTW9cdqcD8Zbj6LSL5UjMs4XBT6DdzaFNUienaGAI81nOIURATazEUkacciDBH",
+		},
+	});
 	const jsonData = await rawData.json();
 	console.log(jsonData);
 }
 
 async function renderFavoritePuppies() {
-	const rawData = await fetch(API_URL_FAVORITES);
+	const rawData = await fetch(API_URL_FAVORITES, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			"x-api-key": "live_fEQTW9cdqcD8Zbj6LSL5UjMs4XBT6DdzaFNUienaGAI81nOIURATazEUkacciDBH",
+		},
+	});
 	const jsonData = await rawData.json();
 	let view = `${jsonData
 		.map(
