@@ -6,6 +6,10 @@ const API_URL_FAVORITES =
 
 const API_URL_DELETE = "https://api.thedogapi.com/v1/favourites/{favourite_id}";
 
+function deleteUrl(id) {
+	return `https://api.thedogapi.com/v1/favourites/${id}?api_key=live_fEQTW9cdqcD8Zbj6LSL5UjMs4XBT6DdzaFNUienaGAI81nOIURATazEUkacciDBH`;
+}
+
 const content = document.querySelector("#content");
 const content2 = document.querySelector("#content2");
 
@@ -42,12 +46,9 @@ async function addPuppieToFavorites(imgId) {
 }
 
 async function deletePuppieFromFavorites(favourite_id) {
-	const rawData = await fetch(
-		`https://api.thedogapi.com/v1/favourites/${favourite_id}?api_key=live_fEQTW9cdqcD8Zbj6LSL5UjMs4XBT6DdzaFNUienaGAI81nOIURATazEUkacciDBH`,
-		{
-			method: "DELETE",
-		}
-	);
+	const rawData = await fetch(deleteUrl(favourite_id), {
+		method: "DELETE",
+	});
 	renderFavoritePuppies();
 }
 
