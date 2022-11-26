@@ -89,3 +89,7 @@ img {
 	align-items: flex-end;
 	text-align: center;
 }
+
+button:hover {
+	cursor: pointer;
+}
