@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Marker+Hatch&display=swap");
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	min-width: 320px;
+	display: flex;
+	justify-content: center;
+}
+
+.grida {
+	display: grid;
+	height: 90%;
+	width: 40%;
+	min-width: 320px;
+	justify-content: center;
+	margin: 30px 0px;
+}
+
+.boton {
+	height: 40px;
+	width: auto;
+	padding: 0 10px;
+	border: 2px gray solid;
+	border-radius: 5px;
+	background-color: white;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 18px;
+	font-weight: bold;
+	color: gray;
+}
+
+.upload-boton {
+	height: 40px;
+	width: auto;
+	border: 2px gray solid;
+	border-radius: 5px;
+	background-color: gray;
+	font-weight: bold;
+	color: white;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 18px;
+	padding: 0 10px;
+}
+
+h1,
+h2,
+h3 {
+	text-align: center;
+	font-family: "Rubik Marker Hatch", cursive;
+	font-weight: 400;
+}
+
+h1 {
+	font-size: 36px;
+}
+
+h2 {
+	font-size: 34px;
+}
+
+h3 {
+	font-size: 30px;
+}
+
+img {
+	width: 100%;
+	max-height: 300px;
+	border-radius: 20px;
+}
+
+.btn-container,
+.h1-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.btn-container {
+	margin: 10px 0 20px 0;
+}
+
+.imgs-container,
+.fav-img-container {
+	display: grid;
+	gap: 10px;
+	grid-template-columns: repeat(2, auto);
+	padding: 20px 5px;
+	align-items: flex-end;
+	text-align: center;
+}
+.fav-img-container {
+	grid-template-columns: repeat(4, auto);
+}
+
+.boton-like {
+	border: none;
+	background-color: transparent;
+	text-align: center;
+}
+
+.favorites {
+	display: grid;
+	grid-template-columns: repeat(1, auto);
+	padding: 40px 5px;
+	align-items: flex-end;
+	text-align: center;
+}
+
+label:hover,
+button:hover {
+	cursor: pointer;
+}
+
+label {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: solid 1px grey;
+	border-radius: 5px;
+	width: auto;
+	padding: 0 10px;
+	height: 40px;
+	text-align: center;
+	padding-top: 5px;
+	font-family: "Courier New", Courier, monospace;
+}
+
+#puppyForm {
+	margin-top: 15px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+
+#puppyForm-input {
+	display: none;
+}
+
+#puppyForm img {
+	width: 50%;
+	display: none;
+	margin: auto;
+}
