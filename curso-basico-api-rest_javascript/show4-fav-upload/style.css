@@ -7,7 +7,6 @@
 }
 
 body {
-	height: 100vh;
 	min-width: 320px;
 	display: flex;
 	justify-content: center;
@@ -18,19 +17,33 @@ body {
 	height: 90%;
 	width: 40%;
 	min-width: 320px;
-	grid-template-rows: 1fr 8fr 1fr 4fr;
 	justify-content: center;
-	margin-top: 35px;
+	margin: 30px 0px;
 }
 
 .boton {
 	height: 40px;
-	width: 120px;
+	width: auto;
+	padding: 0 10px;
 	border: 2px gray solid;
 	border-radius: 5px;
 	background-color: white;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 18px;
 	font-weight: bold;
 	color: gray;
+}
+
+.upload-boton {
+	height: 40px;
+	width: 150px;
+	border: 2px gray solid;
+	border-radius: 5px;
+	background-color: gray;
+	font-weight: bold;
+	color: white;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 18px;
 }
 
 h1,
@@ -67,7 +80,7 @@ img {
 	text-align: center;
 }
 .btn-container {
-	margin: 15px 0;
+	margin: 10px 0 20px 0;
 }
 
 .imgs-container,
@@ -103,18 +116,21 @@ button:hover {
 }
 
 label {
-	display: block;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	border: solid 1px grey;
 	border-radius: 5px;
-	width: 250px;
-	height: 30px;
+	width: auto;
+	padding: 0 10px;
+	height: 40px;
 	text-align: center;
 	padding-top: 5px;
 	font-family: "Courier New", Courier, monospace;
 }
 
 #puppyForm {
-	margin-top: 20px;
+	margin-top: 15px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

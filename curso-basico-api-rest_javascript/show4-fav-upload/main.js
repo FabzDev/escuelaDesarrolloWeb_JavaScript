@@ -50,7 +50,9 @@ async function deletePuppieFromFavorites(favourite_id) {
 			"x-api-key": "live_fEQTW9cdqcD8Zbj6LSL5UjMs4XBT6DdzaFNUienaGAI81nOIURATazEUkacciDBH",
 		},
 	});
+
 	const jsonData = await rawData.json();
+	console.log(jsonData);
 	renderFavoritePuppies();
 }
 
@@ -93,21 +95,21 @@ async function uploadPuppy() {
 
 	console.log(puppyFormData.get("file"));
 
-	const rawData = fetch(API_URL_UPLOAD, {
+	const resp = fetch(API_URL_UPLOAD, {
 		method: "POST",
 		headers: {
 			"x-api-key": "live_fEQTW9cdqcD8Zbj6LSL5UjMs4XBT6DdzaFNUienaGAI81nOIURATazEUkacciDBH",
 		},
 		body: puppyFormData,
 	});
-	const data = await rawData;
-	console.log(rawData);
-	console.log(data.url);
-	// addPuppieToFavorites("Ix2Xcasls");
-}
 
-renderRandomPuppies();
-renderFavoritePuppies();
+	const rawData = await resp;
+	const jsonData = await rawData.json();
+
+	console.log(jsonData);
+
+	addPuppieToFavorites(jsonData.id);
+}
 
 async function uploadedPuppies() {
 	const rawData = await fetch("https://api.thedogapi.com/v1/images?limit=10", {
@@ -126,7 +128,6 @@ async function deleteUploadedPuppies(imgId) {
 			"x-api-key": "live_fEQTW9cdqcD8Zbj6LSL5UjMs4XBT6DdzaFNUienaGAI81nOIURATazEUkacciDBH",
 		},
 	});
-	console.log("Uploaded Puppy removed succesfully");
 }
 
 function showPreview(event) {
@@ -137,3 +138,6 @@ function showPreview(event) {
 		preview.style.display = "block";
 	}
 }
+
+renderRandomPuppies();
+renderFavoritePuppies();
