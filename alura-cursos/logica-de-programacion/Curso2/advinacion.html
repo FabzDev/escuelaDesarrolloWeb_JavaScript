@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Random number</title>
+	</head>
+	<body>
+		<script>
+			function saltarLinea() {
+				document.write("<br><br><br><hr><br><br>");
+			}
+
+			function imprimir(frase) {
+				document.write(`<big>${frase}</big>`);
+				saltarLinea();
+			}
+
+			var numeroGanador = Math.floor(Math.random() * 10) + 1;
+			var numeroLanzado = parseInt(prompt("Ingrese un numero entre 1-10"));
+
+			if (numeroLanzado == numeroGanador) {
+				imprimir("Acertaste!");
+			}
+
+			if (numeroLanzado != numeroGanador) {
+				imprimir(`Fallaste! El numero ganador es ${numeroGanador}`);
+			}
+		</script>
+	</body>
+</html>
