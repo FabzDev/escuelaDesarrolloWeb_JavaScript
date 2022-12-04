@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>IMC</title>
+	</head>
+	<body>
+		<script>
+			function saltarLinea() {
+				document.write("<br><br><br><hr><br><br>");
+			}
+
+			function imprimir(frase) {
+				document.write(`<big>${frase}</big>`);
+				saltarLinea();
+			}
+
+			function calcularImc(peso, altura) {
+				return peso / (altura * altura);
+			}
+
+			nombre = prompt("Informe su nombre");
+			peso = prompt("Informe su peso");
+			altura = prompt("Informe su altura");
+			imcIdeal = prompt("Informe su IMC ideal");
+
+			pesoIdeal = imcIdeal * (altura * altura);
+			imcCalculado = calcularImc(peso, altura);
+
+			imprimir(`${nombre}, su imc calculado es: ${imcCalculado}`);
+
+			if (imcCalculado < 18.5) {
+				imprimir(`IMC abajo de lo recomendado`);
+			}
+			if (imcCalculado < 25 && imcCalculado >= 18.5) {
+				imprimir(`IMC dentro de lo recomendado`);
+			}
+			if (imcCalculado >= 25) {
+				imprimir(`IMC por encima de lo recomendado`);
+			}
+
+			imprimir(`${nombre}, para alcanzar un IMC de 25 debes pesar ${pesoIdeal} kg`);
+		</script>
+	</body>
+</html>
