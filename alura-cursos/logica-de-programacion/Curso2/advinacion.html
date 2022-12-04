@@ -17,15 +17,20 @@
 				saltarLinea();
 			}
 
-			var numeroGanador = Math.floor(Math.random() * 10) + 1;
+			function sorteo(n) {
+				var numeroGanador = Math.floor(Math.random() * n);
+				return numeroGanador;
+			}
+
+			var numeroGanador = sorteo(10) + 1;
 			var numeroLanzado = parseInt(prompt("Ingrese un numero entre 1-10"));
 
 			if (numeroLanzado == numeroGanador) {
 				imprimir("Acertaste!");
-			}
-
-			if (numeroLanzado != numeroGanador) {
-				imprimir(`Fallaste! El numero ganador es ${numeroGanador}`);
+			} else if (numeroLanzado > numeroGanador) {
+				imprimir(`Fallaste! El numero ganador es menor y es ${numeroGanador}`);
+			} else if (numeroLanzado < numeroGanador) {
+				imprimir(`Fallaste! El numero ganador es mayor y es ${numeroGanador}`);
 			}
 		</script>
 	</body>
