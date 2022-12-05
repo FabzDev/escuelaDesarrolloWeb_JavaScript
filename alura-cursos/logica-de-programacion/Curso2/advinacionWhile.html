@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Random number</title>
+	</head>
+	<body>
+		<script>
+			function saltarLinea() {
+				document.write("<br><br><br><hr><br><br>");
+			}
+
+			function imprimir(frase) {
+				document.write(`<big>${frase}</big>`);
+				saltarLinea();
+			}
+
+			function sorteo(n) {
+				var numeroGanador = Math.floor(Math.random() * n);
+				return numeroGanador;
+			}
+
+			var numeroGanador = sorteo(10) + 1;
+			let intentos = 3;
+			while (intentos > 0) {
+				var numeroLanzado = parseInt(prompt("Ingrese un numero entre 1-10"));
+
+				if (numeroLanzado == numeroGanador) {
+					imprimir("Acertaste!");
+					intentos = 0;
+				} else {
+					alert(`Fallaste!, te quedan ${intentos - 1} intentos`);
+				}
+				intentos--;
+				if (intentos === 0) {
+					imprimir("Perdiste!");
+				}
+			}
+		</script>
+	</body>
+</html>
