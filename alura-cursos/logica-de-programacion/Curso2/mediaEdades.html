@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Random number</title>
+	</head>
+	<body>
+		<script>
+			function saltarLinea() {
+				document.write("<br><br><br><hr><br><br>");
+			}
+
+			function imprimir(frase) {
+				document.write(`<big>${frase}</big>`);
+				saltarLinea();
+			}
+
+			let miembros = prompt("Por favor ingrese la cantidad de miembros de su familia");
+			let edadTotal = 0;
+			for (let i = 0; i < miembros; i++) {
+				let edadTemporal = parseInt(prompt(`Ingresa la edad del miembro #${i + 1}`));
+				edadTotal += edadTemporal;
+			}
+
+			imprimir(`El promedio de edad de tu familia es ${edadTotal / miembros}`);
+		</script>
+	</body>
+</html>
