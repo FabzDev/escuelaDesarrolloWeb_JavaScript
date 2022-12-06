@@ -11,7 +11,7 @@
 
 		if (inicioDeSesionRegistrado == inicioDeSesionIngresado && contrasenhaRegistrada == contrasenhaIngresada) {
 			alert("Bienvenido al sistema " + inicioDeSesionIngresado);
-			intentos = 0;
+			break;
 		} else if (intentos > 1) {
 			alert("Inicio de sesión inválido. Favor intente de nuevo");
 		} else if (intentos === 1) {
