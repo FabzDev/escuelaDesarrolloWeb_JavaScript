@@ -5,7 +5,6 @@ const trendingArticle = document.getElementById("trending-article");
 	const res = await fetch(`${API_URL}/trending/movie/day?api_key=${API_KEY}`);
 	const data = await res.json();
 	const movies = data.results;
-	console.log(movies);
 
 	// // METODO APPEND CHILD BY PLATZI
 	// movies.forEach((movie) => {
@@ -24,9 +23,10 @@ const trendingArticle = document.getElementById("trending-article");
 
 	// METODO MAP BY FABIO
 	const mapArticle = document.getElementById("trending-article");
-	mapArticle.innerHTML = movies.map(
-		(movie) =>
-			`
+	mapArticle.innerHTML = movies
+		.map(
+			(movie) =>
+				`
 	            <div class="movie-container">
 	            <img
 	                src="https://image.tmdb.org/t/p/w300/${movie.poster_path}"
@@ -35,5 +35,28 @@ const trendingArticle = document.getElementById("trending-article");
 	            />
 	            </div>
 	        `
-	);
+		)
+		.join("");
+})();
+
+(async function getCategoriesPreview() {
+	const res = await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`);
+	const data = await res.json();
+	const genres = data.genres;
+	console.log(genres);
+
+	// // METODO APPEND CHILD BY PLATZI
+	genres.forEach((category) => {
+		const categoriesArticle = document.querySelector("#categoriesPreview .categoriesPreview-list");
+
+		const categoryContainer = document.createElement("div");
+		categoryContainer.classList.add("category-container");
+		categoriesArticle.appendChild(categoryContainer);
+
+		const h3Category = document.createElement("h3");
+		h3Category.classList.add("category-title");
+		h3Category.setAttribute("id", "id" + category.id);
+		h3Category.innerHTML = category.name;
+		categoryContainer.appendChild(h3Category);
+	});
 })();
