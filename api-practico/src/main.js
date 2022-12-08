@@ -43,20 +43,32 @@ const trendingArticle = document.getElementById("trending-article");
 	const res = await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`);
 	const data = await res.json();
 	const genres = data.genres;
-	console.log(genres);
 
 	// // METODO APPEND CHILD BY PLATZI
-	genres.forEach((category) => {
-		const categoriesArticle = document.querySelector("#categoriesPreview .categoriesPreview-list");
+	// genres.forEach((category) => {
+	// 	const categoriesArticle = document.querySelector("#categoriesPreview .categoriesPreview-list");
 
-		const categoryContainer = document.createElement("div");
-		categoryContainer.classList.add("category-container");
-		categoriesArticle.appendChild(categoryContainer);
+	// 	const categoryContainer = document.createElement("div");
+	// 	categoryContainer.classList.add("category-container");
+	// 	categoriesArticle.appendChild(categoryContainer);
 
-		const h3Category = document.createElement("h3");
-		h3Category.classList.add("category-title");
-		h3Category.setAttribute("id", "id" + category.id);
-		h3Category.innerHTML = category.name;
-		categoryContainer.appendChild(h3Category);
-	});
+	// 	const h3Category = document.createElement("h3");
+	// 	h3Category.classList.add("category-title");
+	// 	h3Category.setAttribute("id", "id" + category.id);
+	// 	h3Category.innerHTML = category.name;
+	// 	categoryContainer.appendChild(h3Category);
+	// });
+
+	// METODO MAP BY FABIO
+	const mapCategory = document.querySelector("#categoriesPreview .categoriesPreview-list");
+	mapCategory.innerHTML = genres
+		.map(
+			(category) =>
+				`
+	            <div class="category-container">
+	            <h3 id="id${category.id}" class="category-title">${category.name}</h3>
+	            </div>
+	        `
+		)
+		.join("");
 })();
