@@ -11,12 +11,12 @@
 			rel="stylesheet"
 		/>
 		<link rel="stylesheet" href="./styles/app.css" />
-		<title>PlatziMovies</title>
+		<title>API Movies</title>
 	</head>
 	<body>
 		<header id="header" class="header-container">
-			<span class="header-arrow inactive">&lt;</span>
-			<h1 class="header-title">PlatziMovies</h1>
+			<span class="header-arrow">&lt;</span>
+			<h1 class="header-title">API Movies</h1>
 			<h1 class="header-title header-title--categoryView inactive">Acción</h1>
 			<form id="searchForm" class="header-searchForm">
 				<input type="text" placeholder="Vengadores" />
@@ -28,28 +28,14 @@
 				<h2 class="trendingPreview-title">Tendencias</h2>
 				<button class="trendingPreview-btn">Ver más</button>
 			</div>
-			<article class="trendingPreview-movieList">
-				<div class="movie-container">
+			<article id="trending-article" class="trendingPreview-movieList">
+				<!-- <div class="movie-container">
 					<img
 						src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
 						class="movie-img"
 						alt="Nombre de la película"
 					/>
-				</div>
-				<div class="movie-container">
-					<img
-						src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-						class="movie-img"
-						alt="Nombre de la película"
-					/>
-				</div>
-				<div class="movie-container">
-					<img
-						src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-						class="movie-img"
-						alt="Nombre de la película"
-					/>
-				</div>
+				</div> -->
 			</article>
 		</section>
 		<section id="categoriesPreview" class="categoriesPreview-container">
@@ -133,7 +119,7 @@
 				</div>
 			</article>
 		</section>
-		<footer>Hecho con amor en Platzi por @juandc</footer>
+		<footer>Hecho con amor en Platzi por @fab2dev</footer>
 		<script src="./src/secrets.js"></script>
 		<script src="./src/main.js"></script>
 	</body>
