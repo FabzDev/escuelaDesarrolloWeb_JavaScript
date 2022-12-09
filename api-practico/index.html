@@ -15,7 +15,7 @@
 	</head>
 	<body>
 		<header id="header" class="header-container">
-			<span class="header-arrow">&lt;</span>
+			<span class="header-arrow inactive">&lt;</span>
 			<h1 class="header-title">API Movies</h1>
 			<h1 class="header-title header-title--categoryView inactive">Acción</h1>
 			<form id="searchForm" class="header-searchForm">
@@ -23,12 +23,13 @@
 				<button>🔍</button>
 			</form>
 		</header>
+
 		<section id="trendingPreview" class="trendingPreview-container">
 			<div class="trendingPreview-header">
 				<h2 class="trendingPreview-title">Tendencias</h2>
 				<button class="trendingPreview-btn">Ver más</button>
 			</div>
-			<article id="trending-article" class="trendingPreview-movieList">
+			<article class="trendingPreview-movieList">
 				<!-- <div class="movie-container">
 					<img
 						src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
@@ -38,6 +39,7 @@
 				</div> -->
 			</article>
 		</section>
+
 		<section id="categoriesPreview" class="categoriesPreview-container">
 			<h2 class="categoriesPreview-title">Categorías</h2>
 			<article class="categoriesPreview-list">
@@ -52,6 +54,7 @@
 				</div>
 			</article>
 		</section>
+
 		<section id="genericList" class="genericList-container inactive">
 			<div class="movie-container">
 				<img
@@ -75,6 +78,7 @@
 				/>
 			</div>
 		</section>
+
 		<section id="movieDetail" class="movieDetail-container inactive">
 			<h1 class="movieDetail-title">Deadpool</h1>
 			<span class="movieDetail-score">7.6</span>
@@ -119,6 +123,7 @@
 				</div>
 			</article>
 		</section>
+
 		<footer>Hecho con amor en Platzi por @fab2dev</footer>
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 		<script src="./src/secrets.js"></script>

@@ -20,6 +20,8 @@ window.addEventListener("hashchange", navigator, false);
 
 function homePage() {
 	console.log("Home!");
+
+	// headerSection.classList.remove("header-container--long");
 }
 function categoriesPage() {
 	console.log("Categories!!");

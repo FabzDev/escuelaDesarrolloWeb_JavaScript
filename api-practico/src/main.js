@@ -18,11 +18,9 @@ async function getTrendingMoviedPreview() {
 
 	// METODO APPEND CHILD BY PLATZI
 	movies.forEach((movie) => {
-		const trendingArticleContainer = document.getElementById("trending-article");
-
 		const movieContainer = document.createElement("div");
 		movieContainer.classList.add("movie-container");
-		trendingArticleContainer.appendChild(movieContainer);
+		trendingMoviesPreviewList.appendChild(movieContainer);
 
 		const imgMovie = document.createElement("img");
 		imgMovie.classList.add("movie-img");
@@ -38,11 +36,9 @@ async function getCategoriesPreview() {
 
 	// METODO APPEND CHILD BY PLATZI
 	genres.forEach((category) => {
-		const categoriesArticle = document.querySelector("#categoriesPreview .categoriesPreview-list");
-
 		const categoryContainer = document.createElement("div");
 		categoryContainer.classList.add("category-container");
-		categoriesArticle.appendChild(categoryContainer);
+		categoriesPreviewList.appendChild(categoryContainer);
 
 		const h3Category = document.createElement("h3");
 		h3Category.classList.add("category-title");
