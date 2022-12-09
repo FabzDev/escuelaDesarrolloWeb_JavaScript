@@ -2,15 +2,15 @@ const API_URL = "https://api.themoviedb.org/3";
 
 const apiAxios = axios.create({
 	baseURL: "https://api.themoviedb.org/3",
-	headers: {
-		"Content-Type": "application/json;charset=utf-8",
-	},
+	// headers: {
+	// 	"Content-Type": "application/json;charset=utf-8",
+	// },
 	params: {
 		api_key: API_KEY,
 	},
 });
 
-(async function getTrendingMoviedPreview() {
+async function getTrendingMoviedPreview() {
 	const res = await apiAxios("/trending/movie/day");
 	// const data = await res.json(); no es necesario en AXIOS
 	const movies = res.data.results;
@@ -30,9 +30,9 @@ const apiAxios = axios.create({
 		imgMovie.setAttribute("src", "https://image.tmdb.org/t/p/w300/" + movie.poster_path);
 		movieContainer.appendChild(imgMovie);
 	});
-})();
+}
 
-(async function getCategoriesPreview() {
+async function getCategoriesPreview() {
 	const { data } = await apiAxios("/genre/movie/list");
 	const genres = data.genres;
 
@@ -50,8 +50,9 @@ const apiAxios = axios.create({
 		h3Category.innerHTML = category.name;
 		categoryContainer.appendChild(h3Category);
 	});
-})();
+}
 
+// METODO ASYNC AWAIT (NO AXIOS)
 // (async function getTrendingMoviedPreview() {
 // 	const res = await fetch(`${API_URL}/trending/movie/day?api_key=${API_KEY}`);
 // 	const data = await res.json();
