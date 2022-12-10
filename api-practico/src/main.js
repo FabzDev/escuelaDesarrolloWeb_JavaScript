@@ -29,6 +29,8 @@ async function getTrendingMoviedPreview() {
 		imgMovie.setAttribute("src", "https://image.tmdb.org/t/p/w300/" + movie.poster_path);
 		movieContainer.appendChild(imgMovie);
 	});
+
+	myForEach(movies, trendingMoviesPreviewList);
 }
 
 async function getCategoriesPreview() {
@@ -65,21 +67,27 @@ async function getMoviesByCategory(clicked_id, clicked_name) {
 	});
 	const categoryList = res.data.results;
 	genericSection.innerHTML = "";
-	categoryList.forEach((movie) => {
+
+	myForEach(categoryList, genericSection);
+
+	window.scroll({
+		top: 0,
+		left: 0,
+		behavior: "instant",
+	});
+}
+
+function myForEach(parameter, fatherContainer) {
+	parameter.forEach((movie) => {
 		const movieContainer = document.createElement("div");
 		movieContainer.classList.add("movie-container");
-		genericSection.appendChild(movieContainer);
+		fatherContainer.appendChild(movieContainer);
 
 		const imgMovie = document.createElement("img");
 		imgMovie.classList.add("movie-img");
 		imgMovie.setAttribute("alt", movie.title);
 		imgMovie.setAttribute("src", "https://image.tmdb.org/t/p/w300/" + movie.poster_path);
 		movieContainer.appendChild(imgMovie);
-		window.scroll({
-			top: 0,
-			left: 0,
-			behavior: "smooth",
-		});
 	});
 }
 
