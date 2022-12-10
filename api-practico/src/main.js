@@ -34,7 +34,6 @@ async function getTrendingMoviedPreview() {
 async function getCategoriesPreview() {
 	const res = await apiAxios("/genre/movie/list");
 	const genres = res.data.genres;
-
 	categoriesPreviewList.innerHTML = "";
 
 	// METODO APPEND CHILD BY PLATZI
@@ -46,30 +45,36 @@ async function getCategoriesPreview() {
 		const h3Category = document.createElement("h3");
 		h3Category.classList.add("category-title");
 		h3Category.setAttribute("id", "id" + category.id);
-		h3Category.setAttribute("onClick", `reply_click(${category.id})`); // tomado de stack overflow
+		h3Category.setAttribute("onClick", `reply_click(${category.id}, "${category.name}")`); // tomado de stack overflow
 		h3Category.innerHTML = category.name;
 		categoryContainer.appendChild(h3Category);
 	});
 }
 
-function reply_click(clicked_id) {
-	alert(clicked_id);
+async function reply_click(clicked_id, clicked_name) {
+	headerCategoryTitle.innerText = `${clicked_name}`;
+	location.hash = `#category=${clicked_name}`;
+	const res = await apiAxios(`/discover/movie?sort_by=popularity.desc&with_genres=${clicked_id}`);
+	const categoryList = res.data.results;
+	console.log(categoryList);
+	genericSection.innerHTML = "";
+	categoryList.forEach((movie) => {
+		const movieContainer = document.createElement("div");
+		movieContainer.classList.add("movie-container");
+		genericSection.appendChild(movieContainer);
+
+		const imgMovie = document.createElement("img");
+		imgMovie.classList.add("movie-img");
+		imgMovie.setAttribute("alt", movie.title);
+		imgMovie.setAttribute("src", "https://image.tmdb.org/t/p/w300/" + movie.poster_path);
+		movieContainer.appendChild(imgMovie);
+		window.scroll({
+			top: 0,
+			left: 0,
+			behavior: "smooth",
+		});
+	});
 }
-
-// async function getCategorylist() {
-// 	const h3CategoryId = document.getElementById("id28");
-
-// 	const res = await apiAxios(`/discover/movie?sort_by=popularity.desc&with_genres=28`);
-// 	const categoryList = res.data;
-// }
-
-// const h3s = document.getElementsByClassName("category-title");
-// const h3Pressed = (e) => {
-// 	console.log(e.id); // Get ID of Clicked Element
-// };
-// for (let el of h3s) {
-// 	el.addEventListener("click", h3Pressed);
-// }
 
 // METODO ASYNC AWAIT (NO AXIOS)
 // (async function getTrendingMoviedPreview() {
