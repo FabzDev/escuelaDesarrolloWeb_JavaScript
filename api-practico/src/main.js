@@ -35,6 +35,7 @@ async function getCategoriesPreview() {
 	const res = await apiAxios("/genre/movie/list");
 	const genres = res.data.genres;
 	categoriesPreviewList.innerHTML = "";
+	// console.log(genres);
 
 	// METODO APPEND CHILD BY PLATZI
 	genres.forEach((category) => {
@@ -45,18 +46,24 @@ async function getCategoriesPreview() {
 		const h3Category = document.createElement("h3");
 		h3Category.classList.add("category-title");
 		h3Category.setAttribute("id", "id" + category.id);
-		h3Category.setAttribute("onClick", `reply_click(${category.id}, "${category.name}")`); // tomado de stack overflow
+		h3Category.addEventListener("click", () => {
+			location.hash = `#category=${category.id}-${category.name}`;
+		});
+		// h3Category.setAttribute("onClick", `reply_click(${category.id}, "${category.name}")`); // tomado de stack overflow
 		h3Category.innerHTML = category.name;
 		categoryContainer.appendChild(h3Category);
 	});
 }
 
-async function reply_click(clicked_id, clicked_name) {
-	headerCategoryTitle.innerText = `${clicked_name}`;
-	location.hash = `#category=${clicked_name}`;
-	const res = await apiAxios(`/discover/movie?sort_by=popularity.desc&with_genres=${clicked_id}`);
+async function getMoviesByCategory(clicked_id, clicked_name) {
+	headerCategoryTitle.innerText = clicked_name;
+	const res = await apiAxios("/discover/movie", {
+		params: {
+			sort_by: "popularity.desc",
+			with_genres: clicked_id,
+		},
+	});
 	const categoryList = res.data.results;
-	console.log(categoryList);
 	genericSection.innerHTML = "";
 	categoryList.forEach((movie) => {
 		const movieContainer = document.createElement("div");

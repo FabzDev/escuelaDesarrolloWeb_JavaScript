@@ -14,8 +14,6 @@ arrowBtn.addEventListener("click", () => {
 });
 
 function navigator() {
-	console.log({ location });
-
 	if (location.hash.startsWith("#trends")) {
 		trendsPage();
 	} else if (location.hash.startsWith("#search=")) {
@@ -81,7 +79,13 @@ function categoriesPage() {
 	//Movie detail section
 	movieDetailSection.classList.add("inactive");
 
-	getCategoriesPreview();
+	const hashContent = location.hash;
+	const idAndName = hashContent.slice(10);
+	const idAndNameArray = idAndName.split("-");
+	const clicked_id = idAndNameArray[0];
+	const clicked_name = idAndNameArray[1].replace("%20", " ");
+
+	getMoviesByCategory(clicked_id, clicked_name);
 }
 
 function movieDetailsPage() {
