@@ -15,7 +15,7 @@ async function getTrendingMoviedPreview() {
 	// const data = await res.json(); no es necesario en AXIOS
 	const movies = res.data.results;
 	// Tambien es posible usar =>  const { data } = await apiAxios("/trending/movie/day"); para recivir "data" directamente.
-
+	trendingMoviesPreviewList.innerHTML = "";
 	// METODO APPEND CHILD BY PLATZI
 	movies.forEach((movie) => {
 		const movieContainer = document.createElement("div");
@@ -33,6 +33,7 @@ async function getTrendingMoviedPreview() {
 async function getCategoriesPreview() {
 	const { data } = await apiAxios("/genre/movie/list");
 	const genres = data.genres;
+	categoriesPreviewList.innerHTML = "";
 
 	// METODO APPEND CHILD BY PLATZI
 	genres.forEach((category) => {
@@ -46,6 +47,12 @@ async function getCategoriesPreview() {
 		h3Category.innerHTML = category.name;
 		categoryContainer.appendChild(h3Category);
 	});
+}
+
+async function getCategorylist() {
+	const res = await apiAxios("/find/28");
+	const categoryList = res.data;
+	console.log(categoryList);
 }
 
 // METODO ASYNC AWAIT (NO AXIOS)
