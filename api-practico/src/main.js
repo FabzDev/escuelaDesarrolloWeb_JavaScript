@@ -15,6 +15,7 @@ async function getTrendingMoviedPreview() {
 	// const data = await res.json(); no es necesario en AXIOS
 	const movies = res.data.results;
 	// Tambien es posible usar =>  const { data } = await apiAxios("/trending/movie/day"); para recivir "data" directamente.
+
 	trendingMoviesPreviewList.innerHTML = "";
 	// METODO APPEND CHILD BY PLATZI
 	movies.forEach((movie) => {
@@ -31,8 +32,9 @@ async function getTrendingMoviedPreview() {
 }
 
 async function getCategoriesPreview() {
-	const { data } = await apiAxios("/genre/movie/list");
-	const genres = data.genres;
+	const res = await apiAxios("/genre/movie/list");
+	const genres = res.data.genres;
+
 	categoriesPreviewList.innerHTML = "";
 
 	// METODO APPEND CHILD BY PLATZI
@@ -44,16 +46,30 @@ async function getCategoriesPreview() {
 		const h3Category = document.createElement("h3");
 		h3Category.classList.add("category-title");
 		h3Category.setAttribute("id", "id" + category.id);
+		h3Category.setAttribute("onClick", `reply_click(${category.id})`); // tomado de stack overflow
 		h3Category.innerHTML = category.name;
 		categoryContainer.appendChild(h3Category);
 	});
 }
 
-async function getCategorylist() {
-	const res = await apiAxios("/find/28");
-	const categoryList = res.data;
-	console.log(categoryList);
+function reply_click(clicked_id) {
+	alert(clicked_id);
 }
+
+// async function getCategorylist() {
+// 	const h3CategoryId = document.getElementById("id28");
+
+// 	const res = await apiAxios(`/discover/movie?sort_by=popularity.desc&with_genres=28`);
+// 	const categoryList = res.data;
+// }
+
+// const h3s = document.getElementsByClassName("category-title");
+// const h3Pressed = (e) => {
+// 	console.log(e.id); // Get ID of Clicked Element
+// };
+// for (let el of h3s) {
+// 	el.addEventListener("click", h3Pressed);
+// }
 
 // METODO ASYNC AWAIT (NO AXIOS)
 // (async function getTrendingMoviedPreview() {
