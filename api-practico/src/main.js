@@ -16,21 +16,7 @@ async function getTrendingMoviedPreview() {
 	const movies = res.data.results;
 	// Tambien es posible usar =>  const { data } = await apiAxios("/trending/movie/day"); para recivir "data" directamente.
 
-	trendingMoviesPreviewList.innerHTML = "";
-	// METODO APPEND CHILD BY PLATZI
-	movies.forEach((movie) => {
-		const movieContainer = document.createElement("div");
-		movieContainer.classList.add("movie-container");
-		trendingMoviesPreviewList.appendChild(movieContainer);
-
-		const imgMovie = document.createElement("img");
-		imgMovie.classList.add("movie-img");
-		imgMovie.setAttribute("alt", movie.title);
-		imgMovie.setAttribute("src", "https://image.tmdb.org/t/p/w300/" + movie.poster_path);
-		movieContainer.appendChild(imgMovie);
-	});
-
-	myForEach(movies, trendingMoviesPreviewList);
+	renderMovies(movies, trendingMoviesPreviewList);
 }
 
 async function getCategoriesPreview() {
@@ -66,18 +52,34 @@ async function getMoviesByCategory(clicked_id, clicked_name) {
 		},
 	});
 	const categoryList = res.data.results;
-	genericSection.innerHTML = "";
 
-	myForEach(categoryList, genericSection);
-
-	window.scroll({
-		top: 0,
-		left: 0,
-		behavior: "instant",
-	});
+	renderMovies(categoryList, genericSection);
 }
 
-function myForEach(parameter, fatherContainer) {
+async function searchMovies(hash) {
+	const temp = location.hash;
+
+	const { data } = await apiAxios("/search/movie", {
+		params: {
+			query: hash,
+		},
+	});
+	const searchedMovies = data.results;
+	renderMovies(searchedMovies, genericSection);
+}
+
+async function getTrendingMovies() {
+	const res = await apiAxios("/trending/movie/week");
+	const trendingMovies = res.data.results;
+	// console.log(trendingMovies);
+	headerCategoryTitle.innerText = "Trending Movies";
+
+	renderMovies(trendingMovies, genericSection);
+}
+
+//HELPER
+function renderMovies(parameter, fatherContainer) {
+	fatherContainer.innerHTML = "";
 	parameter.forEach((movie) => {
 		const movieContainer = document.createElement("div");
 		movieContainer.classList.add("movie-container");
