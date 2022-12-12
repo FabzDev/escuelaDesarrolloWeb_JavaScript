@@ -77,6 +77,18 @@ async function getTrendingMovies() {
 	renderMovies(trendingMovies, genericSection);
 }
 
+async function getMovieDetails(movie_id) {
+	const res = await apiAxios(`/movie/${movie_id}`);
+	const detailedMovie = res.data;
+	console.log(detailedMovie);
+
+	movieDetailTitle.textContent = detailedMovie.title; // <h1 class="movieDetail-title">Deadpool</h1>
+	movieDetailScore.textContent = Math.round(detailedMovie.vote_average * 10) / 10; // <span class="movieDetail-score">7.6</span>
+	headerSection.style.background = `linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%),
+	url(https://image.tmdb.org/t/p/w300/${detailedMovie.poster_path})`;
+	headerSection.style["background-image"] = `url("https://image.tmdb.org/t/p/w300/${detailedMovie.poster_path}")`;
+}
+
 //HELPER
 function renderMovies(parameter, fatherContainer) {
 	fatherContainer.innerHTML = "";
@@ -84,6 +96,10 @@ function renderMovies(parameter, fatherContainer) {
 		const movieContainer = document.createElement("div");
 		movieContainer.classList.add("movie-container");
 		fatherContainer.appendChild(movieContainer);
+
+		movieContainer.addEventListener("click", () => {
+			location.hash = `#movie=${movie.id}`;
+		});
 
 		const imgMovie = document.createElement("img");
 		imgMovie.classList.add("movie-img");

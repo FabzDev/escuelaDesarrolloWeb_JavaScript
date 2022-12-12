@@ -116,6 +116,10 @@ function movieDetailsPage() {
 
 	//Movie detail section
 	movieDetailSection.classList.remove("inactive");
+
+	const [_, movieId] = location.hash.split("=");
+
+	getMovieDetails(movieId);
 }
 
 function searchPage() {
