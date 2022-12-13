@@ -64,15 +64,19 @@ async function getTrendingMovies() {
 async function getMovieDetails(movie_id) {
 	const res = await apiAxios(`/movie/${movie_id}`);
 	const detailedMovie = res.data;
-	console.log(detailedMovie);
+	// console.log(detailedMovie);
 
 	movieDetailTitle.textContent = detailedMovie.title; // <h1 class="movieDetail-title">Deadpool</h1>
 	movieDetailScore.textContent = Math.round(detailedMovie.vote_average * 10) / 10; // <span class=categoriesPreviewList"movieDetail-score">7.6</span>
 	headerSection.style.background = `linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%), url(https://image.tmdb.org/t/p/w300/${detailedMovie.poster_path})`;
 	movieDetailDescription.textContent = detailedMovie.overview;
 	const relatedGenres = detailedMovie.genres;
-	console.log(categoriesPreviewList);
 	renderGenres(relatedGenres, movieDetailCategoriesList);
+
+	const res2 = await apiAxios(`/movie/${movie_id}/similar`);
+	const relatedMovies = res2.data.results;
+	// console.log(relatedMovies);
+	renderMovies(relatedMovies, relatedMoviesContainer);
 }
 
 //RENDER MOVIES
