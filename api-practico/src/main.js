@@ -22,25 +22,9 @@ async function getTrendingMoviedPreview() {
 async function getCategoriesPreview() {
 	const res = await apiAxios("/genre/movie/list");
 	const genres = res.data.genres;
-	categoriesPreviewList.innerHTML = "";
 	// console.log(genres);
 
-	// METODO APPEND CHILD BY PLATZI
-	genres.forEach((category) => {
-		const categoryContainer = document.createElement("div");
-		categoryContainer.classList.add("category-container");
-		categoriesPreviewList.appendChild(categoryContainer);
-
-		const h3Category = document.createElement("h3");
-		h3Category.classList.add("category-title");
-		h3Category.setAttribute("id", "id" + category.id);
-		h3Category.addEventListener("click", () => {
-			location.hash = `#category=${category.id}-${category.name}`;
-		});
-		// h3Category.setAttribute("onClick", `reply_click(${category.id}, "${category.name}")`); // tomado de stack overflow
-		h3Category.innerHTML = category.name;
-		categoryContainer.appendChild(h3Category);
-	});
+	renderGenres(genres, categoriesPreviewList);
 }
 
 async function getMoviesByCategory(clicked_id, clicked_name) {
@@ -83,12 +67,15 @@ async function getMovieDetails(movie_id) {
 	console.log(detailedMovie);
 
 	movieDetailTitle.textContent = detailedMovie.title; // <h1 class="movieDetail-title">Deadpool</h1>
-	movieDetailScore.textContent = Math.round(detailedMovie.vote_average * 10) / 10; // <span class="movieDetail-score">7.6</span>
+	movieDetailScore.textContent = Math.round(detailedMovie.vote_average * 10) / 10; // <span class=categoriesPreviewList"movieDetail-score">7.6</span>
 	headerSection.style.background = `linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%), url(https://image.tmdb.org/t/p/w300/${detailedMovie.poster_path})`;
 	movieDetailDescription.textContent = detailedMovie.overview;
+	const relatedGenres = detailedMovie.genres;
+	console.log(categoriesPreviewList);
+	renderGenres(relatedGenres, movieDetailCategoriesList);
 }
 
-//HELPER
+//RENDER MOVIES
 function renderMovies(parameter, fatherContainer) {
 	fatherContainer.innerHTML = "";
 	parameter.forEach((movie) => {
@@ -105,6 +92,27 @@ function renderMovies(parameter, fatherContainer) {
 		imgMovie.setAttribute("alt", movie.title);
 		imgMovie.setAttribute("src", "https://image.tmdb.org/t/p/w300/" + movie.poster_path);
 		movieContainer.appendChild(imgMovie);
+	});
+}
+
+//RENDER CATEGORIES
+function renderGenres(gen, container) {
+	container.innerHTML = "";
+	gen.forEach((category) => {
+		const categoryContainer = document.createElement("div");
+		categoryContainer.classList.add("category-container");
+		// categoriesPreviewList.appendChild(categoryContainer);
+		container.appendChild(categoryContainer);
+
+		const h3Category = document.createElement("h3");
+		h3Category.classList.add("category-title");
+		h3Category.setAttribute("id", "id" + category.id);
+		h3Category.addEventListener("click", () => {
+			location.hash = `#category=${category.id}-${category.name}`;
+		});
+		// h3Category.setAttribute("onClick", `reply_click(${category.id}, "${category.name}")`); // tomado de stack overflow
+		h3Category.innerHTML = category.name;
+		categoryContainer.appendChild(h3Category);
 	});
 }
 
