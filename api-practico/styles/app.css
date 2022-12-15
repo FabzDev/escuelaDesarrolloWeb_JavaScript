@@ -127,6 +127,20 @@ footer {
 	flex-wrap: wrap;
 }
 
+.movie-container--loading {
+	height: 225px;
+	min-height: 225px;
+	max-height: 225px;
+	width: 150px;
+	min-width: 150px;
+	max-width: 150px;
+	border-radius: 8px;
+	display: inline-block;
+	margin-right: 8px;
+	cursor: pointer;
+	background-color: var(--purple-light-2);
+}
+
 /* Header */
 .header-container {
 	padding-top: 40px;
