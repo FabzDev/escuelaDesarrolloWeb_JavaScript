@@ -82,6 +82,7 @@ async function getMovieDetails(movie_id) {
 //RENDER MOVIES
 function renderMovies(parameter, fatherContainer) {
 	fatherContainer.innerHTML = "";
+
 	parameter.forEach((movie) => {
 		const movieContainer = document.createElement("div");
 		movieContainer.classList.add("movie-container");
