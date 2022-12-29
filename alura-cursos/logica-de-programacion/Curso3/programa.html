@@ -13,23 +13,32 @@
 			const pincel = pantalla.getContext("2d");
 
 			pincel.fillStyle = "black"; // property
-			pincel.fillRect(0, 0, 610, 410); // function
+			pincel.fillRect(0, 0, 600, 400); // function
 
 			pincel.fillStyle = "white"; // property
-			pincel.fillRect(10, 10, 600, 400); // function
+			pincel.fillRect(5, 5, 590, 390); // function
 
 			pincel.fillStyle = "green"; // property
-			pincel.fillRect(5, 5, 200, 390); // function
+
+			pincel.fillRect(5, 5, 195, 390); // function
+
+			pincel.fillStyle = "white"; // property
+			pincel.fillRect(200, 5, 210, 390); // function
+
+			pincel.fillStyle = "red"; // property
+			pincel.fillRect(410, 5, 185, 390); // function
 
 			pincel.fillStyle = "yellow"; // property
 			pincel.beginPath();
 			pincel.moveTo(300, 200);
 			pincel.lineTo(200, 395);
-			pincel.lineTo(410, 390);
+			pincel.lineTo(410, 395);
 			pincel.fill();
 
-			pincel.fillStyle = "red"; // property
-			pincel.fillRect(405, 5, 190, 390); // function
+			pincel.fillStyle = "darkorange"; // property
+			pincel.beginPath();
+			pincel.arc(300, 200, 50, 0, 2 * 3.14);
+			pincel.fill();
 		</script>
 	</body>
 </html>
