@@ -82,11 +82,14 @@ async function getMovieDetails(movie_id) {
 // LAZY LOADER
 
 const observer = new IntersectionObserver((entries) => {
-	console.log(entries);
-	// entries.forEach((movie) => {
-	// 	const link = movie.getAttribute("dataImg");
-	// 	movie.setAttribute("src", link);
-	// });
+	entries.forEach((entry) => {
+		// console.log(entry);
+		if (entry.isIntersecting) {
+			console.log(entry.target);
+			const link = entry.target.getAttribute("dataImg");
+			entry.target.setAttribute("src", link);
+		}
+	});
 });
 
 // observer.observe(imgMovie);
