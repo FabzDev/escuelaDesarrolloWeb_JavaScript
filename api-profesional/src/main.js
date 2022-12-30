@@ -16,7 +16,7 @@ async function getTrendingMoviedPreview() {
 	const movies = res.data.results;
 	// Tambien es posible usar =>  const { data } = await apiAxios("/trending/movie/day"); para recivir "data" directamente.
 
-	renderMovies(movies, trendingMoviesPreviewList);
+	renderMovies(movies, trendingMoviesPreviewList, true);
 }
 
 async function getCategoriesPreview() {
@@ -58,7 +58,7 @@ async function getTrendingMovies() {
 	// console.log(trendingMovies);
 	headerCategoryTitle.innerText = "Trending Movies";
 
-	renderMovies(trendingMovies, genericSection);
+	renderMovies(trendingMovies, genericSection, true);
 }
 
 async function getMovieDetails(movie_id) {
@@ -85,17 +85,15 @@ const observer = new IntersectionObserver((entries) => {
 	entries.forEach((entry) => {
 		// console.log(entry);
 		if (entry.isIntersecting) {
-			console.log(entry.target);
+			console.log(entry.isIntersecting);
 			const link = entry.target.getAttribute("dataImg");
 			entry.target.setAttribute("src", link);
 		}
 	});
 });
 
-// observer.observe(imgMovie);
-
 //RENDER MOVIES
-function renderMovies(parameter, fatherContainer) {
+function renderMovies(parameter, fatherContainer, lazyLoader = false) {
 	fatherContainer.innerHTML = "";
 
 	parameter.forEach((movie) => {
@@ -110,10 +108,13 @@ function renderMovies(parameter, fatherContainer) {
 		const imgMovie = document.createElement("img");
 		imgMovie.classList.add("movie-img");
 		imgMovie.setAttribute("alt", movie.title);
-		imgMovie.setAttribute("dataImg", "https://image.tmdb.org/t/p/w300/" + movie.poster_path);
-		movieContainer.appendChild(imgMovie);
+		imgMovie.setAttribute(lazyLoader ? "dataImg" : "src", "https://image.tmdb.org/t/p/w300/" + movie.poster_path);
 
-		observer.observe(imgMovie); // test
+		// lazyLoader Section
+		movieContainer.appendChild(imgMovie);
+		if (lazyLoader) {
+			observer.observe(imgMovie);
+		}
 	});
 }
 
