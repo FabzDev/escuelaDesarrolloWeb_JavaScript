@@ -79,6 +79,18 @@ async function getMovieDetails(movie_id) {
 	renderMovies(relatedMovies, relatedMoviesContainer);
 }
 
+// LAZY LOADER
+
+const observer = new IntersectionObserver((entries) => {
+	console.log(entries);
+	// entries.forEach((movie) => {
+	// 	const link = movie.getAttribute("dataImg");
+	// 	movie.setAttribute("src", link);
+	// });
+});
+
+// observer.observe(imgMovie);
+
 //RENDER MOVIES
 function renderMovies(parameter, fatherContainer) {
 	fatherContainer.innerHTML = "";
@@ -95,8 +107,10 @@ function renderMovies(parameter, fatherContainer) {
 		const imgMovie = document.createElement("img");
 		imgMovie.classList.add("movie-img");
 		imgMovie.setAttribute("alt", movie.title);
-		imgMovie.setAttribute("src", "https://image.tmdb.org/t/p/w300/" + movie.poster_path);
+		imgMovie.setAttribute("dataImg", "https://image.tmdb.org/t/p/w300/" + movie.poster_path);
 		movieContainer.appendChild(imgMovie);
+
+		observer.observe(imgMovie); // test
 	});
 }
 
