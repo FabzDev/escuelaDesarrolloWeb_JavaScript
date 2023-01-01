@@ -92,7 +92,7 @@ const observer = new IntersectionObserver((entries) => {
 	entries.forEach((entry) => {
 		// console.log(entry);
 		if (entry.isIntersecting) {
-			console.log(entry.isIntersecting);
+			console.log(entry);
 			const link = entry.target.getAttribute("dataImg");
 			entry.target.setAttribute("src", link);
 		}
@@ -116,9 +116,9 @@ function renderMovies(parameter, fatherContainer, lazyLoader = false) {
 		imgMovie.classList.add("movie-img");
 		imgMovie.setAttribute("alt", movie.title);
 		imgMovie.setAttribute(lazyLoader ? "dataImg" : "src", "https://image.tmdb.org/t/p/w300/" + movie.poster_path);
+		movieContainer.appendChild(imgMovie);
 
 		// lazyLoader Section
-		movieContainer.appendChild(imgMovie);
 		if (lazyLoader) {
 			observer.observe(imgMovie);
 		}
