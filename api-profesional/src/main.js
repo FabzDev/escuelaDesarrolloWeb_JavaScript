@@ -1,3 +1,4 @@
+//	ASYNCHRONOUS PROCESS
 const API_URL = "https://api.themoviedb.org/3";
 
 const apiAxios = axios.create({
@@ -8,8 +9,9 @@ const apiAxios = axios.create({
 	params: {
 		api_key: API_KEY,
 	},
-});
+}); //END
 
+// HOME PAGE - RENDERING TRENDING MOVIES
 async function getTrendingMoviedPreview() {
 	const res = await apiAxios("/trending/movie/day");
 	// const data = await res.json(); no es necesario en AXIOS
@@ -17,16 +19,18 @@ async function getTrendingMoviedPreview() {
 	// Tambien es posible usar =>  const { data } = await apiAxios("/trending/movie/day"); para recivir "data" directamente.
 
 	renderMovies(movies, trendingMoviesPreviewList, true);
-}
+} //END
 
+// HOME PAGE - RENDERING CATEGORIES (TXT)
 async function getCategoriesPreview() {
 	const res = await apiAxios("/genre/movie/list");
 	const genres = res.data.genres;
 	// console.log(genres);
 
 	renderGenres(genres, categoriesPreviewList);
-}
+} //END
 
+// MOVIE LIST - FROM CATEGORY SELECTED
 async function getMoviesByCategory(clicked_id, clicked_name) {
 	headerCategoryTitle.innerText = clicked_name;
 	const res = await apiAxios("/discover/movie", {
@@ -38,8 +42,9 @@ async function getMoviesByCategory(clicked_id, clicked_name) {
 	const categoryList = res.data.results;
 
 	renderMovies(categoryList, genericSection);
-}
+} //END
 
+// MOVIE LIST - FROM SEARCH
 async function searchMovies(hash) {
 	const temp = location.hash;
 
@@ -50,8 +55,9 @@ async function searchMovies(hash) {
 	});
 	const searchedMovies = data.results;
 	renderMovies(searchedMovies, genericSection);
-}
+} //END
 
+// MOVIE LIST - FROM TRENDING MOVIES (SEE MORE)
 async function getTrendingMovies() {
 	const res = await apiAxios("/trending/movie/week");
 	const trendingMovies = res.data.results;
@@ -59,8 +65,9 @@ async function getTrendingMovies() {
 	headerCategoryTitle.innerText = "Trending Movies";
 
 	renderMovies(trendingMovies, genericSection, true);
-}
+} //END
 
+//SINGLE MOVIE DETAILS
 async function getMovieDetails(movie_id) {
 	const res = await apiAxios(`/movie/${movie_id}`);
 	const detailedMovie = res.data;
@@ -73,14 +80,14 @@ async function getMovieDetails(movie_id) {
 	const relatedGenres = detailedMovie.genres;
 	renderGenres(relatedGenres, movieDetailCategoriesList);
 
+	//FETCHING AND RENDERING REALTED MOVIES
 	const res2 = await apiAxios(`/movie/${movie_id}/similar`);
 	const relatedMovies = res2.data.results;
 	// console.log(relatedMovies);
 	renderMovies(relatedMovies, relatedMoviesContainer);
-}
+} //END
 
 // LAZY LOADER
-
 const observer = new IntersectionObserver((entries) => {
 	entries.forEach((entry) => {
 		// console.log(entry);
@@ -90,7 +97,7 @@ const observer = new IntersectionObserver((entries) => {
 			entry.target.setAttribute("src", link);
 		}
 	});
-});
+}); //END
 
 //RENDER MOVIES
 function renderMovies(parameter, fatherContainer, lazyLoader = false) {
