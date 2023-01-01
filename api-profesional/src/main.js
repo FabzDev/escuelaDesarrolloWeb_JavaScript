@@ -41,7 +41,7 @@ async function getMoviesByCategory(clicked_id, clicked_name) {
 	});
 	const categoryList = res.data.results;
 
-	renderMovies(categoryList, genericSection);
+	renderMovies(categoryList, genericSection, true);
 } //END
 
 // MOVIE LIST - FROM SEARCH
@@ -92,7 +92,7 @@ const observer = new IntersectionObserver((entries) => {
 	entries.forEach((entry) => {
 		// console.log(entry);
 		if (entry.isIntersecting) {
-			console.log(entry);
+			console.log(entry.isIntersecting);
 			const link = entry.target.getAttribute("dataImg");
 			entry.target.setAttribute("src", link);
 		}
@@ -117,7 +117,7 @@ function renderMovies(parameter, fatherContainer, lazyLoader = false) {
 		imgMovie.setAttribute("alt", movie.title);
 		imgMovie.setAttribute(lazyLoader ? "dataImg" : "src", "https://image.tmdb.org/t/p/w300/" + movie.poster_path);
 		movieContainer.appendChild(imgMovie);
-
+		movieContainer.style.minHeight = "188px";
 		// lazyLoader Section
 		if (lazyLoader) {
 			observer.observe(imgMovie);
