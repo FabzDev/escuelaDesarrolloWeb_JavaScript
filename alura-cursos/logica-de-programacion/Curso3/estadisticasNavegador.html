@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<canvas width="600" height="500"></canvas>
+
+		<script>
+			const serie2009 = [6, 47, 41, 3, 3];
+			const serie2019 = [81, 9, 3, 3, 4];
+			const navegadores = ["Chrome", "Firefox", "Edge", "Safari", "Otros"];
+			const colores = ["#fbc00a", "#fe5618", "#1055a0", "#eeeeee", "#f5192b"];
+
+			function makeStatist(serie, nav, colors) {
+				let altura = 400;
+
+				for (let i = 0; i < serie2009.length; i++) {
+					let alturaReal = serie2009[i] * 3;
+					dibujarRectangulo(200, altura - alturaReal, 200, alturaReal, colores[i]);
+					escribirTexto(405, altura - (serie2009[i] * 3) / 4, navegadores[i]);
+					altura = altura - alturaReal;
+				}
+			}
+			makeStatist();
+
+			function dibujarRectangulo(x, y, base, altura, color) {
+				var pantalla = document.querySelector("canvas");
+				var pincel = pantalla.getContext("2d");
+
+				pincel.fillStyle = color;
+				pincel.fillRect(x, y, base, altura);
+				pincel.strokeStyle = "black";
+				pincel.strokeRect(x, y, base, altura);
+			}
+
+			function escribirTexto(x, y, texto) {
+				var pantalla = document.querySelector("canvas");
+				var pincel = pantalla.getContext("2d");
+
+				pincel.font = "15px Georgia";
+				pincel.fillStyle = "black";
+				pincel.fillText(texto, x, y);
+			}
+
+			//Aquí viene el texto faltante
+		</script>
+	</body>
+</html>
