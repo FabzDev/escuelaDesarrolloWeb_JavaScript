@@ -118,6 +118,9 @@ function renderMovies(parameter, fatherContainer, lazyLoader = false) {
 		imgMovie.setAttribute(lazyLoader ? "dataImg" : "src", "https://image.tmdb.org/t/p/w300/" + movie.poster_path);
 		movieContainer.appendChild(imgMovie);
 		movieContainer.style.minHeight = "188px";
+		imgMovie.addEventListener("error", () => {
+			movieContainer.style.backgroundColor = "red";
+		});
 		// lazyLoader Section
 		if (lazyLoader) {
 			observer.observe(imgMovie);
