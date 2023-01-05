@@ -74,6 +74,8 @@ async function getTrendingMovies() {
 
 	async function getTrendingMoviesAgain() {
 		pag++;
+		// const btnScroll2 = document.querySelector("button");
+		// btnScroll2.style.display = "none";
 		const res = await apiAxios("/trending/movie/week", { params: { page: pag } });
 		const trendingMovies = res.data.results;
 		headerCategoryTitle.innerText = "Trending Movies";
