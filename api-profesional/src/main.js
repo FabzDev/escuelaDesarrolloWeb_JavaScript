@@ -92,7 +92,7 @@ const observer = new IntersectionObserver((entries) => {
 	entries.forEach((entry) => {
 		// console.log(entry);
 		if (entry.isIntersecting) {
-			console.log(entry.isIntersecting);
+			console.log(entry);
 			const link = entry.target.getAttribute("dataImg");
 			entry.target.setAttribute("src", link);
 		}
@@ -119,8 +119,15 @@ function renderMovies(parameter, fatherContainer, lazyLoader = false) {
 		movieContainer.appendChild(imgMovie);
 		movieContainer.style.minHeight = "188px";
 		imgMovie.addEventListener("error", () => {
-			movieContainer.style.backgroundColor = "red";
+			movieContainer.style.display = "flex";
+			movieContainer.style.alignItems = "strech";
+			imgMovie.setAttribute(
+				lazyLoader ? "dataImg" : "src",
+				"https://d3jl769oy69y7b.cloudfront.net/2022/08/blizzard.gif"
+			);
+			imgMovie.style.marginBottom = "8px";
 		});
+
 		// lazyLoader Section
 		if (lazyLoader) {
 			observer.observe(imgMovie);
