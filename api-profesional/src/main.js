@@ -18,7 +18,7 @@ async function getTrendingMoviedPreview() {
 	const movies = res.data.results;
 	// Tambien es posible usar =>  const { data } = await apiAxios("/trending/movie/day"); para recivir "data" directamente.
 
-	renderMovies(movies, trendingMoviesPreviewList, true);
+	renderMovies(movies, trendingMoviesPreviewList, { lazyLoader: true, erase: true });
 } //END
 
 // HOME PAGE - RENDERING CATEGORIES (TXT)
@@ -59,14 +59,31 @@ async function searchMovies(hash) {
 
 // MOVIE LIST - FROM TRENDING MOVIES (SEE MORE)
 async function getTrendingMovies() {
-	const res = await apiAxios("/trending/movie/week", { params: { page: 1 } });
+	let pag = 1;
+	const res = await apiAxios("/trending/movie/week", { params: { page: pag } });
 	const trendingMovies = res.data.results;
 	// console.log(trendingMovies);
 	headerCategoryTitle.innerText = "Trending Movies";
 
-	renderMovies(trendingMovies, genericSection, true);
+	renderMovies(trendingMovies, genericSection, { lazyLoader: true, erase: true });
+
 	const btnScroll = document.createElement("button");
+	btnScroll.innerHTML = "Cargar Mas";
 	genericSection.appendChild(btnScroll);
+	btnScroll.addEventListener("click", getTrendingMoviesAgain);
+
+	async function getTrendingMoviesAgain() {
+		pag++;
+		const res = await apiAxios("/trending/movie/week", { params: { page: pag } });
+		const trendingMovies = res.data.results;
+		headerCategoryTitle.innerText = "Trending Movies";
+		renderMovies(trendingMovies, genericSection, { lazyLoader: true, erase: false });
+
+		const btnScroll = document.createElement("button");
+		btnScroll.innerHTML = "Cargar Mas";
+		genericSection.appendChild(btnScroll);
+		btnScroll.addEventListener("click", getTrendingMoviesAgain);
+	}
 } //END
 
 //SINGLE MOVIE DETAILS
@@ -94,7 +111,7 @@ const observer = new IntersectionObserver((entries) => {
 	entries.forEach((entry) => {
 		// console.log(entry);
 		if (entry.isIntersecting) {
-			console.log(entry);
+			console.log(entry.isIntersecting);
 			const link = entry.target.getAttribute("dataImg");
 			entry.target.setAttribute("src", link);
 		}
@@ -102,8 +119,10 @@ const observer = new IntersectionObserver((entries) => {
 }); //END
 
 //RENDER MOVIES
-function renderMovies(parameter, fatherContainer, lazyLoader = false) {
-	fatherContainer.innerHTML = "";
+function renderMovies(parameter, fatherContainer, { lazyLoader = false, erase = true } = {}) {
+	if (erase) {
+		fatherContainer.innerHTML = "";
+	}
 
 	parameter.forEach((movie) => {
 		const movieContainer = document.createElement("div");
