@@ -54,17 +54,19 @@ async function searchMovies(hash) {
 		},
 	});
 	const searchedMovies = data.results;
-	renderMovies(searchedMovies, genericSection);
+	renderMovies(searchedMovies, genericSection, true);
 } //END
 
 // MOVIE LIST - FROM TRENDING MOVIES (SEE MORE)
 async function getTrendingMovies() {
-	const res = await apiAxios("/trending/movie/week");
+	const res = await apiAxios("/trending/movie/week", { params: { page: 1 } });
 	const trendingMovies = res.data.results;
 	// console.log(trendingMovies);
 	headerCategoryTitle.innerText = "Trending Movies";
 
 	renderMovies(trendingMovies, genericSection, true);
+	const btnScroll = document.createElement("button");
+	genericSection.appendChild(btnScroll);
 } //END
 
 //SINGLE MOVIE DETAILS
@@ -121,10 +123,7 @@ function renderMovies(parameter, fatherContainer, lazyLoader = false) {
 		imgMovie.addEventListener("error", () => {
 			movieContainer.style.display = "flex";
 			movieContainer.style.alignItems = "strech";
-			imgMovie.setAttribute(
-				lazyLoader ? "dataImg" : "src",
-				"https://d3jl769oy69y7b.cloudfront.net/2022/08/blizzard.gif"
-			);
+			imgMovie.setAttribute("src", "https://d3jl769oy69y7b.cloudfront.net/2022/08/blizzard.gif");
 			imgMovie.style.marginBottom = "8px";
 		});
 
