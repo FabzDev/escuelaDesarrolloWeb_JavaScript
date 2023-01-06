@@ -58,28 +58,27 @@ async function searchMovies(hash) {
 } //END
 
 // MOVIE LIST - FROM TRENDING MOVIES (SEE MORE)
-async function getTrendingMovies() {
-	let pag = 1;
+async function getTrendingMovies(pag = 1, clear = true) {
 	const res = await apiAxios("/trending/movie/week", { params: { page: pag } });
 	const trendingMovies = res.data.results;
 	// console.log(trendingMovies);
 	headerCategoryTitle.innerText = "Trending Movies";
 
-	renderMovies(trendingMovies, genericSection, { lazyLoader: true, erase: true });
+	renderMovies(trendingMovies, genericSection, { lazyLoader: true, erase: clear });
 
 	const btnScroll = document.createElement("button");
 	btnScroll.innerHTML = "Cargar Mas";
 	genericSection.appendChild(btnScroll);
-	btnScroll.addEventListener("click", getTrendingMoviesAgain);
-	btnScroll.style.order = "1";
 
-	async function getTrendingMoviesAgain() {
-		pag++;
-		const res = await apiAxios("/trending/movie/week", { params: { page: pag } });
-		const trendingMovies = res.data.results;
-		headerCategoryTitle.innerText = "Trending Movies";
-		renderMovies(trendingMovies, genericSection, { lazyLoader: true, erase: false });
-	}
+	btnScroll.addEventListener("click", () => {
+		btnScroll.remove();
+		getTrendingMovies(pag + 1, (clear = false));
+
+		// const btnScroll = document.createElement("button");
+		// btnScroll.innerHTML = "Cargar Mas";
+		// genericSection.appendChild(btnScroll);
+		// btnScroll.addEventListener("click", getTrendingMoviesAgain);
+	});
 } //END
 
 //SINGLE MOVIE DETAILS
