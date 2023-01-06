@@ -66,20 +66,26 @@ async function getTrendingMovies(pag = 1, clear = true) {
 
 	renderMovies(trendingMovies, genericSection, { lazyLoader: true, erase: clear });
 
-	const btnScroll = document.createElement("button");
-	btnScroll.innerHTML = "Cargar Mas";
-	genericSection.appendChild(btnScroll);
+	// const btnScroll = document.createElement("button");
+	// btnScroll.innerHTML = "Cargar Mas";
+	// genericSection.appendChild(btnScroll);
 
-	btnScroll.addEventListener("click", () => {
-		btnScroll.remove();
-		getTrendingMovies(pag + 1, (clear = false));
-
-		// const btnScroll = document.createElement("button");
-		// btnScroll.innerHTML = "Cargar Mas";
-		// genericSection.appendChild(btnScroll);
-		// btnScroll.addEventListener("click", getTrendingMoviesAgain);
-	});
+	// btnScroll.addEventListener("click", () => {
+	// 	btnScroll.remove();
+	// 	getTrendingMovies(pag + 1, (clear = false));
+	// });
 } //END
+
+//PEDAZO E CODIGO
+let pag = 2;
+document.addEventListener("scroll", () => {
+	const scrollCond =
+		document.documentElement.scrollTop + document.documentElement.clientHeight >= document.documentElement.scrollHeight;
+	if (scrollCond) {
+		getTrendingMovies(pag, (clear = false));
+		pag = pag + 1;
+	}
+});
 
 //SINGLE MOVIE DETAILS
 async function getMovieDetails(movie_id) {
@@ -106,7 +112,6 @@ const observer = new IntersectionObserver((entries) => {
 	entries.forEach((entry) => {
 		// console.log(entry);
 		if (entry.isIntersecting) {
-			console.log(entry.isIntersecting);
 			const link = entry.target.getAttribute("dataImg");
 			entry.target.setAttribute("src", link);
 		}
