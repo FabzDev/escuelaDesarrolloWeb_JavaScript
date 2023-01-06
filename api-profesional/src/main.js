@@ -71,6 +71,7 @@ async function getTrendingMovies() {
 	btnScroll.innerHTML = "Cargar Mas";
 	genericSection.appendChild(btnScroll);
 	btnScroll.addEventListener("click", getTrendingMoviesAgain);
+	btnScroll.style.order = "1";
 
 	async function getTrendingMoviesAgain() {
 		pag++;
@@ -80,11 +81,6 @@ async function getTrendingMovies() {
 		const trendingMovies = res.data.results;
 		headerCategoryTitle.innerText = "Trending Movies";
 		renderMovies(trendingMovies, genericSection, { lazyLoader: true, erase: false });
-
-		const btnScroll = document.createElement("button");
-		btnScroll.innerHTML = "Cargar Mas";
-		genericSection.appendChild(btnScroll);
-		btnScroll.addEventListener("click", getTrendingMoviesAgain);
 	}
 } //END
 
