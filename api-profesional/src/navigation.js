@@ -1,5 +1,7 @@
+let pag = 2;
 window.addEventListener("DOMContentLoaded", navigator, false);
 window.addEventListener("hashchange", navigator, false);
+window.addEventListener("scroll", infiniteScroll);
 
 searchFormBtn.addEventListener("click", () => {
 	location.hash = "#search=" + searchFormInput.value;

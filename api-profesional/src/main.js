@@ -76,16 +76,15 @@ async function getTrendingMovies(pag = 1, clear = true) {
 	// });
 } //END
 
-//PEDAZO E CODIGO
-let pag = 2;
-document.addEventListener("scroll", () => {
+//PEDAZO E CODIGO - INFINITE SCROLL FUNCTION
+function infiniteScroll() {
 	const scrollCond =
 		document.documentElement.scrollTop + document.documentElement.clientHeight >= document.documentElement.scrollHeight;
 	if (scrollCond) {
 		getTrendingMovies(pag, (clear = false));
 		pag = pag + 1;
 	}
-});
+}
 
 //SINGLE MOVIE DETAILS
 async function getMovieDetails(movie_id) {
