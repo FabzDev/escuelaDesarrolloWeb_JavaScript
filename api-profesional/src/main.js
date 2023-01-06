@@ -76,7 +76,7 @@ async function getTrendingMovies(pag = 1, clear = true) {
 	// });
 } //END
 
-//PEDAZO E CODIGO - INFINITE SCROLL FUNCTION
+// PENDIENTE POR IMPLEMENTAR ESTE CODIGO EN CADA SECCION_____PEDAZO E CODIGO - INFINITE SCROLL FUNCTION
 function infiniteScroll() {
 	const scrollCond =
 		document.documentElement.scrollTop + document.documentElement.clientHeight >= document.documentElement.scrollHeight;
