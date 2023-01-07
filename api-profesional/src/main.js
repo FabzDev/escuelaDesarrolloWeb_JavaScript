@@ -47,20 +47,23 @@ async function getMoviesByCategory(clicked_id, clicked_name, pag = 1, clear = tr
 } //END
 
 // MOVIE LIST - FROM SEARCH
-async function searchMovies(hash) {
+async function searchMovies(hash, { pag = 1, clear = true } = {}) {
 	const temp = location.hash;
 
 	const { data } = await apiAxios("/search/movie", {
 		params: {
+			page: pag,
 			query: hash,
 		},
 	});
 	const searchedMovies = data.results;
-	renderMovies(searchedMovies, genericSection, true);
+	console.log(pag);
+
+	renderMovies(searchedMovies, genericSection, { lazyLoader: true, erase: clear });
 } //END
 
 // MOVIE LIST - FROM TRENDING MOVIES (SEE MORE)
-async function getTrendingMovies(pag = 1, clear = true) {
+async function getTrendingMovies({ pag = 1, clear = true } = {}) {
 	const res = await apiAxios("/trending/movie/week", { params: { page: pag } });
 	const trendingMovies = res.data.results;
 	// console.log(trendingMovies);
@@ -75,7 +78,7 @@ function infiniteScroll() {
 	const scrollCond =
 		document.documentElement.scrollTop + document.documentElement.clientHeight >= document.documentElement.scrollHeight;
 	if (scrollCond && location.hash.startsWith("#trends")) {
-		getTrendingMovies(pag, (clear = false));
+		getTrendingMovies({ pag: pag, clear: false });
 		pag++;
 	}
 
@@ -87,6 +90,14 @@ function infiniteScroll() {
 		const clicked_name = idAndNameArray[1].replace("%20", " ");
 
 		getMoviesByCategory(clicked_id, clicked_name, pag, false);
+		pag++;
+	}
+
+	if (scrollCond && location.hash.startsWith("#search=")) {
+		const hashContent = location.hash;
+		const [_, hashContentArray] = hashContent.split("=");
+		const searchValue = hashContentArray.replaceAll("%20", " ");
+		searchMovies(searchValue, { pag: pag, clear: false });
 		pag++;
 	}
 }
