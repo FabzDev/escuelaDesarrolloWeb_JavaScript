@@ -31,7 +31,7 @@ async function getCategoriesPreview() {
 } //END
 
 // MOVIE LIST - FROM CATEGORY SELECTED
-async function getMoviesByCategory(clicked_id, clicked_name, { pag = 1, clear = true } = {}) {
+async function getMoviesByCategory(clicked_id, clicked_name, pag = 1, clear = true) {
 	headerCategoryTitle.innerText = clicked_name;
 	const res = await apiAxios("/discover/movie", {
 		params: {
@@ -65,6 +65,7 @@ async function getTrendingMovies(pag = 1, clear = true) {
 	const trendingMovies = res.data.results;
 	// console.log(trendingMovies);
 	headerCategoryTitle.innerText = "Trending Movies";
+	console.log(pag);
 
 	renderMovies(trendingMovies, genericSection, { lazyLoader: true, erase: clear });
 } //END
@@ -85,7 +86,7 @@ function infiniteScroll() {
 		const clicked_id = idAndNameArray[0];
 		const clicked_name = idAndNameArray[1].replace("%20", " ");
 
-		getMoviesByCategory(clicked_id, clicked_name, { page: pag, clear: false });
+		getMoviesByCategory(clicked_id, clicked_name, pag, false);
 		pag++;
 	}
 }

@@ -17,14 +17,19 @@ arrowBtn.addEventListener("click", () => {
 
 function navigator() {
 	if (location.hash.startsWith("#trends")) {
+		pag = 2;
 		trendsPage();
 	} else if (location.hash.startsWith("#search=")) {
+		pag = 2;
 		searchPage();
 	} else if (location.hash.startsWith("#movie=")) {
+		pag = 2;
 		movieDetailsPage();
 	} else if (location.hash.startsWith("#category=")) {
+		pag = 2;
 		categoriesPage();
 	} else {
+		pag = 2;
 		homePage();
 	}
 	window.scroll({
