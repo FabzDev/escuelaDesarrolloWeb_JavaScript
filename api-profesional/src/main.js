@@ -31,17 +31,19 @@ async function getCategoriesPreview() {
 } //END
 
 // MOVIE LIST - FROM CATEGORY SELECTED
-async function getMoviesByCategory(clicked_id, clicked_name) {
+async function getMoviesByCategory(clicked_id, clicked_name, { pag = 1, clear = true } = {}) {
 	headerCategoryTitle.innerText = clicked_name;
 	const res = await apiAxios("/discover/movie", {
 		params: {
+			page: pag,
 			sort_by: "popularity.desc",
 			with_genres: clicked_id,
 		},
 	});
 	const categoryList = res.data.results;
+	console.log(pag);
 
-	renderMovies(categoryList, genericSection, true);
+	renderMovies(categoryList, genericSection, { lazyLoader: true, erase: clear });
 } //END
 
 // MOVIE LIST - FROM SEARCH
@@ -65,24 +67,26 @@ async function getTrendingMovies(pag = 1, clear = true) {
 	headerCategoryTitle.innerText = "Trending Movies";
 
 	renderMovies(trendingMovies, genericSection, { lazyLoader: true, erase: clear });
-
-	// const btnScroll = document.createElement("button");
-	// btnScroll.innerHTML = "Cargar Mas";
-	// genericSection.appendChild(btnScroll);
-
-	// btnScroll.addEventListener("click", () => {
-	// 	btnScroll.remove();
-	// 	getTrendingMovies(pag + 1, (clear = false));
-	// });
 } //END
 
 // PENDIENTE POR IMPLEMENTAR ESTE CODIGO EN CADA SECCION_____PEDAZO E CODIGO - INFINITE SCROLL FUNCTION
 function infiniteScroll() {
 	const scrollCond =
 		document.documentElement.scrollTop + document.documentElement.clientHeight >= document.documentElement.scrollHeight;
-	if (scrollCond) {
+	if (scrollCond && location.hash.startsWith("#trends")) {
 		getTrendingMovies(pag, (clear = false));
-		pag = pag + 1;
+		pag++;
+	}
+
+	if (scrollCond && location.hash.startsWith("#category=")) {
+		const hashContent = location.hash;
+		const idAndName = hashContent.slice(10);
+		const idAndNameArray = idAndName.split("-");
+		const clicked_id = idAndNameArray[0];
+		const clicked_name = idAndNameArray[1].replace("%20", " ");
+
+		getMoviesByCategory(clicked_id, clicked_name, { page: pag, clear: false });
+		pag++;
 	}
 }
 
@@ -109,8 +113,8 @@ async function getMovieDetails(movie_id) {
 // LAZY LOADER
 const observer = new IntersectionObserver((entries) => {
 	entries.forEach((entry) => {
-		// console.log(entry);
 		if (entry.isIntersecting) {
+			console.log(entry.isIntersecting);
 			const link = entry.target.getAttribute("dataImg");
 			entry.target.setAttribute("src", link);
 		}
