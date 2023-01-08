@@ -48,11 +48,8 @@ async function getMoviesByCategory(clicked_id, clicked_name, pag = 1, clear = tr
 
 // MOVIE LIST - FROM SEARCH
 function searchMovies(hash, { pag = 1, clear = true } = {}) {
-	return async function () {
-		const scrollCond =
-			document.documentElement.scrollTop + document.documentElement.clientHeight >=
-			document.documentElement.scrollHeight;
-		if (scrollCond) {
+	if (pag === 1) {
+		return async function () {
 			const { data } = await apiAxios("/search/movie", {
 				params: {
 					page: pag,
@@ -64,8 +61,27 @@ function searchMovies(hash, { pag = 1, clear = true } = {}) {
 
 			renderMovies(searchedMovies, genericSection, { lazyLoader: true, erase: clear });
 			pag++;
-		}
-	};
+		};
+	} else {
+		return async function () {
+			const scrollCond =
+				document.documentElement.scrollTop + document.documentElement.clientHeight >=
+				document.documentElement.scrollHeight;
+			if (scrollCond) {
+				const { data } = await apiAxios("/search/movie", {
+					params: {
+						page: pag,
+						query: hash,
+					},
+				});
+				const searchedMovies = data.results;
+				console.log(pag);
+
+				renderMovies(searchedMovies, genericSection, { lazyLoader: true, erase: clear });
+				pag++;
+			}
+		};
+	}
 } //END
 
 // MOVIE LIST - FROM TRENDING MOVIES (SEE MORE)
