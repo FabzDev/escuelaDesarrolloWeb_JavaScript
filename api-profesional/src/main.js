@@ -95,36 +95,7 @@ async function getTrendingMovies({ pag = 1, clear = true } = {}) {
 	renderMovies(trendingMovies, genericSection, { lazyLoader: true, erase: clear });
 } //END
 
-// PENDIENTE POR IMPLEMENTAR ESTE CODIGO EN CADA SECCION_____PEDAZO E CODIGO - INFINITE SCROLL FUNCTION
-// function infiniteScroll() {
-// 	const scrollCond =
-// 		document.documentElement.scrollTop + document.documentElement.clientHeight >= document.documentElement.scrollHeight;
-// 	if (scrollCond && location.hash.startsWith("#trends")) {
-// 		getTrendingMovies({ pag: pag, clear: false });
-// 		pag++;
-// 	}
-
-// 	if (scrollCond && location.hash.startsWith("#category=")) {
-// 		const hashContent = location.hash;
-// 		const idAndName = hashContent.slice(10);
-// 		const idAndNameArray = idAndName.split("-");
-// 		const clicked_id = idAndNameArray[0];
-// 		const clicked_name = idAndNameArray[1].replace("%20", " ");
-
-// 		getMoviesByCategory(clicked_id, clicked_name, pag, false);
-// 		pag++;
-// 	}
-
-// 	if (scrollCond && location.hash.startsWith("#search=")) {
-// 		const hashContent = location.hash;
-// 		const [_, hashContentArray] = hashContent.split("=");
-// 		const searchValue = hashContentArray.replaceAll("%20", " ");
-// 		searchMovies(searchValue, { pag: pag, clear: false });
-// 		pag++;
-// 	}
-// }
-
-//SINGLE MOVIE DETAILS
+// SINGLE MOVIE DETAILS
 async function getMovieDetails(movie_id) {
 	const res = await apiAxios(`/movie/${movie_id}`);
 	const detailedMovie = res.data;
@@ -174,10 +145,16 @@ function renderMovies(parameter, fatherContainer, { lazyLoader = false, erase = 
 		movieContainer.appendChild(likeBtn);
 		likeBtn.classList.add("like-btn");
 		likeBtn.innerHTML = "❤️";
-		likeBtn.style.display = "inline-block";
-		likeBtn.style.position = "relative";
-		likeBtn.style.top = "-200px";
-		likeBtn.style.left = "30px";
+		movieContainer.style.position = "relative";
+		likeBtn.style.position = "absolute";
+		likeBtn.style.margin = "0";
+		likeBtn.style.top = "2%";
+		likeBtn.style.right = "3%";
+
+		// likeBtn.style.width = "auto";
+		// likeBtn.style.right = "40%";
+		// likeBtn.style.left = "40%";
+		// likeBtn.style.textAlign = "center";
 
 		likeBtn.addEventListener("click", (e) => {
 			alert("Funciona");
@@ -226,6 +203,7 @@ function renderGenres(gen, container) {
 	});
 }
 
+// CODIGO COMENTADO ---------------------->
 // METODO ASYNC AWAIT (NO AXIOS)
 // (async function getTrendingMoviedPreview() {
 // 	const res = await fetch(`${API_URL}/trending/movie/day?api_key=${API_KEY}`);
@@ -298,3 +276,32 @@ function renderGenres(gen, container) {
 // 		)
 // 		.join("");
 // })();
+
+// PENDIENTE POR IMPLEMENTAR ESTE CODIGO EN CADA SECCION_____PEDAZO E CODIGO - INFINITE SCROLL FUNCTION
+// function infiniteScroll() {
+// 	const scrollCond =
+// 		document.documentElement.scrollTop + document.documentElement.clientHeight >= document.documentElement.scrollHeight;
+// 	if (scrollCond && location.hash.startsWith("#trends")) {
+// 		getTrendingMovies({ pag: pag, clear: false });
+// 		pag++;
+// 	}
+
+// 	if (scrollCond && location.hash.startsWith("#category=")) {
+// 		const hashContent = location.hash;
+// 		const idAndName = hashContent.slice(10);
+// 		const idAndNameArray = idAndName.split("-");
+// 		const clicked_id = idAndNameArray[0];
+// 		const clicked_name = idAndNameArray[1].replace("%20", " ");
+
+// 		getMoviesByCategory(clicked_id, clicked_name, pag, false);
+// 		pag++;
+// 	}
+
+// 	if (scrollCond && location.hash.startsWith("#search=")) {
+// 		const hashContent = location.hash;
+// 		const [_, hashContentArray] = hashContent.split("=");
+// 		const searchValue = hashContentArray.replaceAll("%20", " ");
+// 		searchMovies(searchValue, { pag: pag, clear: false });
+// 		pag++;
+// 	}
+// }

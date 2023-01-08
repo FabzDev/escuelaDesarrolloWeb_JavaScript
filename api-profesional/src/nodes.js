@@ -3,6 +3,7 @@
 // Sections
 const headerSection = document.querySelector("#header");
 const trendingPreviewSection = document.querySelector("#trendingPreview");
+const favoriteMoviesSection = document.querySelector("#likedMovies");
 const categoriesPreviewSection = document.querySelector("#categoriesPreview");
 const genericSection = document.querySelector("#genericList");
 const movieDetailSection = document.querySelector("#movieDetail");
