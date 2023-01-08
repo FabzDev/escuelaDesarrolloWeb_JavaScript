@@ -47,19 +47,25 @@ async function getMoviesByCategory(clicked_id, clicked_name, pag = 1, clear = tr
 } //END
 
 // MOVIE LIST - FROM SEARCH
-async function searchMovies(hash, { pag = 1, clear = true } = {}) {
-	const temp = location.hash;
+function searchMovies(hash, { pag = 1, clear = true } = {}) {
+	return async function () {
+		const scrollCond =
+			document.documentElement.scrollTop + document.documentElement.clientHeight >=
+			document.documentElement.scrollHeight;
+		if (scrollCond) {
+			const { data } = await apiAxios("/search/movie", {
+				params: {
+					page: pag,
+					query: hash,
+				},
+			});
+			const searchedMovies = data.results;
+			console.log(pag);
 
-	const { data } = await apiAxios("/search/movie", {
-		params: {
-			page: pag,
-			query: hash,
-		},
-	});
-	const searchedMovies = data.results;
-	console.log(pag);
-
-	renderMovies(searchedMovies, genericSection, { lazyLoader: true, erase: clear });
+			renderMovies(searchedMovies, genericSection, { lazyLoader: true, erase: clear });
+			pag++;
+		}
+	};
 } //END
 
 // MOVIE LIST - FROM TRENDING MOVIES (SEE MORE)
@@ -74,33 +80,33 @@ async function getTrendingMovies({ pag = 1, clear = true } = {}) {
 } //END
 
 // PENDIENTE POR IMPLEMENTAR ESTE CODIGO EN CADA SECCION_____PEDAZO E CODIGO - INFINITE SCROLL FUNCTION
-function infiniteScroll() {
-	const scrollCond =
-		document.documentElement.scrollTop + document.documentElement.clientHeight >= document.documentElement.scrollHeight;
-	if (scrollCond && location.hash.startsWith("#trends")) {
-		getTrendingMovies({ pag: pag, clear: false });
-		pag++;
-	}
+// function infiniteScroll() {
+// 	const scrollCond =
+// 		document.documentElement.scrollTop + document.documentElement.clientHeight >= document.documentElement.scrollHeight;
+// 	if (scrollCond && location.hash.startsWith("#trends")) {
+// 		getTrendingMovies({ pag: pag, clear: false });
+// 		pag++;
+// 	}
 
-	if (scrollCond && location.hash.startsWith("#category=")) {
-		const hashContent = location.hash;
-		const idAndName = hashContent.slice(10);
-		const idAndNameArray = idAndName.split("-");
-		const clicked_id = idAndNameArray[0];
-		const clicked_name = idAndNameArray[1].replace("%20", " ");
+// 	if (scrollCond && location.hash.startsWith("#category=")) {
+// 		const hashContent = location.hash;
+// 		const idAndName = hashContent.slice(10);
+// 		const idAndNameArray = idAndName.split("-");
+// 		const clicked_id = idAndNameArray[0];
+// 		const clicked_name = idAndNameArray[1].replace("%20", " ");
 
-		getMoviesByCategory(clicked_id, clicked_name, pag, false);
-		pag++;
-	}
+// 		getMoviesByCategory(clicked_id, clicked_name, pag, false);
+// 		pag++;
+// 	}
 
-	if (scrollCond && location.hash.startsWith("#search=")) {
-		const hashContent = location.hash;
-		const [_, hashContentArray] = hashContent.split("=");
-		const searchValue = hashContentArray.replaceAll("%20", " ");
-		searchMovies(searchValue, { pag: pag, clear: false });
-		pag++;
-	}
-}
+// 	if (scrollCond && location.hash.startsWith("#search=")) {
+// 		const hashContent = location.hash;
+// 		const [_, hashContentArray] = hashContent.split("=");
+// 		const searchValue = hashContentArray.replaceAll("%20", " ");
+// 		searchMovies(searchValue, { pag: pag, clear: false });
+// 		pag++;
+// 	}
+// }
 
 //SINGLE MOVIE DETAILS
 async function getMovieDetails(movie_id) {

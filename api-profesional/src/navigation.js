@@ -1,4 +1,5 @@
 let pag = 2;
+let infiniteScroll;
 window.addEventListener("DOMContentLoaded", navigator, false);
 window.addEventListener("hashchange", navigator, false);
 window.addEventListener("scroll", infiniteScroll);
@@ -16,6 +17,11 @@ arrowBtn.addEventListener("click", () => {
 });
 
 function navigator() {
+	if (infiniteScroll) {
+		window.removeEventListener("scroll", infiniteScroll);
+		infiniteScroll = null;
+	}
+
 	if (location.hash.startsWith("#trends")) {
 		pag = 2;
 		trendsPage();
@@ -37,6 +43,10 @@ function navigator() {
 		left: 0,
 		behavior: "instant",
 	});
+
+	if (infiniteScroll) {
+		window.addEventListener("scroll", infiniteScroll);
+	}
 }
 
 function homePage() {
@@ -156,7 +166,9 @@ function searchPage() {
 	const hashContent = location.hash;
 	const [_, hashContentArray] = hashContent.split("=");
 	const searchValue = hashContentArray.replaceAll("%20", " ");
-	searchMovies(searchValue);
+	searchMovies(searchValue)();
+
+	infiniteScroll = searchMovies(searchValue, { pag: pag, clear: false });
 }
 
 function trendsPage() {
