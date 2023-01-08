@@ -170,12 +170,27 @@ function renderMovies(parameter, fatherContainer, { lazyLoader = false, erase = 
 			location.hash = `#movie=${movie.id}`;
 		});
 
+		const likeBtn = document.createElement("p");
+		movieContainer.appendChild(likeBtn);
+		likeBtn.classList.add("like-btn");
+		likeBtn.innerHTML = "❤️";
+		likeBtn.style.display = "inline-block";
+		likeBtn.style.position = "relative";
+		likeBtn.style.top = "-200px";
+		likeBtn.style.left = "30px";
+
+		likeBtn.addEventListener("click", (e) => {
+			alert("Funciona");
+			e.stopPropagation();
+		});
+
 		const imgMovie = document.createElement("img");
 		imgMovie.classList.add("movie-img");
 		imgMovie.setAttribute("alt", movie.title);
 		imgMovie.setAttribute(lazyLoader ? "dataImg" : "src", "https://image.tmdb.org/t/p/w300/" + movie.poster_path);
 		movieContainer.appendChild(imgMovie);
 		movieContainer.style.minHeight = "188px";
+
 		imgMovie.addEventListener("error", () => {
 			movieContainer.style.display = "flex";
 			movieContainer.style.alignItems = "strech";
