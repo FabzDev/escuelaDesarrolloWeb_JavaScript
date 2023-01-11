@@ -12,6 +12,7 @@ const movieDetailSection = document.querySelector("#movieDetail");
 const searchForm = document.querySelector("#searchForm");
 const trendingMoviesPreviewList = document.querySelector(".trendingPreview-movieList");
 const categoriesPreviewList = document.querySelector(".categoriesPreview-list");
+const favoriteMoviesPreviewList = document.querySelector("#favoritePreview");
 const movieDetailCategoriesList = document.querySelector("#movieDetail .categories-list");
 const relatedMoviesContainer = document.querySelector(".relatedMovies-scrollContainer");
 

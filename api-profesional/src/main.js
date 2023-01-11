@@ -16,7 +16,7 @@ async function getTrendingMoviedPreview() {
 	const res = await apiAxios("/trending/movie/day");
 	// const data = await res.json(); no es necesario en AXIOS
 	const movies = res.data.results;
-	console.log(movies);
+	// console.log(movies);
 	// Tambien es posible usar =>  const { data } = await apiAxios("/trending/movie/day"); para recivir "data" directamente.
 
 	renderMovies(movies, trendingMoviesPreviewList, { lazyLoader: true, erase: true });
@@ -25,13 +25,46 @@ async function getTrendingMoviedPreview() {
 // HOME PAGE - RENDERING FAVORITE MOVIES
 function getFavoriteMoviesPreview() {
 	const favMovies = Object.entries(localStorage);
+	favoriteMoviesPreviewList.innerHTML = "";
+
 	favMovies.forEach((movie) => {
 		const movieContainer = document.createElement("div");
 		movieContainer.classList.add("movie-container");
-		favoriteMoviesSection.appendChild(movieContainer);
+		favoriteMoviesPreviewList.appendChild(movieContainer);
 
 		movieContainer.addEventListener("click", () => {
-			location.hash = `#movie=${movie.id}`;
+			location.hash = `#movie=${movie[0]}`;
+		});
+
+		const imgMovie = document.createElement("img");
+		imgMovie.classList.add("movie-img");
+		imgMovie.setAttribute("src", "https://image.tmdb.org/t/p/w300/" + movie[1]);
+		movieContainer.appendChild(imgMovie);
+		movieContainer.style.minHeight = "188px";
+
+		imgMovie.addEventListener("error", () => {
+			movieContainer.style.display = "flex";
+			movieContainer.style.alignItems = "strech";
+			imgMovie.setAttribute("src", "https://d3jl769oy69y7b.cloudfront.net/2022/08/blizzard.gif");
+			imgMovie.style.marginBottom = "8px";
+		});
+
+		//LIKE BUTTON - HTML
+		const likeBtn = document.createElement("p");
+		movieContainer.appendChild(likeBtn);
+		likeBtn.classList.add("like-btn");
+		likeBtn.innerHTML = "💔";
+		movieContainer.style.position = "relative";
+		likeBtn.style.position = "absolute";
+		likeBtn.style.margin = "0";
+		likeBtn.style.top = "2%";
+		likeBtn.style.right = "3%";
+
+		//LIKE BUTTON - LOGICA
+		likeBtn.addEventListener("click", (e) => {
+			e.stopPropagation();
+			localStorage.removeItem(movie[0]);
+			location.reload();
 		});
 	});
 } //END
@@ -184,8 +217,8 @@ function renderMovies(parameter, fatherContainer, { lazyLoader = false, erase = 
 		//LIKE BUTTON - LOGICA
 		likeBtn.addEventListener("click", (e) => {
 			e.stopPropagation();
-			localStorage.setItem(`${movie.title}`, `https://image.tmdb.org/t/p/w300/${movie.poster_path}`);
-			console.log(movie.title);
+			localStorage.setItem(`${movie.id}`, `https://image.tmdb.org/t/p/w300/${movie.poster_path}`);
+			location.reload();
 		});
 
 		// lazyLoader Section
