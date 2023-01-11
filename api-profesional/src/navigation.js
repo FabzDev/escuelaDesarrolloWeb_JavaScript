@@ -78,6 +78,7 @@ function homePage() {
 
 	getCategoriesPreview();
 	getTrendingMoviedPreview();
+	getFavoriteMoviesPreview();
 }
 
 function categoriesPage() {
