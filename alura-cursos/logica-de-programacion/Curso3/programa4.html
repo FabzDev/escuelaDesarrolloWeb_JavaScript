@@ -22,9 +22,14 @@
 				pincel.fill();
 			}
 
-			diseniarCircunferencia(100, 100, 30);
-			diseniarCircunferencia(140, 140, 40);
-			diseniarCircunferencia(180, 100, 30);
+			function name() {
+				for (let i = 1; i < 6; i++) {
+					setTimeout(() => {
+						diseniarCircunferencia(i * 50, i * 50, 30);
+					}, 1000 * i);
+				}
+			}
+			name();
 		</script>
 	</body>
 </html>
