@@ -21,15 +21,33 @@
 				pincel.arc(x, y, radio, 0, 2 * Math.PI);
 				pincel.fill();
 			}
-
+			let position = "left";
 			function name() {
-				for (let i = 20; i < 580; i++) {
-					setTimeout(() => {
-						pincel.clearRect(0, 0, 600, 400);
-						diseniarCircunferencia(i, 50, 20);
-					}, 10 * i);
+				if (position == "left") {
+					for (let i = 20; i < 580; i++) {
+						setTimeout(() => {
+							pincel.clearRect(0, 0, 600, 400);
+							diseniarCircunferencia(i, 50, 20);
+							if (i >= 579) {
+								position = "right";
+								name();
+							}
+						}, 10 * i);
+					}
+				} else {
+					for (let i = 580; i > 20; i--) {
+						setTimeout(() => {
+							pincel.clearRect(0, 0, 600, 400);
+							diseniarCircunferencia(i, 50, 20);
+							if (i <= 21) {
+								position = "left";
+								name();
+							}
+						}, (580 - i) * 10);
+					}
 				}
 			}
+
 			name();
 		</script>
 	</body>
