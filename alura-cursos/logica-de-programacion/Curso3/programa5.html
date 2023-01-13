@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<canvas width="600" height="400"></canvas>
+		<script>
+			const pantalla = document.querySelector("canvas");
+			var pincel = pantalla.getContext("2d");
+			var r = 10;
+			function diseniarCircunferencia(x, y, radio, color) {
+				pincel.fillStyle = color;
+				pincel.beginPath();
+				pincel.arc(x, y, radio, 0, 2 * Math.PI);
+				pincel.fill();
+			}
+
+			let targetXmin;
+			let targetXmax;
+			let targetYmin;
+			let targetYmax;
+			function drawTarget() {
+				let xRandom = 30 + Math.random() * 540;
+				let yRandom = 30 + Math.random() * 340;
+
+				targetXmin = xRandom - r;
+				targetXmax = xRandom + r;
+				targetYmin = yRandom - r;
+				targetYmax = yRandom + r;
+
+				pincel.clearRect(0, 0, 600, 400);
+				diseniarCircunferencia(xRandom, yRandom, r + 20, "red");
+				diseniarCircunferencia(xRandom, yRandom, r + 10, "white");
+				diseniarCircunferencia(xRandom, yRandom, r, "red");
+			}
+
+			pantalla.addEventListener("click", doClick);
+
+			function doClick(evento) {
+				let Xclick = evento.pageX - pantalla.offsetLeft;
+				let Yclick = evento.pageY - pantalla.offsetLeft;
+				if (Xclick > targetXmin && Xclick < targetXmax && Yclick > targetYmin && Yclick < targetYmax) {
+					alert("Acertaste!");
+					// console.log("Xclick", Xclick);
+					// console.log("Yclick", Yclick);
+					// console.log("targetXmin", targetXmin);
+					// console.log("targetXmax", targetXmax);
+					// console.log("targetYmin", targetYmin);
+					// console.log("targetYmax", targetYmax);
+				}
+			}
+
+			setInterval(drawTarget, 500);
+		</script>
+	</body>
+</html>
